@@ -1,0 +1,49 @@
+#latestmusic{
+    font-family: Arial;
+    height: 300px;
+    width: 120px;
+}
+
+#button1{
+    height: 95%;
+    width: 95%;
+    position: absolute;
+    background-color: blueviolet;
+    border-radius: 2.5%;
+}
+
+#general{
+    padding: 50px;
+}
+
+#top{
+    color: blueviolet;
+    height: 30%;
+}
+
+#bottom{
+    background-color: white;
+    color: rgb(77, 77, 170);
+    width: 101%;
+    height: 15%;
+    margin-top: 55px;
+    font-size: 20pt;
+    text-align: right;
+    padding-right: 10px;
+}
+
+#button1:hover{
+    background-color: dimgray;
+}
+
+.footer{
+    /*position: fixed;*/
+    padding: 15px;
+    height: 5%;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: slategray;
+    color: black;
+    text-align: center;
+}
