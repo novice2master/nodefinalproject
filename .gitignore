@@ -56,7 +56,7 @@ typings/
 
 # dotenv environment variables file
 .env
-
+.wt
 # next.js build output
 .next
 .DS_Store
