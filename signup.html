@@ -8,11 +8,11 @@
 
 <h2>MUZIKI Signup Form</h2>
 
-<button id="button1" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
+<!-- <button id="button1" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button> -->
 <!-- <button id="button1" onclick="document.getElementById('confirm').style.display='block'" style="width:auto;">Sign Up</button> -->
 
-<div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+<!-- <div id="id01" class="modal"> -->
+  <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> -->
   <form class="modal-content" action="/action_page.php">
     <div class="container">
       <h1>Sign Up</h1>
@@ -36,16 +36,19 @@
       <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
       <div class="clearfix">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <button type="button" onclick="window.location.href = './home_revised.html';" class="cancelbtn">Cancel</button>
         <button type="submit" class="signupbtn">Sign Up</button>
-        <!-- <button onclick="document.getElementById('confirm').style.display='block'" style="width:auto;">Sign Up --></button>
       </div>
     </div>
   </form>
+<<<<<<< HEAD
+</div>
+=======
   <!-- <div id="confirm">
         <p>Please check your email to finish your sign up process</p>
       </div> -->
-</div>
+<!-- </div> -->
+>>>>>>> 9f2a454bb231fb003bc272fd72a0129ca0bef799
 
 <script>
 // Get the modal
