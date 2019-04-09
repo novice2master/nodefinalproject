@@ -3,6 +3,7 @@ const hbs = require('hbs');
 const register = require('./register.js');
 const bodyparser = require('body-parser');
 const mongoose = require('mongoose')
+const md5 = require('md5')
 
 
 var app = express();
@@ -43,8 +44,8 @@ app.post('/signup_form', (request, response) => {
     .catch(err => {
       response.status(400).send("unable to save to database");
     });
-
 });
+
 
 
 
