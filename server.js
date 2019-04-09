@@ -1,52 +1,62 @@
 const express = require('express');
-const hbs = require('html');
-const fs = require('fs')
+const hbs = require('hbs');
+const register = require('./register.js');
+const bodyparser = require('body-parser');
+const mongoose = require('mongoose')
+
 
 var app = express();
 
-const port = process.env.PORT || 8080;
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(express.static(__dirname, + '/public/'));
+hbs.registerPartials(__dirname + '/views/partials/');
 
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost:27017/userdbase");
 
-app.use((request, response, next) => {
-	var time = new Date().toString();
-	// console.log(`${time}: ${request.method} ${request.url}`);
-	var log = `${time}: ${request.method} ${request.url}`;
-	fs.appendFile('server.log', log + '/n', (error) => {
-		if (error) {
-			console.log('Unable to log message');
-		}
-	});
-	next();
+var nameSchema = new mongoose.Schema({
+  fname: String,
+  lname: String,
+  email: {type: String, unique:true},
+  psw: String
 });
 
+var User = mongoose.model('User', nameSchema);
+
+app.set('view engine', 'hbs');
 
 app.get('/', (request, response) => {
-	// response.send('<h1>Hello Heroku!</h1>')
-	response.send('home.html')
-	// response.send({
-	// 	name: 'Your Name',
-	// 	school: [
-	// 	'BCIT',
-	// 	'SFU',
-	// 	'UBC']
-	// })
+    response.render('index.hbs');
+})
+
+app.get('/login.hbs', (request, response) => {
+    response.render('login.hbs');
+})
+
+app.post('/signup_form', (request, response) => {
+	var userInfo = new User(request.body);
+  	userInfo.save()
+    .then(item => {
+      response.render("confirm.hbs");
+    })
+    .catch(err => {
+      response.status(400).send("unable to save to database");
+    });
+
 });
 
-app.get('/404', (request, response) => {
-	response.send({
-		error: 'Page not found'
-	});
+
+
+app.get('/signup.hbs', (request, response) => {
+    response.render('signup.hbs');
+    register.getElements;
 })
 
-app.get('/info', (request, response) => {
-	// response.send('My info page');
-	response.render('about.hbs', {
-		title: 'About page',
-		// year: new Date().getFullYear(),
-		welcome: 'Hello!'
-	})
+app.get('/confirm.hbs', (request, response) => {
+    response.render('confirm.hbs');
 })
 
-app.listen(port, () => {
-	console.log(`Server is up on the port ${port}`);
+app.listen(8080, () => {
+    console.log('Server is up on the port 8080');
 });
