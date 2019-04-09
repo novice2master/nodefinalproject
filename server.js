@@ -18,7 +18,7 @@ app.get('/login.hbs', (request, response) => {
     response.render('login.hbs');
 })
 
-app.post('/login_form')
+app.post('/signup_form')
 
 app.get('/signup.hbs', (request, response) => {
     response.render('signup.hbs');
