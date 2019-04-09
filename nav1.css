@@ -14,7 +14,6 @@
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
 }
 
 #topnav a:hover {
@@ -25,10 +24,13 @@
 #topnav-active {
     background-color: #563d7c;
     color: white;
+    font-family: 'Monoton', cursive;
+    font-size: 30px;
 }
 
 #topnav-right {
     float: right;
+    font-size: 18px;
 }
 
 #jumbotron{
@@ -44,15 +46,4 @@
 #topimagesize{
     height: 80px;
     width: 80px;
-}
-
-#topimagespacing{
-    
-}
-
-#smalldiv{
-    flex: 33.3%;
-    padding: 10px;
-    float: center;
-
 }
