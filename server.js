@@ -1,52 +1,34 @@
 const express = require('express');
-const hbs = require('html');
-const fs = require('fs')
+const hbs = require('hbs');
+const register = require('./register.js');
+
 
 var app = express();
 
-const port = process.env.PORT || 8080;
+app.use(express.static(__dirname, + '/public/'));
+hbs.registerPartials(__dirname + '/views/partials/');
 
-
-app.use((request, response, next) => {
-	var time = new Date().toString();
-	// console.log(`${time}: ${request.method} ${request.url}`);
-	var log = `${time}: ${request.method} ${request.url}`;
-	fs.appendFile('server.log', log + '/n', (error) => {
-		if (error) {
-			console.log('Unable to log message');
-		}
-	});
-	next();
-});
-
+app.set('view engine', 'hbs');
 
 app.get('/', (request, response) => {
-	// response.send('<h1>Hello Heroku!</h1>')
-	response.send('home.html')
-	// response.send({
-	// 	name: 'Your Name',
-	// 	school: [
-	// 	'BCIT',
-	// 	'SFU',
-	// 	'UBC']
-	// })
-});
-
-app.get('/404', (request, response) => {
-	response.send({
-		error: 'Page not found'
-	});
+    response.render('index.hbs');
 })
 
-app.get('/info', (request, response) => {
-	// response.send('My info page');
-	response.render('about.hbs', {
-		title: 'About page',
-		// year: new Date().getFullYear(),
-		welcome: 'Hello!'
-	})
+app.get('/login.hbs', (request, response) => {
+    response.render('login.hbs');
 })
 
-app.listen(port, () => {
-	console.log(`Server is up on the port ${port}`);
+app.post('/login_form')
+
+app.get('/signup.hbs', (request, response) => {
+    response.render('signup.hbs');
+    register.getElements;
+})
+
+app.get('/confirm.hbs', (request, response) => {
+    response.render('confirm.hbs');
+})
+
+app.listen(8080, () => {
+    console.log('Server is up on the port 8080');
 });
