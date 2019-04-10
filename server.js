@@ -23,6 +23,16 @@ app.get('/', (request, response) => {
     response.render('index.hbs');
 })
 
+//General Music thread page
+app.get('/general_music.hbs', (request, response) => {
+  response.render('general_music.hbs');
+})
+
+//Music Reviews thread page
+// app.get('/music_reviews.hbs', (request, response) => {
+//   response.render('music_reviews.hbs');
+// })
+
 //Latest Music thread page
 app.get('/latest_music.hbs', (request, response) => {
   response.render('latest_music.hbs');
@@ -93,19 +103,7 @@ app.post('/login_form', (request, response) => {
     })
 })
 
-app.get('/list', (request, response) => {
-  var db = utils.getDb();
-  db.collection('threads').find({}, function(err, threads){
-    if(err){
-        console.log(err);
-        res.json(err);
-    }
-    else{
-        res.json(threads);
-    }
-});
-})
-
+//Enters a thread in a database
 app.post('/thread_form', (request, response) => {
     var email = request.body.email;
     var title = request.body.title;
@@ -123,11 +121,25 @@ app.post('/thread_form', (request, response) => {
         response.send('Unable to add user.');
       }
       
-      response.render('confirm.hbs');
+      response.render('postconfirm.hbs');
     })
 });
-//Enters a thread in 
 
+
+app.get('/music_reviews.hbs', (request, response) => {
+  var db = utils.getDb();
+  db.collection('threads').find({}).toArray(function(err, threads){
+      if(err){
+        console.log(err);
+        response.send('Unable to retrieve posts');
+      }
+      else{
+        response.send(threads);
+        // console.log(threads)
+        
+      }
+  });
+})
 
 
 app.listen(8080, () => {
