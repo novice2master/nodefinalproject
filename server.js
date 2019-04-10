@@ -93,6 +93,19 @@ app.post('/login_form', (request, response) => {
     })
 })
 
+app.get('/list', (request, response) => {
+  var db = utils.getDb();
+  db.collection('threads').find({}, function(err, threads){
+    if(err){
+        console.log(err);
+        res.json(err);
+    }
+    else{
+        res.json(threads);
+    }
+});
+})
+
 app.post('/thread_form', (request, response) => {
     var email = request.body.email;
     var title = request.body.title;
