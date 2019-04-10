@@ -73,14 +73,29 @@ app.post('/signup_form', (request, response) => {
       Last_Name: lname,
       Email: email,
       Password: psw
-    }, (err) => {
-      if(err) {
-        response.send('Unable to add user.');
-      }
-      
-      response.render('confirm.hbs');
-    })
+    }).then((doc, err)=> {
+        if (err) {
+          console.log(err);
+          response.send('unable to add user')
+        } else if (doc.Email === request.body.email) {
+          response.render('signup.hbs',{
+          signup_error:'cannot add user...user already exists!!'
+        })
+        } else {
+          response.render('confirm.hbs');
+        }
 });
+});
+
+ // if(err) {
+ //        response.send('Unable to add user.');
+ //      } else if (email === request.body.email) {
+ //        response.render('signup.hbs',{
+ //          signup_error:'cannot add user...user already exists!!'
+ //        })
+ //      } else{
+ //        response.render('confirm.hbs');
+ //      }
 
 //Logs in user if they match information in database
 app.post('/login_form', (request, response) => {
@@ -111,17 +126,28 @@ app.post('/thread_form', (request, response) => {
     var category = request.body.categories;
 
     var db = utils.getDb();
-    db.collection('threads').insertOne({
-      Email: email,
-      Title: title,
-      Message: message,
-      Category: category
-    }, (err) => {
-      if(err) {
-        response.send('Unable to add user.');
-      }
-      
-      response.render('postconfirm.hbs');
+    db.collection('users').findOne({Email: email}).then((doc) => {
+      if(doc == null){
+        console.log('user not found!')
+        response.render('create_post.hbs',{
+          login_error:'user not found!'
+        })
+        }
+      else{
+        response.cookie('username', doc.First_Name)
+        db.collection('threads').insertOne({
+          Email: email,
+          Title: title,
+          Message: message,
+          Category: category
+        }, (err) => {
+          if(err) {
+            response.send('Unable to add user.');
+          }
+          
+          response.render('postconfirm.hbs');
+        })
+      };
     })
 });
 
@@ -129,17 +155,19 @@ app.post('/thread_form', (request, response) => {
 app.get('/music_reviews.hbs', (request, response) => {
   var db = utils.getDb();
   db.collection('threads').find({}).toArray(function(err, threads){
-      if(err){
-        console.log(err);
-        response.send('Unable to retrieve posts');
-      }
-      else{
-        response.send(threads);
-        // console.log(threads)
-        
-      }
-  });
+    if(err){
+      console.log(err);
+      response.send('Unable to retrieve posts');
+    } 
+    else{
+      response.send(threads);
+    };
+          
+        // console.log(threads
 })
+});
+
+
 
 
 app.listen(8080, () => {

@@ -11,7 +11,8 @@
 </head>
 <body>
         {{> navbar}}
-
+        
+        <div id="IncorrectLogin">{{login_error}}</div>
         <form class="modal-content" action="/thread_form" method="POST">
         <div class="container">
         <h1>Create a Thread</h1>
