@@ -1,5 +1,14 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 
+<<<<<<< HEAD
+=======
+#IncorrectLogin{
+  color: red;
+  font-size: 20pt;
+  text-align: center;
+}
+
+>>>>>>> david
 /* Full-width input fields */
 input[type=text], input[type=password] {
   width: 100%;

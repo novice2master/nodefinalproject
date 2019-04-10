@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../public/css/general.css">
+  <link rel="stylesheet" href="../public/css/login.css">
+
+  <style>
+@import url('https://fonts.googleapis.com/css?family=Monoton');
+</style>
+
+</head>
+<body>
+
+{{> navbar}}
+
+
+
+<!-- <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button> -->
+
+<!-- <div id="id01" class="modal"> -->
+  <div id="IncorrectLogin">{{login_error}}</div>
+  <form class="modal-content animate" action="/login_form" method="POST">
+
+    <div class="container">
+      <h1>Log In</h1>
+      <p>Please fill in your email and password to log in.</p>
+      <hr>
+
+      <label for="email"><b>Username</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+        
+    </div>
+
+    <div class="container" style="background-color:#563d7c">
+      <button type="button" onclick="window.location.href = './';" class="cancelbtn">Cancel</button>
+      <button type="submit">Login</button>
+      {{!-- <span class="psw"><a href="#" style="color:dodgerblue">Forgot password?</a></span> --}}
+    </div>
+  </form>
+<!-- </div> -->
+
+
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+<br>
+<br>
+<br>
+{{>footer}}
+
+</body>
+</html>

@@ -51,4 +51,16 @@
 #topimagesize2{
     height: 105px;
     width: 105px;
+<<<<<<< HEAD
+=======
+}
+
+#footer{
+    text-align: center;
+    color: white;
+    background-color: #563d7c;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+>>>>>>> david
 }

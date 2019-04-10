@@ -2,12 +2,9 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="css/general.css">
-<<<<<<< HEAD
-=======
+<link rel="stylesheet" href="../public/css/general.css">
 <link rel="stylesheet" href="../public/css/threadlist.css">
->>>>>>> david
-<link rel="stylesheet" href="css/discussion_topic_link.css">
+<link rel="stylesheet" href="../public/css/discussion_topic_link.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 @import url('https://fonts.googleapis.com/css?family=Monoton');
@@ -15,14 +12,16 @@
 </head>
 <body>
 
-<div id="topnav">
+{{!-- <div id="topnav">
   <a href="index.html" id="topnav-active">MUZIKI</a>
   <div class="topnav-right" id="topnav-right">
     <a href="signup.html">Sign Up</a>
     <a href="login.html">Log In</a>
   </div>
 
-</div>
+</div> --}}
+
+{{> navbar}}
 
 <div class="jumbotron" id="jumbotron">
         <h1 class="display-4">Welcome to Muziki!</h1>
@@ -30,9 +29,9 @@
         <p class="lead">The place to be for all things music and more</p>
         
             <div id="topimagespacing">
-                    <img src="images/Headphone.png" id="topimagesize"> &nbsp; &nbsp; &nbsp;
-                    <img src="images/Vinyl.png" id="topimagesize">
-                    <img src="images/MusicNote.png" id="topimagesize2"> &nbsp;
+                    <img src="../public/images/Headphone.png" id="topimagesize"> &nbsp; &nbsp; &nbsp;
+                    <img src="../public/images/Vinyl.png" id="topimagesize">
+                    <img src="../public/images/MusicNote.png" id="topimagesize2"> &nbsp;
             </div>
 
             <br>
@@ -45,17 +44,17 @@
               <br>
               <h1>Forum List</h1>
             </div>
-
             <br>
+            
           <div class="row">
               <div class="col" id="latestmusic">
-                <button type = "button" id="button1">
+                <button type = "button" onclick="window.location.href = './latest_music.hbs';" id="button1">
                     <h3>Latest Music</h3>
                     <p>The latest music news, announcements, industry rumours, sales figures, etc. The pulse of the music industry.</p>
                 </button>
               </div>
               <div class="col" id="latestmusic">
-                <button type= "button" id="button1">
+                <button type= "button" onclick="window.location.href = './general_music.hbs';" id="button1">
                     <h3>General Music Discussion</h3>
                     <p>A space to discuss and share any song or album old and new with your fellow Muziki members!</p> 
                 </button>
@@ -63,8 +62,8 @@
           </div>
           <div class="row">
               <div class="col" id="latestmusic">
-                  <button type = "button" id="button1">
-                      <h3>Music Reviews</h3>
+                  <button type = "button" onclick="window.location.href = './music_reviews.hbs';" id="button1">
+                      <h3>All Threads</h3>
                       <p>From the latest albums to the classics, post your reviews on here to see how you enjoyed these albums!</p>
                   </button>
                 </div>
@@ -76,6 +75,8 @@
                 </div>   
           </div>
       </div>
+      <br><br>
 
+      {{> footer}}
 </body>
 </html>
