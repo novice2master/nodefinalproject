@@ -28,7 +28,11 @@ app.get('/latest_music.hbs', (request, response) => {
   response.render('latest_music.hbs');
 })
 
-
+//Create Post Page
+app.get('/create_post.hbs', (request, response) => {
+  response.render('create_post.hbs');
+  register.getElements;
+})
 
 //Signup Page
 app.get('/signup.hbs', (request, response) => {
@@ -90,10 +94,10 @@ app.post('/login_form', (request, response) => {
 })
 
 app.post('/thread_form', (request, response) => {
-    var email = request.body.fname;
-    var title = request.body.lname;
-    var message = request.body.email;
-    var category = request.body.psw;
+    var email = request.body.email;
+    var title = request.body.title;
+    var message = request.body.message;
+    var category = request.body.categories;
 
     var db = utils.getDb();
     db.collection('users').insertOne({

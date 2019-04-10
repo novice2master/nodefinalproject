@@ -25,14 +25,18 @@
         <input type="text" placeholder="Enter Title" name="title" required>
 
         <label for="message"><b>Message</b></label>
-        <textarea rows="4" cols="80" name="message" form="messsage_id"> Enter message here</textarea>
+        <textarea rows="4" cols="150" name="message" form="messsage_id"> Enter message here</textarea>
+        <br><br>
 
+        <label for="categories"><b>Category</b></label>
+        <br>
         <select name="categories">
           <option value="latest_music"> Latest Music </option>
           <option value="general_music_discussion"> General Music Discussion</option>
           <option value="music_reviews"> Music Reviews</option>
           <option value="off_topic_discussion"> Off Topic Discussion</option>
         </select>
+        <br><br>
 
         <div class="clearfix">
         <button type="button" onclick="window.location.href = './';" class="cancelbtn">Cancel</button>
