@@ -1,4 +1,4 @@
-<!-- <html>
+<html>
     <head>
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
             <link rel="stylesheet" href="home.css">
@@ -93,67 +93,4 @@
 
     </body>
 
-</html> -->
-
-<style type="text/css">
-#userAddedDiv div {
-  background:red;
-  height: 200px;
-  width: 70%;
-  margin-bottom: 8px;
-  padding: 5px;
-  text-align: center;
-}
-
-.createBoxButton {
-  display:inline-block;
-  padding:2px 8px;
-  vertical-align:middle;
-  text-decoration:none;
-  color:#000;
-  background:blue;
-  border:2px solid #888;
-  border-radius:8px;
-}
-
-.createBoxButton:active,
-.createBoxButton:hover {
-  background:#DDD;
-}
-#leftbox {
-  right: 20px;
-  top: 20px;
-  position: absolute;
-
-}
-</style>
-
-<script type="text/javascript">
-var numberOfDiv=0;
-function createDiv() {
-  ++numberOfDiv;
-  with (document) {
-    var newDiv = createElement('div');
-    with (newDiv) {
-      id='BOX'+numberOfDiv;
-      appendChild(createTextNode('Box '+numberOfDiv));
-    }
-    getElementById('userAddedDiv').appendChild(newDiv);
-    // if (document.all) {
-    //   alert(newDiv.innerText);
-    // } else {
-    //   alert(newDiv.textContent);
-    // }
-  }
-
-}
-
-document.write(
-  '<div id="userAddedDiv"></div>' +
-  '<div id="leftbox"><a href="javascript:createDiv();" class="createBoxButton">Create Box</a></div>'
-);
-</script>
-
-<!-- <noscript>
-  <div class="warning">This requires javascript to function</div>
-</noscript -->
+</html>
