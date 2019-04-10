@@ -96,7 +96,7 @@ app.post('/thread_form', (request, response) => {
     var category = request.body.psw;
 
     var db = utils.getDb();
-    db.collection('users').insertOne({
+    db.collection('threads').insertOne({
       Email: email,
       Title: title,
       Message:message,
