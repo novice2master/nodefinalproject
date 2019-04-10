@@ -1,11 +1,19 @@
-<html>
-    <head>
+<script language="Javascript">
+var i=1;
+function creatediv()
+{
+mNewObj = document.createElement('div');
+mNewObj.id = "BOX" + i;
+mNewObj.style.backgroundColor="red";
+mNewObj.style.visibility="show";
+mNewObj.innerHTML = "Box " + i;
+document.getElementById("tid").appendChild(mNewObj);
+alert(mNewObj.innerHTML);
+i++;
+}
+</script>
 
-    </head>
-
-    <body>
-
-    </body>
-
-    
-</html>
+<div id="tid"></div>
+<form method="post">
+<input type="button" value="Create Box" onclick="creatediv()">
+</form>
