@@ -29,9 +29,9 @@ app.get('/general_music.hbs', (request, response) => {
 })
 
 //Music Reviews thread page
-app.get('/music_reviews.hbs', (request, response) => {
-  response.render('music_reviews.hbs');
-})
+// app.get('/music_reviews.hbs', (request, response) => {
+//   response.render('music_reviews.hbs');
+// })
 
 //Latest Music thread page
 app.get('/latest_music.hbs', (request, response) => {
@@ -126,7 +126,7 @@ app.post('/thread_form', (request, response) => {
 });
 
 
-app.get('/music_reviews/all', (request, response) => {
+app.get('/music_reviews.hbs', (request, response) => {
   var db = utils.getDb();
   db.collection('threads').find({}).toArray(function(err, threads){
       if(err){
@@ -134,8 +134,9 @@ app.get('/music_reviews/all', (request, response) => {
         response.send('Unable to retrieve posts');
       }
       else{
-        //res.json(threads);
-        if 
+        response.send(threads);
+        // console.log(threads)
+        
       }
   });
 })
