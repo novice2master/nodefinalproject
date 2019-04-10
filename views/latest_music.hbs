@@ -65,8 +65,11 @@
 
     <br>
 
-<div class="container">
-    <table id="table">
+<div class="container" action="threadlist" method="post">
+  temp = Collection.find({_id:"1"}).fetch();
+temp[0].variable
+
+    <!-- <table id="table">
         <div>
             <tr>
                 <th>Thread Title</th>            
@@ -92,10 +95,11 @@
                 <p>Posted by: </p></td>
             </tr>
                 
-    </table>        
+    </table>         -->
+
 </div>
 
-<br>
+<!-- <br>
 
 <form class="modal-content">
     <div class="container">
@@ -159,7 +163,7 @@ document.write(
   '<div id="userAddedDiv" class="modal-content"></div>' +
   '<div id="leftbox" ><a href="javascript:createDiv();" class="createBoxButton">Create Thread</a></div>'
 );
-</script>
+</script> -->
 
 {{> footer}}
 
