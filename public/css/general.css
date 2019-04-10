@@ -52,3 +52,9 @@
     height: 105px;
     width: 105px;
 }
+
+#footer{
+    text-align: center;
+    color: white;
+    background-color: #563d7c;
+}
