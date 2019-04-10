@@ -28,6 +28,8 @@ app.get('/latest_music.hbs', (request, response) => {
   response.render('latest_music.hbs');
 })
 
+
+
 //Signup Page
 app.get('/signup.hbs', (request, response) => {
   response.render('signup.hbs');
@@ -87,6 +89,26 @@ app.post('/login_form', (request, response) => {
     })
 })
 
+app.post('/thread_form', (request, response) => {
+    var email = request.body.fname;
+    var title = request.body.lname;
+    var message = request.body.email;
+    var category = request.body.psw;
+
+    var db = utils.getDb();
+    db.collection('users').insertOne({
+      Email: email,
+      Title: title,
+      Message:message,
+      Category: category
+    }, (err) => {
+      if(err) {
+        response.send('Unable to add user.');
+      }
+      
+      response.render('confirm.hbs');
+    })
+});
 //Enters a thread in 
 
 
