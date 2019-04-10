@@ -79,6 +79,7 @@ app.post('/login_form', (request, response) => {
       else{
         response.cookie('username', doc.First_Name)
         response.redirect('/');
+        alert(response.cookie('username', doc.First_Name));
       }
     })
 })
