@@ -12,6 +12,9 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(express.static(__dirname, + '/public/'));
 hbs.registerPartials(__dirname + '/views/partials/');
+hbs.registerHelper('getCurrentYear', () => {
+  return new Date().getFullYear();
+})
 
 app.set('view engine', 'hbs');
 
