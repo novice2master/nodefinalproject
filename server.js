@@ -93,7 +93,19 @@ app.post('/login_form', (request, response) => {
     })
 })
 
-//Enters a thread in the database
+app.get('/list', (request, response) => {
+  var db = utils.getDb();
+  db.collection('threads').find({}, function(err, threads){
+    if(err){
+        console.log(err);
+        res.json(err);
+    }
+    else{
+        res.json(threads);
+    }
+});
+})
+
 app.post('/thread_form', (request, response) => {
     var email = request.body.email;
     var title = request.body.title;
@@ -114,6 +126,8 @@ app.post('/thread_form', (request, response) => {
       response.render('confirm.hbs');
     })
 });
+//Enters a thread in 
+
 
 
 app.listen(8080, () => {
