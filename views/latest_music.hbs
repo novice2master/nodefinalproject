@@ -11,16 +11,11 @@
   
 </head>
 <style type="text/css">
-#userAddedDiv div {
-  background:red;
-  height: 200px;
-  width: 70%;
-  left: 10%;
-  margin-bottom: 8px;
-  padding: 5px;
-  text-align: center;
-}
 
+#userAddedDiv {
+  margin-bottom: 3%;
+  padding: 1%;
+}
 .createBoxButton {
   display:inline-block;
   padding:2px 8px;
@@ -41,6 +36,22 @@
   top: 20%;
   position: absolute;
 
+}
+
+#lol {
+  width: 98%;
+  border-radius: 2%;
+  border:1px solid #888;
+
+  /*background-color: blue;*/
+}
+
+#lolty {
+  width: 98%;
+  border-radius: 2%;
+  border:1px solid #888;
+
+  /*background-color: blue;*/
 }
 </style>
 
@@ -84,31 +95,69 @@
     </table>        
 </div>
 
+<br>
+
+<form class="modal-content">
+    <div class="container">
+        <div class="form-group">
+            <label for="usr">Thread Title:</label>
+            <input type="text" class="form-control" id="usr">
+        </div>
+        <div class="form-group">
+            <label for="comment">Message:</label>
+            <textarea class="form-control" rows="5" id="comment"></textarea>
+        </div>
+    </div>
+</form>
+
 
 
 <script type="text/javascript">
-var numberOfDiv=0;
 function createDiv() {
-  ++numberOfDiv;
   with (document) {
-    var newDiv = createElement('div');
-    with (newDiv) {
-      id='BOX'+numberOfDiv;
-      appendChild(createTextNode('Box '+numberOfDiv));
+    var form = createElement('form');
+    with (form) {
+        var maindiv = document.createElement("div");
+        var lebl1 = document.createElement("div");
+        var lebl2 = document.createElement("div");
+
+
+        var label1 = document.createElement("Label");
+        label1.innerHTML = "Thread Title:";
+        lebl1.appendChild(label1);
+
+        var input = document.createElement("input")
+        input.setAttribute("style", "border-radius:2%");
+        input.setAttribute("size", "85%");
+        input.setAttribute("id", "lolty")
+        lebl1.appendChild(input)
+
+        var label2 = document.createElement("Label");
+        label2.innerHTML = "Message:";
+        lebl2.appendChild(label2)
+        var textarea = document.createElement("textarea");
+        textarea.setAttribute("rows", "5");
+        textarea.setAttribute("id", "lol")
+        lebl2.setAttribute("style", "padding:1%");
+        lebl1.setAttribute("style", "padding:1%");
+        lebl2.appendChild(textarea)
+        textarea.setAttribute("style", "width:300px");
+        textarea.setAttribute("style", "margin:auto");
+        form.setAttribute("id", "that");
+
+
+      maindiv.appendChild(lebl1);
+      maindiv.appendChild(lebl2);
+      form.appendChild(maindiv);
     }
-    getElementById('userAddedDiv').appendChild(newDiv);
-    // if (document.all) {
-    //   alert(newDiv.innerText);
-    // } else {
-    //   alert(newDiv.textContent);
-    // }
+    getElementById('userAddedDiv').appendChild(form);
   }
 
 }
 
 document.write(
-  '<div id="userAddedDiv"></div>' +
-  '<div id="leftbox"><a href="javascript:createDiv();" class="createBoxButton">Create Thread</a></div>'
+  '<div id="userAddedDiv" class="modal-content"></div>' +
+  '<div id="leftbox" ><a href="javascript:createDiv();" class="createBoxButton">Create Thread</a></div>'
 );
 </script>
 
