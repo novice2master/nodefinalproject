@@ -103,7 +103,7 @@ app.post('/thread_form', (request, response) => {
     db.collection('threads').insertOne({
       Email: email,
       Title: title,
-      Message:message,
+      Message: message,
       Category: category
     }, (err) => {
       if(err) {
