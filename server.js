@@ -5,7 +5,6 @@ const bodyparser = require('body-parser');
 const cookieParser = require('cookie-parser')
 const MongoClient = require('mongodb').MongoClient;
 const utils = require('./utils');
-const md5 = require('md5')
 
 var app = express();
 app.use(cookieParser())
