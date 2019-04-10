@@ -24,6 +24,9 @@
         <br>
         <br>
 
+        <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" id="threadbutton" id="threadbutton">
+                Create Thread
+        </button>
     <div class="container">
         <h1>Thread List</h1>
     </div>
@@ -61,20 +64,17 @@
 </div>
 
     <form class="modal-content animate">
-        <div class="form-group">
-            <label for="usr">Thread Title:</label>
-            <input type="text" class="form-control" id="usr">
+        <div class="container">
+                <div class="form-group">
+                        <label for="usr">Thread Title:</label>
+                        <input type="text" class="form-control" id="usr">
+                    </div>
+                    <div class="form-group">
+                    <label for="comment">Message:</label>
+                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                    </div>
         </div>
-        <div class="form-group">
-        <label for="comment">Message:</label>
-        <textarea class="form-control" rows="5" id="comment"></textarea>
-        </div>
-        <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" id="threadbutton" id="threadbutton">
-                Create Thread
-            </button>
     </form>
-              
-    
     <br>
     <br>
 </html>
