@@ -21,6 +21,11 @@ app.get('/', (request, response) => {
     response.render('index.hbs');
 })
 
+//Latest Music thread page
+app.get('/latest_music.hbs', (request, response) => {
+  response.render('latest_music.hbs');
+})
+
 //Signup Page
 app.get('/signup.hbs', (request, response) => {
   response.render('signup.hbs');
