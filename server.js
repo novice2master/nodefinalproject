@@ -1,7 +1,9 @@
 const express = require('express');
 const hbs = require('hbs');
 const register = require('./register.js');
+// const util = require('./utils.js')
 const bodyparser = require('body-parser');
+// const mongodb = require('mongodb')
 const mongoose = require('mongoose')
 
 
@@ -15,12 +17,16 @@ hbs.registerPartials(__dirname + '/views/partials/');
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/userdbase");
 
+
+
 var nameSchema = new mongoose.Schema({
   fname: String,
   lname: String,
   email: {type: String, unique:true},
   psw: String
 });
+
+
 
 var User = mongoose.model('User', nameSchema);
 
@@ -45,6 +51,8 @@ app.post('/signup_form', (request, response) => {
     });
 
 });
+
+
 
 
 
