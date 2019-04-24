@@ -2,26 +2,26 @@ const express = require('express');
 const hbs = require('hbs');
 const register = require('./register.js');
 const bodyparser = require('body-parser');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 const MongoClient = require('mongodb').MongoClient;
 const utils = require('./utils');
-
+const port = process.env.PORT || 8080;
 var app = express();
-app.use(cookieParser())
+app.use(cookieParser());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(express.static(__dirname, + '/public/'));
 hbs.registerPartials(__dirname + '/views/partials/');
 hbs.registerHelper('getCurrentYear', () => {
   return new Date().getFullYear();
-})
+});
 
 app.set('view engine', 'hbs');
 
 //Homepage
 app.get('/', (request, response) => {
     response.render('index.hbs');
-})
+});
 
 //General Music thread page
 app.get('/general_music.hbs', (request, response) => {
@@ -142,7 +142,6 @@ app.get('/music_reviews.hbs', (request, response) => {
 })
 
 
-app.listen(8080, () => {
-    console.log('Server is up on the port 8080');
-    utils.init();
+app.listen(port, () => {
+    console.log(`Server is up on port ${port}`);
 });
