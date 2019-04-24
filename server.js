@@ -66,20 +66,25 @@ app.post('/signup_form', (request, response) => {
     var lname = request.body.lname;
     var email = request.body.email;
     var psw = request.body.psw;
-
     var db = utils.getDb();
-    db.collection('users').insertOne({
-      First_Name: fname,
-      Last_Name: lname,
-      Email: email,
-      Password: psw
-    }, (err) => {
-      if(err) {
-        response.send('Unable to add user.');
-      }
-      
-      response.render('confirm.hbs');
-    })
+    var user = db.collection('users');
+    user.findOne({Email: email}, function(err, users){
+          if (err) {
+            console.log(err);
+            response.send('unable to add user')
+          } else if (users != null) {
+            response.render('signup.hbs',{
+            signup_error:'cannot add user...user already exists!!'
+          })
+          } else {
+            user.insertOne({
+                First_Name: fname,
+                Last_Name: lname,
+                Email: email,
+                Password: psw})
+            response.render('confirm.hbs');
+          }
+    });
 });
 
 //Logs in user if they match information in database
