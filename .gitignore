@@ -60,12 +60,4 @@ database/
 # next.js build output
 .next
 .DS_Store
-.idea/modules.xml
-.idea/Agile-Development.iml
-.idea/encodings.xml
-.idea/misc.xml
-.idea/vcs.xml
-.idea/vcs.xml
-.idea/workspace.xml
-.idea/vcs.xml
-.idea/vcs.xml
+.idea/
