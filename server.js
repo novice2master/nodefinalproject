@@ -26,7 +26,7 @@ app.get('/', (request, response) => {
 //General Music thread page
 app.get('/general_music.hbs', (request, response) => {
   response.render('general_music.hbs');
-})
+});
 
 //Music Reviews thread page
 // app.get('/music_reviews.hbs', (request, response) => {
@@ -36,29 +36,29 @@ app.get('/general_music.hbs', (request, response) => {
 //Latest Music thread page
 app.get('/latest_music.hbs', (request, response) => {
   response.render('latest_music.hbs');
-})
+});
 
 //Create Post Page
 app.get('/create_post.hbs', (request, response) => {
   response.render('create_post.hbs');
   register.getElements;
-})
+});
 
 //Signup Page
 app.get('/signup.hbs', (request, response) => {
   response.render('signup.hbs');
   register.getElements;
-})
+});
 
 //Signup Confirmation Page
 app.get('/confirm.hbs', (request, response) => {
   response.render('confirm.hbs');
-})
+});
 
 //Login Page
 app.get('/login.hbs', (request, response) => {
     response.render('login.hbs');
-})
+});
 
 //Add user information to database
 app.post('/signup_form', (request, response) => {
@@ -101,11 +101,11 @@ app.post('/login_form', (request, response) => {
       } 
     
       else{
-        response.cookie('username', doc.First_Name)
+        response.cookie('username', doc.First_Name);
         response.redirect('/');
       }
     })
-})
+});
 
 //Enters a thread in a database
 app.post('/thread_form', (request, response) => {
@@ -143,7 +143,7 @@ app.get('/music_reviews.hbs', (request, response) => {
         
       }
   });
-})
+});
 
 
 app.listen(port, () => {
