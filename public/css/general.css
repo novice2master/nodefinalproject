@@ -3,9 +3,59 @@
 
 /* General
 ============================================================================================ */
+
+html {
+    height: 100%;
+}
+
 body {
     font-family: "Raleway", sans-serif;
+    position: relative;
+    min-height: 100%;
+    margin:0;
+    padding:0;
 }
+
+#jumbotron{
+    background-color: #563d7c;
+    text-align: center;
+    border-bottom-right-radius: 12.5%;
+    border-bottom-left-radius: 12.5%;
+    color: white;
+    margin-bottom: 80px;
+}
+
+.jumboImage{
+    max-height: 80px;
+    max-width: 80px;
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+.footerSpacing {
+    height: 160px;
+}
+
+.footer {
+    height: 60px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: #f2f2f2;
+    background: #563d7c;
+    text-align: right;
+    position: absolute;
+    padding-top: 16px;
+}
+
+.footer div p a {
+    color: #f2f2f2;
+}
+
+
+
+/* Header
+============================================================================================ */
 
 #topNav {
     overflow: hidden;
@@ -21,8 +71,8 @@ body {
 }
 
 #topNav a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color: rgb(139, 121, 162);
+    color: #2f254b;
 }
 
 #topNav-active {
@@ -36,37 +86,7 @@ body {
     font-size: 18px;
 }
 
-#jumbotron{
-    background-color: #563d7c;
-    text-align: center;
-    border-bottom-right-radius: 12.5%;
-    border-bottom-left-radius: 12.5%;
-    border-top-right-radius: 0%;
-    border-top-left-radius: 0%;
-    color: white;
-}
 
-.jumboImage{
-    max-height: 80px;
-    max-width: 80px;
-    margin-right: 8px;
-    margin-left: 8px;
-}
-
-.footer {
-    height: 50px;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    color: #f2f2f2;
-    background: #563d7c;
-    text-align: right;
-    padding-top: 10px;
-}
-
-.footer div p a {
-    color: #f2f2f2;
-}
 
 /* discussionTopicLink
 ============================================================================================ */
@@ -92,5 +112,51 @@ body {
 }
 
 .musicCard:hover{
-    background-color: grey
+    background-color: rgb(139, 121, 162);
+    color: #2f254b;
 }
+
+
+/* Login + Signup
+============================================================================================ */
+
+.lgSg {
+    margin-top: 60px;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+#cardHeader {
+    background-color: #563d7c;
+    color: #f2f2f2;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.button {
+    border-radius: 6px;
+    background-color: #563d7c;
+    padding: 10px 18px;
+    border: none;
+    cursor: pointer;
+    margin-top: 24px;
+    margin-right: 20px;
+    color: #f2f2f2;
+}
+
+.button:hover {
+    background-color: rgb(139, 121, 162);
+    color: #2f254b;
+}
+
