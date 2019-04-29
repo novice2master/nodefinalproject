@@ -12,4 +12,4 @@ function getElements(){
 
 module.exports = {
     getElements
-}
+};
