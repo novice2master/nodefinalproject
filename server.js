@@ -81,7 +81,7 @@ app.post('/signup_form', (request, response) => {
                 First_Name: fname,
                 Last_Name: lname,
                 Email: email,
-                Password: psw})
+                Password: psw});
             response.render('confirm.hbs');
           }
     });
@@ -94,7 +94,7 @@ app.post('/login_form', (request, response) => {
     var db = utils.getDb();
     db.collection('users').findOne({Email: email, Password: psw}).then((doc)=>{
       if(doc == null){
-        console.log('Login Failed')
+        console.log('Login Failed');
         response.render('login.hbs',{
           login_error:'Incorrect login info...Try Again!!'
         })
