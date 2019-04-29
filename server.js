@@ -60,6 +60,11 @@ app.get('/login.hbs', (request, response) => {
     response.render('login.hbs');
 });
 
+//Off-Topic Discussion Page
+app.get('/off_topic.hbs', (request, response) => {
+    response.render('off_topic.hbs');
+});
+
 //Add user information to database
 app.post('/signup_form', (request, response) => {
     var fname = request.body.fname;
