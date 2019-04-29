@@ -60,3 +60,5 @@ database/
 # next.js build output
 .next
 .DS_Store
+.idea/Agile-Development.iml
+.idea/jsLibraryMappings.xml
