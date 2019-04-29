@@ -9,11 +9,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 
 {{> navbar}}
-
-{{> jumbotron}}
 
 <div class="container lgSg">
     <div class="card">
@@ -31,16 +30,14 @@
                 <label for="post"><b>Message</b></label>
                 <input type="text" placeholder="Enter your message here" name="message" id="post" required>
 
-                <label for="categories"><b>Category</b></label>
-                <br>
-                <select name="categories" id="categories">
-                    <option value="latest_music"> Latest Music</option>
-                    <option value="general_music_discussion"> General Music Discussion</option>
-                    <option value="music_reviews"> Music Reviews</option>
-                    <option value="off_topic_discussion"> Off Topic Discussion</option>
-                </select>
-
                 <div class="buttonArea">
+                    <label for="categories">&nbsp;</label>
+                    <select name="categories" id="categories">
+                        <option value="latest_music"> Latest Music</option>
+                        <option value="general_music_discussion"> General Music Discussion</option>
+                        <option value="music_reviews"> Music Reviews</option>
+                        <option value="off_topic_discussion"> Off Topic Discussion</option>
+                    </select>
                     <button type="button" onclick="window.location.href = './';" class="cancelbtn">Cancel</button>
                     <button type="submit" class="signupbtn">Post</button>
                 </div>
