@@ -5,9 +5,10 @@ const bodyparser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const MongoClient = require('mongodb').MongoClient;
 const utils = require('./utils');
-const port = process.env.PORT || 8080;
+
+
 var app = express();
-app.use(cookieParser());
+app.use(cookieParser())
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(express.static(__dirname, + '/public/'));
@@ -60,36 +61,26 @@ app.get('/login.hbs', (request, response) => {
     response.render('login.hbs');
 });
 
-//Off-Topic Discussion Page
-app.get('/off_topic.hbs', (request, response) => {
-    response.render('off_topic.hbs');
-});
-
 //Add user information to database
 app.post('/signup_form', (request, response) => {
     var fname = request.body.fname;
     var lname = request.body.lname;
     var email = request.body.email;
     var psw = request.body.psw;
+
     var db = utils.getDb();
-    var user = db.collection('users');
-    user.findOne({Email: email}, function(err, users){
-          if (err) {
-            console.log(err);
-            response.send('unable to add user')
-          } else if (users != null) {
-            response.render('signup.hbs',{
-            signup_error:'cannot add user...user already exists!!'
-          })
-          } else {
-            user.insertOne({
-                First_Name: fname,
-                Last_Name: lname,
-                Email: email,
-                Password: psw})
-            response.render('confirm.hbs');
-          }
-    });
+    db.collection('users').insertOne({
+      First_Name: fname,
+      Last_Name: lname,
+      Email: email,
+      Password: psw
+    }, (err) => {
+      if(err) {
+        response.send('Unable to add user.');
+      }
+      
+      response.render('confirm.hbs');
+    })
 });
 
 //Logs in user if they match information in database
@@ -108,6 +99,7 @@ app.post('/login_form', (request, response) => {
       else{
         response.cookie('username', doc.First_Name);
         response.redirect('/');
+        alert(response.cookie('username', doc.First_Name));
       }
     })
 });
@@ -151,6 +143,7 @@ app.get('/music_reviews.hbs', (request, response) => {
 });
 
 
-app.listen(port, () => {
-    console.log(`Server is up on port ${port}`);
+app.listen(8080, () => {
+    console.log('Server is up on the port 8080');
+    utils.init();
 });
