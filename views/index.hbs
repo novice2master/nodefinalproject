@@ -1,86 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="../public/css/general.css">
-<link rel="stylesheet" href="../public/css/threadlist.css">
-<link rel="stylesheet" href="../public/css/discussion_topic_link.css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-@import url('https://fonts.googleapis.com/css?family=Monoton');
-</style>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>MUZIKI</title>
+    <link rel="stylesheet" href="../public/css/general.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-{{!-- <div id="topnav">
-  <a href="index.html" id="topnav-active">MUZIKI</a>
-  <div class="topnav-right" id="topnav-right">
-    <a href="signup.html">Sign Up</a>
-    <a href="login.html">Log In</a>
-  </div>
-
-</div> --}}
-
 {{> navbar}}
 
 <div class="jumbotron" id="jumbotron">
-        <h1 class="display-4">Welcome to Muziki!</h1>
+    <h1 class="display-4">Welcome to Muziki!</h1>
+    <br>
+    <p class="lead">The place to be for all things music and more</p>
+    <div>
+        <img alt="topImage3" src="../public/images/MusicNote.png" class="jumboImage">
+        <img alt="topImage1" src="../public/images/Headphone.png" class="jumboImage">
+        <img alt="topImage2" src="../public/images/Vinyl.png" class="jumboImage">
+    </div>
+
+    <br>
+</div>
+
+<div class="container">
+    <div class="row"></div>
+    <div class="col">
         <br>
-        <p class="lead">The place to be for all things music and more</p>
-        
-            <div id="topimagespacing">
-                    <img alt="topImage1" src="../public/images/Headphone.png" id="topimagesize"> &nbsp; &nbsp; &nbsp;
-                    <img alt="topImage2" src="../public/images/Vinyl.png" id="topimagesize">
-                    <img alt="topImage3" src="../public/images/MusicNote.png" id="topimagesize2"> &nbsp;
-            </div>
-
-            <br>
-      </div>
-
-      <div class="container">
-          <div class="row"></div>
-            <div class="col">
-              <br>
-              <h1>Forum List</h1>
-            </div>
-            <br>
-            
-          <div class="row">
-              <div class="col" id="latestmusic">
-                <button type = "button" onclick="window.location.href = './latest_music.hbs';" id="button1">
-                    <h3>Latest Music</h3>
-                    <p>The latest music news, announcements, industry rumours, sales figures, etc. The pulse of the music industry.</p>
-                </button>
-              </div>
-              <div class="col" id="latestmusic">
-                <button type= "button" onclick="window.location.href = './general_music.hbs';" id="button1">
-                    <h3>General Music Discussion</h3>
-                    <p>A space to discuss and share any song or album old and new with your fellow Muziki members!</p> 
-                </button>
-              </div>           
-          </div>
-          <div class="row">
-              <div class="col" id="latestmusic">
-                  <button type = "button" onclick="window.location.href = './music_reviews.hbs';" id="button1">
-                      <h3>All Threads</h3>
-                      <p>From the latest albums to the classics, post your reviews on here to see how you enjoyed these albums!</p>
-                  </button>
+        <h1>Forum List</h1>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col" onclick="window.location.href = './latest_music.hbs';">
+            <div class="card border-0">
+                <div class="card-body musicCard">
+                    <h2>Latest Music</h2>
+                    <p>The latest music news, announcements, industry rumours, sales figures, etc. The pulse of the music
+                        industry.</p>
                 </div>
-                <div class="col" id="latestmusic">
-                  <button type= "button" id="button1">
-                      <h3>Off-Topic Discussion</h3>
-                      <p>Any topics or news outside of music can be discussed freely here! </p>
-                  </button>
-                </div>   
-          </div>
-      </div>
-      <br><br>
-
-      {{> footer}}
+            </div>
+        </div>
+        <div class="col" onclick="window.location.href = './latest_music.hbs';">
+            <div class="card border-0">
+                <div class="card-body musicCard">
+                    <h2>General Music Discussion</h2>
+                    <p>A space to discuss and share any song or album old and new with your fellow Muziki members!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" onclick="window.location.href = './latest_music.hbs';">
+            <div class="card border-0">
+                <div class="card-body musicCard">
+                    <h2>All Threads</h2>
+                    <p>From the latest albums to the classics, post your reviews on here to see how you enjoyed these
+                        albums!</p>
+                </div>
+            </div>
+        </div>
+        <div class="col" onclick="window.location.href = './latest_music.hbs';">
+            <div class="card border-0">
+                <div class="card-body musicCard">
+                    <h2>Off-Topic Discussion</h2>
+                    <p>Any topics or news outside of music can be discussed freely here! </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{> footer}}
 </body>
 </html>

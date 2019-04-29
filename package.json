@@ -10,11 +10,13 @@
   "author": "Joakins",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.2.0",
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
     "hbs": "^4.0.4",
     "html": "^1.0.0",
     "md5": "^2.2.1",
+    "mocha": "^6.1.4",
     "mongodb": "^3.2.3",
     "mongoose": "^5.5.0"
   },
