@@ -94,7 +94,7 @@ app.post('/login_form', (request, response) => {
     var db = utils.getDb();
     db.collection('users').findOne({Email: email, Password: psw}).then((doc)=>{
       if(doc == null){
-        console.log('Login Failed')
+        console.log('Login Failed');
         response.render('login.hbs',{
           login_error:'Incorrect login info...Try Again!!'
         })
@@ -102,6 +102,7 @@ app.post('/login_form', (request, response) => {
     
       else{
         response.cookie('username', doc.First_Name);
+
         response.redirect('/');
       }
     })
@@ -148,4 +149,16 @@ app.get('/music_reviews.hbs', (request, response) => {
 
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`);
+});
+
+MongoClient.connect('mongodb+srv://agile:u1wtUop4dTfKLxxo@cluster0-1dr0b.mongodb.net/test?retryWrites=true', function(err, client){
+    if(err){
+        return console.log('Unable to connect to DB');
+
+    }
+
+    _db = client.db('muziki');
+    console.log('Successfully connected to MongoDB server');
+    // console.log(_db);
+    client.close();
 });
