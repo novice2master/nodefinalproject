@@ -43,7 +43,8 @@
                             <option value="music_reviews"> Music Reviews</option>
                             <option value="off_topic_discussion"> Off Topic Discussion</option>
                         </select>
-                        <button type="button" onclick="window.location.href = './';" class="cancelbtn">Cancel</button>
+
+                        <button type="button" onclick="" data-dismiss="modal" class="cancelbtn">Cancel</button>
                         <button type="submit" class="signupbtn">Post</button>
                     </div>
                 </form>
@@ -51,3 +52,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    var urls = {
+        'latest_music.hbs' : 'latest_music',
+        'general_music.hbs' : 'general_music_discussion',
+        'music_reviews.hbs' : 'music_reviews',
+        'off_topic.hbs' : 'off_topic_discussion'
+    };
+
+    $('#categories').val(urls[window.location.href.substring(22)]);
+    /*
+    $(document).ready(function() {
+        $(".dropdown .dropdown-menu li a")[urls[window.location.href.substring(22)]].click();
+    });
+    */
+    console.log(urls[window.location.href.substring(22)]);
+</script>
