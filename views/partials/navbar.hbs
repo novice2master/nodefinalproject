@@ -1,13 +1,13 @@
-<header id="topnav">
+<header id="topNav">
     <div class="container">
         <nav class="navbar navbar-light navbar-expand-lg">
-            <a id="topnav-active" class="navbar-brand" href="./">MUZIKI</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <a id="topNav-active" href="./">MUZIKI</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <div class="navbar-nav ml-auto mt-lg-0" id="topnav-right">
-                    <a href="../create_post.hbs">Post a Thread</a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ml-auto mt-lg-0" id="topNav-right">
+                    <a data-toggle="modal" data-target="#postModal">Post a Thread</a>
                     <a href="../signup.hbs">Sign Up</a>
                     <a href="../login.hbs">Log In</a>
                 </div>
@@ -15,3 +15,57 @@
         </nav>
     </div>
 </header>
+
+<div class="modal" id="postModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">
+                    Post a Thread
+                </h6>
+            </div>
+            <div class="modal-body">
+                <form action="/thread_form" method="POST">
+                    <p>Please fill in this form to create a thread.</p>
+                    <hr>
+
+                    <label for="title"><b>Title</b></label>
+                    <input type="text" placeholder="Enter Title" name="title" id="title" required>
+
+                    <label for="post"><b>Message</b></label>
+                    <input type="text" placeholder="Enter your message here" name="message" id="post" required>
+
+                    <div class="buttonArea">
+                        <label for="categories">&nbsp;</label>
+                        <select name="categories" id="categories">
+                            <option value="latest_music"> Latest Music</option>
+                            <option value="general_music_discussion"> General Music Discussion</option>
+                            <option value="music_reviews"> Music Reviews</option>
+                            <option value="off_topic_discussion"> Off Topic Discussion</option>
+                        </select>
+
+                        <button type="button" onclick="" data-dismiss="modal" class="cancelbtn">Cancel</button>
+                        <button type="submit" class="signupbtn">Post</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var urls = {
+        'latest_music.hbs' : 'latest_music',
+        'general_music.hbs' : 'general_music_discussion',
+        'music_reviews.hbs' : 'music_reviews',
+        'off_topic.hbs' : 'off_topic_discussion'
+    };
+
+    $('#categories').val(urls[window.location.href.substring(22)]);
+    /*
+    $(document).ready(function() {
+        $(".dropdown .dropdown-menu li a")[urls[window.location.href.substring(22)]].click();
+    });
+    */
+    console.log(urls[window.location.href.substring(22)]);
+</script>
