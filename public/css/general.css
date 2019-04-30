@@ -63,7 +63,9 @@ body {
     color: #f2f2f2;
 }
 
-
+.containerMargin {
+    margin-top: 100px;
+}
 
 /* Header
 ============================================================================================ */
@@ -136,10 +138,6 @@ body {
 /* Login + Signup + createPost
 ============================================================================================ */
 
-.lgSg {
-    margin-top: 100px;
-}
-
 label {
     margin-top: 10px;
     font-weight: 300;
@@ -187,3 +185,7 @@ input[type=text], input[type=password] {
     cursor: pointer;
     margin-right: 20px;
 }
+
+/* Thread pages
+============================================================================================ */
+
