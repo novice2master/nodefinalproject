@@ -109,7 +109,7 @@ body {
 /* discussionTopicLink
 ============================================================================================ */
 
-.card {
+.discussionCard {
     margin-bottom: 40px;
 }
 
@@ -189,13 +189,19 @@ input[type=text], input[type=password] {
 /* Thread pages
 ============================================================================================ */
 
-#threadCardHeader {
+#generalThreads .card:nth-child(even) .card-header {
     background-color: #563d7c;
     color: #f2f2f2;
     border-radius: 8px;
 }
 
-#threadCardHeader:hover {
+#generalThreads .card:nth-child(odd) .card-header {
     background-color: rgb(139, 121, 162);
+    color: #f2f2f2;
+    border-radius: 8px;
+}
+
+#generalThreads .card .card-header:hover {
+    background-color: lightgrey;
     color: #2f254b;
 }
