@@ -116,6 +116,7 @@ app.post('/thread_form', (request, response) => {
     var category = request.body.categories;
 
     var db = utils.getDb();
+    // console.log(db);
     db.collection('threads').insertOne({
       Email: email,
       Title: title,
@@ -151,14 +152,14 @@ app.listen(port, () => {
     console.log(`Server is up on port ${port}`);
 });
 
-MongoClient.connect('mongodb+srv://agile:u1wtUop4dTfKLxxo@cluster0-1dr0b.mongodb.net/test?retryWrites=true', function(err, client){
-    if(err){
-        return console.log('Unable to connect to DB');
-
-    }
-
-    _db = client.db('muziki');
-    console.log('Successfully connected to MongoDB server');
-    // console.log(_db);
-    client.close();
-});
+// MongoClient.connect('mongodb+srv://agile:u1wtUop4dTfKLxxo@cluster0-1dr0b.mongodb.net/test?retryWrites=true', function(err, client){
+//     if(err){
+//         return console.log('Unable to connect to DB');
+//
+//     }
+//
+//     _db = client.db('muziki');
+//     console.log('Successfully connected to MongoDB server');
+//     // console.log(_db);
+//     client.close();
+// });
