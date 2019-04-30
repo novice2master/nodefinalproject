@@ -169,14 +169,19 @@ input[type=text], input[type=password] {
     text-align: right;
 }
 
+.modal-btn {
+    display: inline-block;
+}
+
 .buttonArea button {
     border-radius: 6px;
     background-color: #563d7c;
     padding: 10px 18px;
     border: none;
     cursor: pointer;
-    margin-right: 20px;
+    margin: 10px;
     color: #f2f2f2;
+    width: 80px;
 }
 
 .buttonArea button:hover {
@@ -189,18 +194,31 @@ input[type=text], input[type=password] {
     padding: 10px 18px;
     border: 1px solid lightgrey;
     cursor: pointer;
-    margin-right: 20px;
+    margin-right: 10px;
+    width: 50%;
+}
+
+textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    width: 100%;
+}
+
+.message-box {
+    height: 225px;
 }
 
 /* Thread pages
 ============================================================================================ */
 
-#generalThreads .card:nth-child(even) .card-header {
+#generalThreads .card:nth-child(odd) .card-header {
     background-color: #563d7c;
     color: #f2f2f2;
 }
 
-#generalThreads .card:nth-child(odd) .card-header {
+#generalThreads .card:nth-child(even) .card-header {
     background-color: rgb(139, 121, 162);
     color: #f2f2f2;
 }
