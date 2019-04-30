@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="443168e5-16f5-4df6-97c4-102eba35dc3f" name="Default Changelist" comment="" />
+    <list default="true" id="443168e5-16f5-4df6-97c4-102eba35dc3f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -13,40 +16,45 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="107" column="28" selection-start-line="107" selection-start-column="28" selection-end-line="107" selection-end-column="28" />
+            <state relative-caret-position="240">
+              <caret line="139" column="8" lean-forward="true" selection-start-line="139" selection-start-column="8" selection-end-line="139" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/register.js">
+        <entry file="file://$PROJECT_DIR$/views/index.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+            <state relative-caret-position="204">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/partials/navbar.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="10" lean-forward="true" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+            <state relative-caret-position="289">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/general.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2159">
+              <caret line="127" column="1" selection-start-line="127" selection-start-column="1" selection-end-line="127" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/partials/footer.hbs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="39" selection-start-column="39" selection-end-column="39" />
-            </state>
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -60,11 +68,15 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/public/css/login.css" />
         <option value="$PROJECT_DIR$/views/partials/navbar.hbs" />
         <option value="$PROJECT_DIR$/views/partials/jumptron(nHome).hbs" />
@@ -78,6 +90,7 @@
         <option value="$PROJECT_DIR$/views/confirm.hbs" />
         <option value="$PROJECT_DIR$/public/css/general.css" />
         <option value="$PROJECT_DIR$/views/create_post.hbs" />
+        <option value="$PROJECT_DIR$/server.js" />
       </list>
     </option>
   </component>
@@ -99,28 +112,6 @@
             <path>
               <item name="Agile-Development" type="b2602c69:ProjectViewProjectNode" />
               <item name="Agile-Development" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Agile-Development" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Agile-Development" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Agile-Development" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Agile-Development" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Agile-Development" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Agile-Development" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Agile-Development" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Agile-Development" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="partials" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -159,6 +150,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Node.js.server.js" />
+        <item itemvalue="Node.js.server.js" />
+        <item itemvalue="Node.js.server.js" />
+        <item itemvalue="Node.js.server.js" />
+        <item itemvalue="Node.js.server.js" />
       </list>
     </recent_temporary>
   </component>
@@ -181,13 +176,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30570000" />
+    <option name="totallyTimeSpent" value="30641000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="745" y="0" width="761" height="1006" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49923196" visible="true" weight="0.16827586" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49923196" visible="true" weight="0.16689655" />
       <window_info id="Structure" order="1" sideWeight="0.50076807" side_tool="true" weight="0.08327138" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -233,15 +228,12 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/public/confirm.html" />
     <entry file="file://$PROJECT_DIR$/public/index.html" />
-    <entry file="file://$PROJECT_DIR$/server.js">
+    <entry file="file://$PROJECT_DIR$/public/css/confirm.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="107" column="28" selection-start-line="107" selection-start-column="28" selection-end-line="107" selection-end-column="28" />
+        <state relative-caret-position="204">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/confirm.css">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/discussion_topic_link.css" />
     <entry file="file://$PROJECT_DIR$/public/css/threadlist.css">
@@ -262,13 +254,6 @@
     <entry file="file://$PROJECT_DIR$/views/partials/navNHome.hbs" />
     <entry file="file://$PROJECT_DIR$/views/partials/jumbotron.hbs" />
     <entry file="file://$PROJECT_DIR$/views/partials/navbarRound.hbs" />
-    <entry file="file://$PROJECT_DIR$/views/index.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/login.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -280,13 +265,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/general.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3145">
-          <caret line="185" column="32" selection-start-line="185" selection-start-column="32" selection-end-line="185" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -311,19 +289,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/footer.hbs">
+    <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="39" selection-start-column="39" selection-end-column="39" />
+        <state relative-caret-position="240">
+          <caret line="139" column="8" lean-forward="true" selection-start-line="139" selection-start-column="8" selection-end-line="139" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/partials/navbar.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="10" lean-forward="true" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+        <state relative-caret-position="289">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/general.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2159">
+          <caret line="127" column="1" selection-start-line="127" selection-start-column="1" selection-end-line="127" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/partials/footer.hbs">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

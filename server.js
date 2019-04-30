@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const MongoClient = require('mongodb').MongoClient;
 const utils = require('./utils');
 
-
+const port = process.env.PORT || 8080;
 var app = express();
 app.use(cookieParser())
 app.use(bodyparser.json());
@@ -143,7 +143,7 @@ app.get('/music_reviews.hbs', (request, response) => {
 });
 
 
-app.listen(8080, () => {
+app.listen(port, () => {
     console.log('Server is up on the port 8080');
     utils.init();
 });
