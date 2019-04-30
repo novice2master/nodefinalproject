@@ -1,5 +1,4 @@
 
-
 @import url("https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900|Monoton");
 
 /* General
@@ -205,5 +204,4 @@ input[type=text], input[type=password] {
 #generalThreads .card .card-header:hover {
     background-color: lightgrey;
     color: #2f254b;
-
 }
