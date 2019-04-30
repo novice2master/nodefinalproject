@@ -2,26 +2,26 @@ const express = require('express');
 const hbs = require('hbs');
 const register = require('./register.js');
 const bodyparser = require('body-parser');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 const MongoClient = require('mongodb').MongoClient;
 const utils = require('./utils');
-
+const port = process.env.PORT || 8080;
 var app = express();
-app.use(cookieParser())
+app.use(cookieParser());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(express.static(__dirname, + '/public/'));
 hbs.registerPartials(__dirname + '/views/partials/');
 hbs.registerHelper('getCurrentYear', () => {
   return new Date().getFullYear();
-})
+});
 
 app.set('view engine', 'hbs');
 
 //Homepage
 app.get('/', (request, response) => {
     response.render('index.hbs');
-})
+});
 
 //General Music thread page
 app.get('/general_music.hbs', (request, response) => {
@@ -60,26 +60,62 @@ app.get('/login.hbs', (request, response) => {
     response.render('login.hbs');
 })
 
+// app.get('/login2.hbs', (request, response) => {
+//     response.render('login2.hbs');
+// })
+
 //Add user information to database
 app.post('/signup_form', (request, response) => {
     var fname = request.body.fname;
     var lname = request.body.lname;
     var email = request.body.email;
     var psw = request.body.psw;
-
     var db = utils.getDb();
-    db.collection('users').insertOne({
-      First_Name: fname,
-      Last_Name: lname,
-      Email: email,
-      Password: psw
-    }, (err) => {
-      if(err) {
-        response.send('Unable to add user.');
-      }
-      
-      response.render('confirm.hbs');
-    })
+    var user = db.collection('users');
+
+    if (
+        request.body.captcha === undefined ||
+        request.body.captcha === "" ||
+        request.body.captcha === null
+    ) {
+        return response.json({"success": false, "msg": "please select captcha"});
+    }
+
+    // Secret Key
+    const secretKey = '6LfWI6EUAAAAAEnFDSW9SMUiqH4ns05r_-ZGzNhV';
+
+    // Verify URL
+    const verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${request.body.captcha}
+    &remoteip=${request.connection.remoteAddress}`;
+
+    // Make Request to VerifyURL
+    request(verifyURL, (err, response, body) => {
+        body = JSON.parse(body);
+
+        //If Not Successful
+        if (body.success !== undefined && !body.success) {
+            return response.json({"success": false, "msg": "Failed captcha verification"});
+        }
+
+        user.findOne({Email: email}, function (err, users) {
+            if (err) {
+                console.log(err);
+                response.send('unable to add user')
+            } else if (users != null) {
+                response.render('signup.hbs', {
+                    signup_error: 'cannot add user...user already exists!!'
+                })
+            } else {
+                user.insertOne({
+                    First_Name: fname,
+                    Last_Name: lname,
+                    Email: email,
+                    Password: psw
+                })
+                response.render('confirm.hbs');
+            }
+        });
+    });
 });
 
 //Logs in user if they match information in database
@@ -93,15 +129,14 @@ app.post('/login_form', (request, response) => {
         response.render('login.hbs',{
           login_error:'Incorrect login info...Try Again!!'
         })
-      } 
-    
+      }
+
       else{
         response.cookie('username', doc.First_Name)
         response.redirect('/');
-        alert(response.cookie('username', doc.First_Name));
       }
     })
-})
+});
 
 //Enters a thread in a database
 app.post('/thread_form', (request, response) => {
@@ -142,7 +177,6 @@ app.get('/music_reviews.hbs', (request, response) => {
 })
 
 
-app.listen(8080, () => {
-    console.log('Server is up on the port 8080');
-    utils.init();
+app.listen(port, () => {
+    console.log(`Server is up on port ${port}`);
 });
