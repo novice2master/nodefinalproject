@@ -3,6 +3,7 @@ const hbs = require('hbs');
 const register = require('./register.js');
 const bodyparser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const session = require('express-session')
 const MongoClient = require('mongodb').MongoClient;
 const utils = require('./utils');
 const port = process.env.PORT || 8080;
@@ -109,7 +110,7 @@ app.post('/login_form', (request, response) => {
 
 //Enters a thread in a database
 app.post('/thread_form', (request, response) => {
-    var email = request.body.email;
+    var email = response.cookie.username;
     var title = request.body.title;
     var message = request.body.message;
     var category = request.body.categories;
