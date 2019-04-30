@@ -8,7 +8,7 @@ module.exports.getDb = function() {
 }
 
 module.exports.init = function(callback) {
-    MongoClient.connect('mongodb://localhost:27017/muziki', function(err, client){
+    MongoClient.connect('mongodb+srv://agile:u1wtUop4dTfKLxxo@cluster0-1dr0b.mongodb.net/test', function(err, client){
         if(err){
             return console.log('Unable to connect to DB');
 
