@@ -60,6 +60,10 @@ app.get('/login.hbs', (request, response) => {
     response.render('login.hbs');
 })
 
+// app.get('/login2.hbs', (request, response) => {
+//     response.render('login2.hbs');
+// })
+
 //Add user information to database
 app.post('/signup_form', (request, response) => {
     var fname = request.body.fname;
@@ -68,22 +72,49 @@ app.post('/signup_form', (request, response) => {
     var psw = request.body.psw;
     var db = utils.getDb();
     var user = db.collection('users');
-    user.findOne({Email: email}, function(err, users){
-          if (err) {
-            console.log(err);
-            response.send('unable to add user')
-          } else if (users != null) {
-            response.render('signup.hbs',{
-            signup_error:'cannot add user...user already exists!!'
-          })
-          } else {
-            user.insertOne({
-                First_Name: fname,
-                Last_Name: lname,
-                Email: email,
-                Password: psw})
-            response.render('confirm.hbs');
-          }
+
+    if (
+        request.body.captcha === undefined ||
+        request.body.captcha === "" ||
+        request.body.captcha === null
+    ) {
+        return response.json({"success": false, "msg": "please select captcha"});
+    }
+
+    // Secret Key
+    const secretKey = '6LfWI6EUAAAAAEnFDSW9SMUiqH4ns05r_-ZGzNhV';
+
+    // Verify URL
+    const verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${request.body.captcha}
+    &remoteip=${request.connection.remoteAddress}`;
+
+    // Make Request to VerifyURL
+    request(verifyURL, (err, response, body) => {
+        body = JSON.parse(body);
+
+        //If Not Successful
+        if (body.success !== undefined && !body.success) {
+            return response.json({"success": false, "msg": "Failed captcha verification"});
+        }
+
+        user.findOne({Email: email}, function (err, users) {
+            if (err) {
+                console.log(err);
+                response.send('unable to add user')
+            } else if (users != null) {
+                response.render('signup.hbs', {
+                    signup_error: 'cannot add user...user already exists!!'
+                })
+            } else {
+                user.insertOne({
+                    First_Name: fname,
+                    Last_Name: lname,
+                    Email: email,
+                    Password: psw
+                })
+                response.render('confirm.hbs');
+            }
+        });
     });
 });
 
@@ -98,14 +129,14 @@ app.post('/login_form', (request, response) => {
         response.render('login.hbs',{
           login_error:'Incorrect login info...Try Again!!'
         })
-      } 
-    
+      }
+
       else{
         response.cookie('username', doc.First_Name)
         response.redirect('/');
       }
     })
-})
+});
 
 //Enters a thread in a database
 app.post('/thread_form', (request, response) => {
