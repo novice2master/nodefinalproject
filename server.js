@@ -3,7 +3,6 @@ const hbs = require('hbs');
 const register = require('./register.js');
 const bodyparser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const session = require('express-session')
 const MongoClient = require('mongodb').MongoClient;
 const utils = require('./utils');
 const port = process.env.PORT || 8080;
@@ -27,7 +26,7 @@ app.get('/', (request, response) => {
 //General Music thread page
 app.get('/general_music.hbs', (request, response) => {
   response.render('general_music.hbs');
-});
+})
 
 //Music Reviews thread page
 // app.get('/music_reviews.hbs', (request, response) => {
@@ -37,29 +36,33 @@ app.get('/general_music.hbs', (request, response) => {
 //Latest Music thread page
 app.get('/latest_music.hbs', (request, response) => {
   response.render('latest_music.hbs');
-});
+})
 
 //Create Post Page
 app.get('/create_post.hbs', (request, response) => {
   response.render('create_post.hbs');
   register.getElements;
-});
+})
 
 //Signup Page
 app.get('/signup.hbs', (request, response) => {
   response.render('signup.hbs');
   register.getElements;
-});
+})
 
 //Signup Confirmation Page
 app.get('/confirm.hbs', (request, response) => {
   response.render('confirm.hbs');
-});
+})
 
 //Login Page
 app.get('/login.hbs', (request, response) => {
     response.render('login.hbs');
-});
+})
+
+// app.get('/login2.hbs', (request, response) => {
+//     response.render('login2.hbs');
+// })
 
 //Add user information to database
 app.post('/signup_form', (request, response) => {
@@ -69,24 +72,49 @@ app.post('/signup_form', (request, response) => {
     var psw = request.body.psw;
     var db = utils.getDb();
     var user = db.collection('users');
-    user.findOne({Email: email}, function(err, users){
-          if (err) {
-            console.log(err);
-            response.send('unable to add user')
-          } else if (users != null) {
-              console.log("users exist");
-            response.render('signup.hbs',{
-            signup_error:'cannot add user...user already exists!!'
-          })
-          } else {
-            user.insertOne({
-                First_Name: fname,
-                Last_Name: lname,
-                Email: email,
-                Password: psw});
-            console.log("good login");
-            response.render('confirm.hbs');
-          }
+
+    if (
+        request.body.captcha === undefined ||
+        request.body.captcha === "" ||
+        request.body.captcha === null
+    ) {
+        return response.json({"success": false, "msg": "please select captcha"});
+    }
+
+    // Secret Key
+    const secretKey = '6LfWI6EUAAAAAEnFDSW9SMUiqH4ns05r_-ZGzNhV';
+
+    // Verify URL
+    const verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${request.body.captcha}
+    &remoteip=${request.connection.remoteAddress}`;
+
+    // Make Request to VerifyURL
+    request(verifyURL, (err, response, body) => {
+        body = JSON.parse(body);
+
+        //If Not Successful
+        if (body.success !== undefined && !body.success) {
+            return response.json({"success": false, "msg": "Failed captcha verification"});
+        }
+
+        user.findOne({Email: email}, function (err, users) {
+            if (err) {
+                console.log(err);
+                response.send('unable to add user')
+            } else if (users != null) {
+                response.render('signup.hbs', {
+                    signup_error: 'cannot add user...user already exists!!'
+                })
+            } else {
+                user.insertOne({
+                    First_Name: fname,
+                    Last_Name: lname,
+                    Email: email,
+                    Password: psw
+                })
+                response.render('confirm.hbs');
+            }
+        });
     });
 });
 
@@ -97,15 +125,14 @@ app.post('/login_form', (request, response) => {
     var db = utils.getDb();
     db.collection('users').findOne({Email: email, Password: psw}).then((doc)=>{
       if(doc == null){
-        console.log('Login Failed');
+        console.log('Login Failed')
         response.render('login.hbs',{
           login_error:'Incorrect login info...Try Again!!'
         })
-      } 
-    
-      else{
-        response.cookie('username', doc.First_Name);
+      }
 
+      else{
+        response.cookie('username', doc.First_Name)
         response.redirect('/');
       }
     })
@@ -113,13 +140,12 @@ app.post('/login_form', (request, response) => {
 
 //Enters a thread in a database
 app.post('/thread_form', (request, response) => {
-    var email = response.cookie.username;
+    var email = request.body.email;
     var title = request.body.title;
     var message = request.body.message;
     var category = request.body.categories;
 
     var db = utils.getDb();
-    // console.log(db);
     db.collection('threads').insertOne({
       Email: email,
       Title: title,
@@ -148,21 +174,9 @@ app.get('/music_reviews.hbs', (request, response) => {
         
       }
   });
-});
+})
 
 
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`);
 });
-
-// MongoClient.connect('mongodb+srv://agile:u1wtUop4dTfKLxxo@cluster0-1dr0b.mongodb.net/test?retryWrites=true', function(err, client){
-//     if(err){
-//         return console.log('Unable to connect to DB');
-//
-//     }
-//
-//     _db = client.db('muziki');
-//     console.log('Successfully connected to MongoDB server');
-//     // console.log(_db);
-//     client.close();
-// });
