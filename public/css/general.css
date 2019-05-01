@@ -181,7 +181,6 @@ input[type=text], input[type=password] {
     cursor: pointer;
     margin: 10px;
     color: #f2f2f2;
-    width: 80px;
 }
 
 .buttonArea button:hover {
