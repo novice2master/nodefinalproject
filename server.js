@@ -74,6 +74,7 @@ app.post('/signup_form', (request, response) => {
             console.log(err);
             response.send('unable to add user')
           } else if (users != null) {
+              console.log("users exist");
             response.render('signup.hbs',{
             signup_error:'cannot add user...user already exists!!'
           })
@@ -82,7 +83,8 @@ app.post('/signup_form', (request, response) => {
                 First_Name: fname,
                 Last_Name: lname,
                 Email: email,
-                Password: psw})
+                Password: psw});
+            console.log("good login");
             response.render('confirm.hbs');
           }
     });
