@@ -17,12 +17,13 @@
 </header>
 
 <div class="modal" id="postModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="modalContent">
             <div class="modal-header">
                 <h6 class="modal-title">
                     Post a Thread
                 </h6>
+
             </div>
             <div class="modal-body">
                 <form action="/thread_form" method="POST">
@@ -33,8 +34,7 @@
                     <input type="text" placeholder="Enter Title" name="title" id="title" required>
 
                     <label for="post"><b>Message</b></label>
-                    <input type="text" placeholder="Enter your message here" name="message" id="post" required>
-
+                    <textarea class='message-box' placeholder="Enter your message here" name="message" id="post" required></textarea>
                     <div class="buttonArea">
                         <label for="categories">&nbsp;</label>
                         <select name="categories" id="categories">
@@ -43,7 +43,6 @@
                             <option value="music_reviews"> Music Reviews</option>
                             <option value="off_topic_discussion"> Off Topic Discussion</option>
                         </select>
-
                         <button type="button" onclick="" data-dismiss="modal" class="cancelbtn">Cancel</button>
                         <button type="submit" class="signupbtn">Post</button>
                     </div>
