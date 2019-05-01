@@ -26,7 +26,7 @@ app.get('/', (request, response) => {
 //General Music thread page
 app.get('/general_music.hbs', (request, response) => {
   response.render('general_music.hbs');
-})
+});
 
 //Music Reviews thread page
 // app.get('/music_reviews.hbs', (request, response) => {
@@ -36,7 +36,7 @@ app.get('/general_music.hbs', (request, response) => {
 //Latest Music thread page
 app.get('/latest_music.hbs', (request, response) => {
   response.render('latest_music.hbs');
-})
+});
 
 //Create Post Page
 app.get('/create_post.hbs', (request, response) => {
@@ -53,12 +53,12 @@ app.get('/signup.hbs', (request, response) => {
 //Signup Confirmation Page
 app.get('/confirm.hbs', (request, response) => {
   response.render('confirm.hbs');
-})
+});
 
 //Login Page
 app.get('/login.hbs', (request, response) => {
     response.render('login.hbs');
-})
+});
 
 // app.get('/login2.hbs', (request, response) => {
 //     response.render('login2.hbs');
@@ -69,7 +69,7 @@ app.post('/signup_form', (request, response) => {
     var fname = request.body.fname;
     var lname = request.body.lname;
     var email = request.body.email;
-    var psw = request.body.psw;
+    var psw = request.body.password;
     var db = utils.getDb();
     var user = db.collection('users');
 
@@ -111,7 +111,7 @@ app.post('/signup_form', (request, response) => {
                     Last_Name: lname,
                     Email: email,
                     Password: psw
-                })
+                });
                 response.render('confirm.hbs');
             }
         });
@@ -125,14 +125,14 @@ app.post('/login_form', (request, response) => {
     var db = utils.getDb();
     db.collection('users').findOne({Email: email, Password: psw}).then((doc)=>{
       if(doc == null){
-        console.log('Login Failed')
+        console.log('Login Failed');
         response.render('login.hbs',{
           login_error:'Incorrect login info...Try Again!!'
         })
       }
 
       else{
-        response.cookie('username', doc.First_Name)
+        response.cookie('username', doc.First_Name);
         response.redirect('/');
       }
     })
@@ -174,7 +174,7 @@ app.get('/music_reviews.hbs', (request, response) => {
         
       }
   });
-})
+});
 
 
 app.listen(port, () => {
