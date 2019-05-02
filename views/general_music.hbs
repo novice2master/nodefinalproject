@@ -8,6 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="../createThread.js"></script>
 </head>
 
 <body>
@@ -20,9 +21,6 @@
     <div class="accordion" id="generalThreads">
         <!--Cards to contain each of the threads-->
 
-        {{>threads}}
-
-
     </div>
 </div>
 {{> footer}}
@@ -30,48 +28,12 @@
 </body>
 
 </html>
-<!-- disregard
+
 <script>
     //to connect to back-end, add more parameters and link that to back-end data instead of hard-coding text
-    function addThread(heading, collapse, comments) {
-        var threadlist = document.getElementById('generalThreads');
-        threadlist.innerHTML += `
-        <div class="card" >
-            <div class="card-header" id=${heading} data-toggle="collapse" data-target=${'#' + collapse}>
-                <h5 class="mb-0">
-                    <button class="btn btn-link" type="button"  aria-expanded="true" aria-controls=${collapse}>
-                        Collapsible Group Item
-                    </button>
-                </h5>
-            </div>
-
-            <div id=${collapse} class="collapse" aria-labelledby=${heading} data-parent="#generalThreads">
-
-
-                <div class="card-body">
-                    Thread Text
-                    <div class="accordion" id=${heading + 'accordion'} data-toggle="collapse" data-target=${'#' + comments}>
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="mb-0">
-                                    <button class="btn" type="button">
-                                        Comments
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id=${comments} class="collapse" data-parent=${'#' + heading + 'accordion'}>
-                                <div class="card-body">
-                                    Comments go here
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </div>`;
-    }
-
-
     addThread('headingOne', 'collapseOne');
     addThread('headingTwo', 'collapseTwo');
+    addThread('headingThree', 'collapseThree');
+    addThread('headingFour', 'collapseFour');
+    addThread('headingFive', 'collapseFive');
 </script>
--->

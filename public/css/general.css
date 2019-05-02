@@ -208,7 +208,7 @@ textarea {
     height: 225px;
 }
 
-btn{
+.btn{
     border-radius: 6px;
     background-color: #563d7c;
     color: #f2f2f2;
@@ -217,8 +217,26 @@ btn{
     padding: 10px;
 }
 
+
 /* Thread pages
 ============================================================================================ */
+
+#generalThreads {
+    margin-top: 60px;
+}
+
+#generalThreads .card .card-header {
+    padding-top: 0;
+    height: 50px;
+}
+
+#generalThreads .card .card-header h5 button {
+    margin-top: 4px;
+    color: #f2f2f2;
+    font-size: 18px;
+    text-decoration: none;
+}
+
 
 #generalThreads .card:nth-child(odd) .card-header {
     background-color: #563d7c;
@@ -230,14 +248,14 @@ btn{
     color: #f2f2f2;
 }
 
-#generalThreads .card:first-child .card-header {
+#generalThreads .card:first-child .card-header:first-child {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
 }
 
-#generalThreads .card:last-child .card-header {
+#generalThreads .card:last-child .card-header:first-child {
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
     border-top-right-radius: 0;
@@ -247,4 +265,12 @@ btn{
 #generalThreads .card .card-header:hover {
     background-color: lightgrey;
     color: #2f254b;
+}
+
+#generalThreads .card .card-body .row {
+    margin-top: 20px;
+}
+
+#generalThreads .card .card-body .accordion .card .card-header {
+    border-radius: 8px;
 }

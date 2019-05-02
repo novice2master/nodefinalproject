@@ -8,7 +8,7 @@ const utils = require('./utils');
 
 
 var app = express();
-app.use(cookieParser())
+app.use(cookieParser());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(express.static(__dirname, + '/public/'));
