@@ -42,6 +42,13 @@ app.get('/general_music.hbs', (request, response) => {
 
 });
 
+app.get('/all_posts.hbs', (request, response) => {
+    response.render('all_posts.hbs');
+});
+
+app.get('/off_topic.hbs', (request, response) => {
+    response.render('off_topic.hbs');
+});
 //Music Reviews thread page
 // app.get('/music_reviews.hbs', (request, response) => {
 //   response.render('music_reviews.hbs');
