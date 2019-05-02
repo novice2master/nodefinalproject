@@ -19,21 +19,13 @@
     <h1>Thread List</h1>
     <!--Added a accordion to house the threads-->
     <div class="accordion" id="generalThreads">
-        <!--Cards to contain each of the threads-->
+        {{> threads}}
 
     </div>
 </div>
+
 {{> footer}}
 
 </body>
 
 </html>
-
-<script>
-    //to connect to back-end, add more parameters and link that to back-end data instead of hard-coding text
-    addThread('headingOne', 'collapseOne');
-    addThread('headingTwo', 'collapseTwo');
-    addThread('headingThree', 'collapseThree');
-    addThread('headingFour', 'collapseFour');
-    addThread('headingFive', 'collapseFive');
-</script>
