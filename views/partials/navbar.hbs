@@ -1,6 +1,6 @@
-<header id="topNav">
+<header id="topNav" class="topNav">
     <div class="container">
-        <nav class="navbar navbar-light navbar-expand-lg">
+        <nav id="index-navbar" class="navbar navbar-light navbar-expand-lg">
             <a id="topNav-active" href="./">MUZIKI</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -68,16 +68,17 @@
         $(".dropdown .dropdown-menu li a")[urls[window.location.href.substring(22)]].click();
     });
     */
-    console.log(urls[window.location.href.substring(22)]);
+    //console.log(urls[window.location.href.substring(22)]);
 </script>
 
 <script>
-    /*
+
     var url = window.location.href;
     url = url.split('/');
-    console.log(url);
-    console.log('https://' + url[2] + '/login.hbs');
-    $("#sign-in").attr('action', 'http://' + url[2] + '/login.hbs');
-    $("#log-out").attr('action', 'http://' + url[2] + '/signup.hbs');
-*/
+    if (url[3] === ""){
+        $('#topNav').addClass('index-nav');
+    }
+
+
+
 </script>

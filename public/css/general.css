@@ -70,12 +70,15 @@ body {
 /* Header
 ============================================================================================ */
 
-#topNav {
+.topNav {
     overflow: hidden;
     background-color: #563d7c;
+    border-bottom-right-radius: 12.5%;
+    border-bottom-left-radius: 12.5%;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
 }
+
 
 
 #topNav a{
@@ -287,4 +290,12 @@ textarea {
 
 #generalThreads .card .card-body .accordion .card .card-header {
     border-radius: 8px;
+}
+
+
+/* to override */
+.index-nav{
+
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
