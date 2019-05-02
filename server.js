@@ -111,11 +111,11 @@ app.post('/signup_form', (request, response) => {
                 Email: email,
                 Password: psw
             })
-          
+          response.render('confirm.hbs');
         }
 
     });
-    response.render('confirm.hbs');
+    //
         
     // });
 });
