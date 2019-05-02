@@ -1,11 +1,11 @@
-function addThread(heading, collapse, comments) {
+function addThread(heading, collapse, comments, object) {
     var threadlist = document.getElementById('generalThreads');
     threadlist.innerHTML += `
         <div class="card border-0" >
             <div class="card-header threadCardHeader" id=${heading} data-toggle="collapse" data-target=${'#' + collapse}>
                 <h5 class="mb-0">
                     <button class="btn btn-link" type="button"  aria-expanded="true" aria-controls=${collapse}>
-                        Collapsible Group Item
+                        ${object.Title}
                     </button>
                 </h5>
             </div>
@@ -14,11 +14,9 @@ function addThread(heading, collapse, comments) {
 
 
                 <div class="card-body">
-                    Thread Text <br>
-                    apishdoias <br>
-                    ajspdoaoisdajjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
-                    jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
-                    jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+                    ${object.Email}
+                    <br>
+                    ${object.Message}
                     <div class="row commentTopMargin">
                         <div class="col-md-4">&nbsp;</div>
                         <div class="accordion col-md-8" id=${heading + 'accordion'} data-toggle="collapse" data-target=${'#' + comments}>
