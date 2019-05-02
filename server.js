@@ -69,7 +69,7 @@ app.get('/create_post.hbs', (request, response) => {
 app.get('/signup', (request, response) => {
   response.render('signup.hbs');
   register.getElements;
-})
+});
 
 //Signup Confirmation Page
 app.get('/confirmsignup', (request, response) => {
