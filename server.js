@@ -121,30 +121,30 @@ app.post('/login_form', (request, response) => {
         //     })
         // }
 
-        // Secret Key
-        const secretKey = '6LfWI6EUAAAAAEnFDSW9SMUiqH4ns05r_-ZGzNhV';
+    //     // Secret Key
+    //     const secretKey = '6LfWI6EUAAAAAEnFDSW9SMUiqH4ns05r_-ZGzNhV';
+    //
+    //     // Verify URL
+    //     const verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${request.body.captcha}
+    // &remoteip=${request.connection.remoteAddress}`;
+    //
+    //     // Make Request to VerifyURL
+    //     axios.get(verifyURL, (err, response, body) => {
+    //         body = JSON.parse(body);
+    //
+    //         //If Not Successful
+    //         if (body.success !== undefined && !body.success) {
+    //             return response.json({"success": false, "msg": "Failed captcha verification"});
+    //         }
+    //
+    //         //If Successful
+    //         return response.json({"success": true, "msg": "Captcha passed"});
+    //     })
 
-        // Verify URL
-        const verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${request.body.captcha}
-    &remoteip=${request.connection.remoteAddress}`;
-
-        // Make Request to VerifyURL
-        axios.get(verifyURL, (err, response, body) => {
-            body = JSON.parse(body);
-
-            //If Not Successful
-            if (body.success !== undefined && !body.success) {
-                return response.json({"success": false, "msg": "Failed captcha verification"});
-            }
-
-            //If Successful
-            return response.json({"success": true, "msg": "Captcha passed"});
-        })
-
-        // else{
-        //   response.cookie('username', doc.First_Name)
-        //   response.redirect('/');
-        // }
+        else{
+          response.cookie('username', doc.First_Name)
+          response.redirect('/');
+        }
     })
 });
 
