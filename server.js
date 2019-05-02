@@ -25,15 +25,15 @@ app.get('/', (request, response) => {
 });
 
 //General Music thread page
-app.get('/general_music.hbs', (request, response) => {
+app.get('/general_music', (request, response) => {
   response.render('general_music.hbs');
 });
 
-app.get('/all_posts.hbs', (request, response) => {
+app.get('/all_posts', (request, response) => {
     response.render('all_posts.hbs');
 });
 
-app.get('/off_topic.hbs', (request, response) => {
+app.get('/off_topic', (request, response) => {
     response.render('off_topic.hbs');
 });
 //Music Reviews thread page
@@ -42,29 +42,29 @@ app.get('/off_topic.hbs', (request, response) => {
 // })
 
 //Latest Music thread page
-app.get('/latest_music.hbs', (request, response) => {
+app.get('/latest_music', (request, response) => {
   response.render('latest_music.hbs');
 });
 
 //Create Post Page
-app.get('/create_post.hbs', (request, response) => {
+app.get('/create_post', (request, response) => {
   response.render('create_post.hbs');
   register.getElements;
 });
 
 //Signup Page
-app.get('/signup.hbs', (request, response) => {
+app.get('/signup', (request, response) => {
   response.render('signup.hbs');
   register.getElements;
 });
 
 //Signup Confirmation Page
-app.get('/confirm.hbs', (request, response) => {
+app.get('/confirm', (request, response) => {
   response.render('confirm.hbs');
 });
 
 //Login Page
-app.get('/login.hbs', (request, response) => {
+app.get('/login', (request, response) => {
     response.render('login.hbs');
 });
 

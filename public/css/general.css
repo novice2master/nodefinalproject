@@ -215,7 +215,7 @@ textarea {
     padding: 10px;
 }
 
-#sign-in-btn {
+#nav-btn {
     float: left;
     color: #f2f2f2;
     text-align: center;
@@ -225,7 +225,7 @@ textarea {
     background: none;
 }
 
-#sign-in-btn:hover {
+#nav-btn:hover {
 
     background-color: rgb(139, 121, 162);
     color: #2f254b;

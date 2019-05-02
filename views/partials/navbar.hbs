@@ -7,12 +7,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto mt-lg-0" id="topNav-right">
-                    <button type="button" id="sign-in-btn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#postModal" {{disabled}}>Post a Thread</button>
-                    <form action="../signup.hbs">
-                        <button type="button" id="sign-in-btn" class="btn btn-outline-secondary">Sign Up</button>
+                    <button type="button" id="nav-btn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#postModal" {{disabled}}>Post a Thread</button>
+                    <form id="sign-up" action="/signup">
+                        <button type="submit" id="nav-btn" class="btn btn-outline-secondary">Sign Up</button>
                     </form>
-                    <form action="../login.hbs">
-                        <button type="button" id="sign-in-btn" class="btn btn-outline-secondary">Log In</button>
+                    <form method="get" id="log-in" action="/login">
+                        <button type="submit" id="nav-btn" class="btn btn-outline-secondary">Log In</button>
                     </form>
                 </div>
             </div>
@@ -69,4 +69,15 @@
     });
     */
     console.log(urls[window.location.href.substring(22)]);
+</script>
+
+<script>
+    /*
+    var url = window.location.href;
+    url = url.split('/');
+    console.log(url);
+    console.log('https://' + url[2] + '/login.hbs');
+    $("#sign-in").attr('action', 'http://' + url[2] + '/login.hbs');
+    $("#log-out").attr('action', 'http://' + url[2] + '/signup.hbs');
+*/
 </script>
