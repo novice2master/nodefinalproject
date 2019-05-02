@@ -11,8 +11,9 @@ var app = express();
 app.use(cookieParser());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
-app.use(express.static(__dirname, + '/public/'));
-hbs.registerPartials(__dirname + '/views/partials/');
+const path = require("path");
+app.use(express.static(path.join(__dirname, '/public')));
+hbs.registerPartials(path.join(__dirname, '/views/partials'));
 hbs.registerHelper('getCurrentYear', () => {
   return new Date().getFullYear();
 });
@@ -25,7 +26,7 @@ app.get('/', (request, response) => {
 });
 
 //General Music thread page
-app.get('/general_music.hbs', (request, response) => {
+app.get('/general_music', (request, response) => {
   response.render('general_music.hbs');
 })
 
@@ -35,35 +36,31 @@ app.get('/general_music.hbs', (request, response) => {
 // })
 
 //Latest Music thread page
-app.get('/latest_music.hbs', (request, response) => {
+app.get('/latest_music', (request, response) => {
   response.render('latest_music.hbs');
 })
 
 //Create Post Page
-app.get('/create_post.hbs', (request, response) => {
+app.get('/create_post', (request, response) => {
   response.render('create_post.hbs');
   register.getElements;
 })
 
 //Signup Page
-app.get('/signup.hbs', (request, response) => {
+app.get('/signup', (request, response) => {
   response.render('signup.hbs');
   register.getElements;
 })
 
 //Signup Confirmation Page
-app.get('/confirm.hbs', (request, response) => {
-  response.render('confirm.hbs');
-})
+app.get('/confirm', (request, response) => {
+  response.render('confirm');
+});
 
 //Login Page
-app.get('/login.hbs', (request, response) => {
+app.get('/login', (request, response) => {
     response.render('login.hbs');
-})
-
-// app.get('/login2.hbs', (request, response) => {
-//     response.render('login2.hbs');
-// })
+});
 
 //Add user information to database
 app.post('/signup_form', (request, response) => {
@@ -202,3 +199,5 @@ MongoClient.connect('mongodb+srv://agile:u1wtUop4dTfKLxxo@cluster0-1dr0b.mongodb
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`);
 });
+
+module.exports = app;
