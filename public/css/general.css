@@ -292,6 +292,9 @@ textarea {
     border-radius: 8px;
 }
 
+.button-name {
+    padding-top:  10px;
+}
 
 /* to override */
 .index-nav{
