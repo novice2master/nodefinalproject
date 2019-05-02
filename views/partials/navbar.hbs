@@ -7,9 +7,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto mt-lg-0" id="topNav-right">
-                    <a data-toggle="modal" data-target="#postModal">Post a Thread</a>
-                    <a href="../signup.hbs">Sign Up</a>
-                    <a href="../login.hbs">Log In</a>
+                    <button type="button" id="sign-in-btn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#postModal" {{disabled}}>Post a Thread</button>
+                    <form action="../signup.hbs">
+                        <button type="button" id="sign-in-btn" class="btn btn-outline-secondary">Sign Up</button>
+                    </form>
+                    <form action="../login.hbs">
+                        <button type="button" id="sign-in-btn" class="btn btn-outline-secondary">Log In</button>
+                    </form>
                 </div>
             </div>
         </nav>
