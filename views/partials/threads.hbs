@@ -1,12 +1,13 @@
+{{#each objects}}
 <div class="card border-0">
     <div class="card-header" id="threadCardHeader" data-toggle="collapse" data-target="#threadCollapse">
         <h5 class="mb-0">
-            Thread Title
+            {{Title}}
         </h5>
     </div>
     <div id="threadCollapse" class="collapse" data-parent="#generalThreads">
         <div class="card-body">
-            Thread Text
+
             <div class="accordion" id="commentsAccordion">
                 <div class="card" data-toggle="collapse" data-target="#comments">
                     <div class="card-header">
@@ -18,7 +19,7 @@
                     </div>
                     <div id="comments" class="collapse" data-parent="#commentsAccordion">
                         <div class="card-body">
-                            Comments go here
+                            {{Message}}
                         </div>
                     </div>
                 </div>
@@ -26,3 +27,4 @@
         </div>
     </div>
 </div>
+{{/each}}

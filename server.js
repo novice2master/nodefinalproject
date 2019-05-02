@@ -25,7 +25,21 @@ app.get('/', (request, response) => {
 
 //General Music thread page
 app.get('/general_music.hbs', (request, response) => {
-  response.render('general_music.hbs');
+    let db = utils.getDb();
+    db.collection('threads').find({}).toArray(function(err, threads){
+        if(err){
+            console.log(err);
+            response.send('Unable to retrieve posts');
+        }
+        else{
+            // console.log(threads);
+            response.render('general_music.hbs', {
+                objects: threads
+            });
+
+        }
+    });
+
 });
 
 //Music Reviews thread page
@@ -42,7 +56,7 @@ app.get('/latest_music.hbs', (request, response) => {
 app.get('/create_post.hbs', (request, response) => {
   response.render('create_post.hbs');
   register.getElements;
-})
+});
 
 //Signup Page
 app.get('/signup.hbs', (request, response) => {
