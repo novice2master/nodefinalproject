@@ -29,6 +29,13 @@ app.get('/general_music.hbs', (request, response) => {
   response.render('general_music.hbs');
 });
 
+app.get('/all_posts.hbs', (request, response) => {
+    response.render('all_posts.hbs');
+});
+
+app.get('/off_topic.hbs', (request, response) => {
+    response.render('off_topic.hbs');
+});
 //Music Reviews thread page
 // app.get('/music_reviews.hbs', (request, response) => {
 //   response.render('music_reviews.hbs');
@@ -90,7 +97,7 @@ app.post('/login_form', (request, response) => {
     var db = utils.getDb();
     db.collection('users').findOne({Email: email, Password: psw}).then((doc)=>{
       if(doc == null){
-        console.log('Login Failed')
+        console.log('Login Failed');
         response.render('login.hbs',{
           login_error:'Incorrect login info...Try Again!!'
         })
