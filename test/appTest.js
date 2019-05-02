@@ -113,3 +113,15 @@ describe('GET /login', function () {
             })
     });
 });
+
+// describe('POST /signup_forum', function (){
+//     this.timeout(5000);
+//     it("Creating user sign up", function (done) {
+//         request(app).post('/signup_forum')
+//             .send({'fname' : 'Homer',
+//                     'lname': 'Simpson',
+//                     'email' : 'homer.simpson@gmail.com',
+//                     'psw' : 'homersimpson'})
+//             .then()
+//     })
+// })
