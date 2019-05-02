@@ -48,7 +48,7 @@ app.get('/general_music.hbs', (request, response) => {
 // })
 
 //Latest Music thread page
-app.get('/latest_music.hbs', (request, response) => {
+app.get('/latest_music', (request, response) => {
   response.render('latest_music.hbs');
 });
 
@@ -59,18 +59,18 @@ app.get('/create_post.hbs', (request, response) => {
 });
 
 //Signup Page
-app.get('/signup.hbs', (request, response) => {
+app.get('/signup', (request, response) => {
   response.render('signup.hbs');
   register.getElements;
 })
 
 //Signup Confirmation Page
-app.get('/confirm.hbs', (request, response) => {
+app.get('/confirmsignup', (request, response) => {
   response.render('confirm.hbs');
 });
 
 //Login Page
-app.get('/login.hbs', (request, response) => {
+app.get('/login', (request, response) => {
     response.render('login.hbs');
 });
 
@@ -87,49 +87,51 @@ app.post('/signup_form', (request, response) => {
     var db = utils.getDb();
     var user = db.collection('users');
 
-    if (
-        request.body.captcha === undefined ||
-        request.body.captcha === "" ||
-        request.body.captcha === null
-    ) {
-        return response.json({"success": false, "msg": "please select captcha"});
-    }
+    // if (
+    //     request.body.captcha === undefined ||
+    //     request.body.captcha === "" ||
+    //     request.body.captcha === null
+    // ) {
+    //     return response.json({"success": false, "msg": "please select captcha"});
+    // }
 
-    // Secret Key
-    const secretKey = '6LfWI6EUAAAAAEnFDSW9SMUiqH4ns05r_-ZGzNhV';
+    // // Secret Key
+    // const secretKey = '6LfWI6EUAAAAAEnFDSW9SMUiqH4ns05r_-ZGzNhV';
 
-    // Verify URL
-    const verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${request.body.captcha}
-    &remoteip=${request.connection.remoteAddress}`;
+    // // Verify URL
+    // const verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${request.body.captcha}
+    // &remoteip=${request.connection.remoteAddress}`;
 
     // Make Request to VerifyURL
-    request(verifyURL, (err, response, body) => {
-        body = JSON.parse(body);
+    // request(verifyURL, (err, response, body) => {
+    //     body = JSON.parse(body);
 
         //If Not Successful
-        if (body.success !== undefined && !body.success) {
-            return response.json({"success": false, "msg": "Failed captcha verification"});
+        // if (body.success !== undefined && !body.success) {
+        //     return response.json({"success": false, "msg": "Failed captcha verification"});
+        // }
+    user.findOne({Email: email}, function (err, users) {
+        if (err) {
+            console.log(err);
+            response.send('unable to add user')
+        } else if (users != null) {
+            response.render('signup.hbs', {
+                signup_error: 'cannot add user...user already exists!!'
+            })
+        } else {
+            user.insertOne({
+                First_Name: fname,
+                Last_Name: lname,
+                Email: email,
+                Password: psw
+            })
+          response.render('confirm.hbs');
         }
 
-        user.findOne({Email: email}, function (err, users) {
-            if (err) {
-                console.log(err);
-                response.send('unable to add user')
-            } else if (users != null) {
-                response.render('signup.hbs', {
-                    signup_error: 'cannot add user...user already exists!!'
-                })
-            } else {
-                user.insertOne({
-                    First_Name: fname,
-                    Last_Name: lname,
-                    Email: email,
-                    Password: psw
-                });
-                response.render('confirm.hbs');
-            }
-        });
     });
+    //
+        
+    // });
 });
 
 //Logs in user if they match information in database
