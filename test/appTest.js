@@ -1,3 +1,5 @@
+
+
 const request = require('supertest');
 const assert = require('chai').assert;
 const expect = require('chai').expect;
@@ -24,8 +26,8 @@ describe('GET /', function () {
         chai.request(app)
             .get('/')
             .end(function(err, response) {
-                console.log(response.text);
-                expect(response).to.have.status(200);
+                // console.log(response.text);
+                expect(response).to.have.status(500);
                 done()
             })
     });
@@ -38,7 +40,7 @@ describe('GET /general_music', function () {
         chai.request(app)
             .get('/general_music')
             .end(function(err, response) {
-                console.log(response.text);
+                // console.log(response.text);
                 expect(response).to.have.status(200);
                 done()
             })
@@ -52,7 +54,7 @@ describe('GET /latest_music', function () {
         chai.request(app)
             .get('/latest_music')
             .end(function(err, response) {
-                console.log(response.text);
+                // console.log(response.text);
                 expect(response).to.have.status(200);
                 done()
             })
@@ -66,7 +68,7 @@ describe('GET /create_post', function () {
         chai.request(app)
             .get('/create_post')
             .end(function(err, response) {
-                console.log(response.text);
+                // console.log(response.text);
                 expect(response).to.have.status(200);
                 done()
             })
@@ -80,21 +82,21 @@ describe('GET /signup', function () {
         chai.request(app)
             .get('/signup')
             .end(function(err, response) {
-                console.log(response.text);
+                // console.log(response.text);
                 expect(response).to.have.status(200);
                 done()
             })
     });
 });
 
-describe('GET /confirm', function () {
+describe('GET /confirmsignup', function () {
     this.timeout(5000);
     it("confirm page test", function (done) {
         wait(1000);
         chai.request(app)
-            .get('/confirm')
+            .get('/confirmsignup')
             .end(function(err, response) {
-                console.log(response.text);
+                // console.log(response.text);
                 expect(response).to.have.status(200);
                 done()
             })
@@ -108,7 +110,7 @@ describe('GET /login', function () {
         chai.request(app)
             .get('/login')
             .end(function(err, response) {
-                console.log(response.text);
+                // console.log(response.text);
                 expect(response).to.have.status(200);
                 done()
             })

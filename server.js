@@ -251,3 +251,5 @@ app.get('/music_reviews', (request, response) => {
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`);
 });
+
+module.exports = app;
