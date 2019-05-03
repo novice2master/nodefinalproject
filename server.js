@@ -163,7 +163,7 @@ app.post('/thread_form', (request, response) => {
 });
 
 
-app.get('/music_reviews.hbs', (request, response) => {
+app.get('/music_reviews', (request, response) => {
   var db = utils.getDb();
   db.collection('threads').find({}).toArray(function(err, threads){
       if(err){
