@@ -225,7 +225,7 @@ textarea {
     padding: 10px;
 }
 
-#nav-btn {
+.nav-btn {
     float: left;
     color: #f2f2f2;
     text-align: center;
@@ -235,7 +235,7 @@ textarea {
     background: none;
 }
 
-#nav-btn:hover {
+.nav-btn:hover {
 
     background-color: rgb(139, 121, 162);
     color: #2f254b;
@@ -335,13 +335,23 @@ textarea {
 
 #generalThreads .card .card-body .accordion .card .card-header {
     border-radius: 8px;
+    background-color: lightgrey;
+    color: #2f254b;
+}
+
+#generalThreads .card .card-body .accordion .card .card-header h5 button {
+    color: #2f254b;
 }
 
 .button-name {
     padding-top:  10px;
 }
 
-/* to override */
+.test {
+    width: 1000px;
+}
+
+/* placed at bottom to override */
 .index-nav{
 
     border-bottom-right-radius: 0;

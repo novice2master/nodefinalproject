@@ -7,12 +7,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto mt-lg-0" id="topNav-right">
-                    <button type="button" id="nav-btn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#postModal" {{disabled}}>Post a Thread</button>
+                    <button type="button"  class="btn nav-btn" data-toggle="modal" data-target="#postModal" {{disabled}}>Post a Thread</button>
                     <form id="sign-up" action="/signup">
-                        <button type="submit" id="nav-btn" class="btn btn-outline-secondary">Sign Up</button>
+                        <button type="submit"  class="btn nav-btn">Sign Up</button>
                     </form>
                     <form method="get" id="log-in" action="/login">
-                        <button type="submit" id="nav-btn" class="btn btn-outline-secondary">Log In</button>
+                        <button type="submit" id="nav-btn" class="btn nav-btn" onclick="" value={{LoggedIn}}>Log In</button>
                     </form>
                 </div>
             </div>
@@ -62,7 +62,9 @@
         'off_topic' : 'off_topic_discussion'
     };
 
-    $('#categories').val(urls[window.location.href.substring(22)]);
+    var url = window.location.href;
+    url = url.split('/');
+    $('#categories').val(urls[url[3]]);
 
 </script>
 
@@ -74,6 +76,32 @@
         $('#topNav').addClass('index-nav');
     }
 
+
+    //Pass the value 'True' to LoggedIn of the log-in button
+    loggedin = document.getElementById('nav-btn');
+    function updateButton() {
+        //Changes log-in button to a log-out button
+        if (loggedin.value === 'True') {
+            loggedin.innerHTML = 'Log Out';
+            $('#nav-btn').attr('action', '#');
+            $('#nav-btn').attr('onclick', 'logOut()');
+
+        } else {
+            loggedin.innerHTML = 'Log In';
+            $('#nav-btn').attr('action', '/login');
+            $('#nav-btn').attr('onclick', '');
+        }
+    }
+
+    //Deals with what happens when you click the log-out button
+    function logOut(){
+
+
+        //updates button to become a log-in button again
+        updateButton();
+    }
+
+    updateButton();
 
 
 </script>
