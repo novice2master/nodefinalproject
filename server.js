@@ -43,7 +43,7 @@ app.get('/general_music', (request, response) => {
 
 });
 
-app.get('/all_posts.hbs', (request, response) => {
+app.get('/all_posts', (request, response) => {
     let db = utils.getDb();
     db.collection('threads').find({}).toArray(function(err, threads){
         if(err){
@@ -62,7 +62,7 @@ app.get('/all_posts.hbs', (request, response) => {
     response.render('all_posts.hbs');
 });
 
-app.get('/off_topic.hbs', (request, response) => {
+app.get('/off_topic', (request, response) => {
     let db = utils.getDb();
     db.collection('threads').find({Category: 'off_topic_discussion'}).toArray(function(err, threads){
         if(err){
@@ -229,7 +229,7 @@ app.post('/thread_form', (request, response) => {
 });
 
 
-app.get('/music_reviews.hbs', (request, response) => {
+app.get('/music_reviews', (request, response) => {
     let db = utils.getDb();
     db.collection('threads').find({Category: 'music_reviews'}).toArray(function(err, threads){
         if(err){
