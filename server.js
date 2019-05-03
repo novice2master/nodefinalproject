@@ -27,7 +27,7 @@ app.get('/', (request, response) => {
 //General Music thread page
 app.get('/general_music', (request, response) => {
     let db = utils.getDb();
-    db.collection('threads').find({}).toArray(function(err, threads){
+    db.collection('threads').find({Category: 'general_music_discussion'}).toArray(function(err, threads){
         if(err){
             console.log(err);
             response.send('Unable to retrieve posts');
