@@ -77,12 +77,15 @@ body {
 /* Header
 ============================================================================================ */
 
-#topNav {
+.topNav {
     overflow: hidden;
     background-color: #563d7c;
+    border-bottom-right-radius: 12.5%;
+    border-bottom-left-radius: 12.5%;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
 }
+
 
 
 #topNav a{
@@ -222,7 +225,7 @@ textarea {
     padding: 10px;
 }
 
-#sign-in-btn {
+#nav-btn {
     float: left;
     color: #f2f2f2;
     text-align: center;
@@ -232,7 +235,7 @@ textarea {
     background: none;
 }
 
-#sign-in-btn:hover {
+#nav-btn:hover {
 
     background-color: rgb(139, 121, 162);
     color: #2f254b;
@@ -332,4 +335,15 @@ textarea {
 
 #generalThreads .card .card-body .accordion .card .card-header {
     border-radius: 8px;
+}
+
+.button-name {
+    padding-top:  10px;
+}
+
+/* to override */
+.index-nav{
+
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }

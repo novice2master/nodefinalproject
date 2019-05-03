@@ -105,7 +105,7 @@ app.get('/latest_music', (request, response) => {
 });
 
 //Create Post Page
-app.get('/create_post.hbs', (request, response) => {
+app.get('/create_post', (request, response) => {
   response.render('create_post.hbs');
   register.getElements;
 });
