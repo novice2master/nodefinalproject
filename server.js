@@ -52,14 +52,14 @@ app.get('/all_posts', (request, response) => {
         }
         else{
             // console.log(threads);
-            response.render('off_topic.hbs', {
+            response.render('all_posts.hbs', {
                 objects: threads
             });
 
         }
     });
 
-    response.render('all_posts.hbs');
+    // response.render('all_posts.hbs');
 });
 
 app.get('/off_topic', (request, response) => {
@@ -176,7 +176,7 @@ app.post('/signup_form', (request, response) => {
                 Last_Name: lname,
                 Email: email,
                 Password: psw
-            })
+            });
           response.render('confirm.hbs');
         }
 
