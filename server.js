@@ -16,6 +16,7 @@ hbs.registerHelper('getCurrentYear', () => {
   return new Date().getFullYear();
 });
 
+
 app.set('view engine', 'hbs');
 
 //Homepage
@@ -24,7 +25,7 @@ app.get('/', (request, response) => {
 });
 
 //General Music thread page
-app.get('/general_music.hbs', (request, response) => {
+app.get('/general_music', (request, response) => {
     let db = utils.getDb();
     db.collection('threads').find({}).toArray(function(err, threads){
         if(err){
@@ -43,11 +44,41 @@ app.get('/general_music.hbs', (request, response) => {
 });
 
 app.get('/all_posts.hbs', (request, response) => {
+    let db = utils.getDb();
+    db.collection('threads').find({}).toArray(function(err, threads){
+        if(err){
+            console.log(err);
+            response.send('Unable to retrieve posts');
+        }
+        else{
+            // console.log(threads);
+            response.render('off_topic.hbs', {
+                objects: threads
+            });
+
+        }
+    });
+
     response.render('all_posts.hbs');
 });
 
 app.get('/off_topic.hbs', (request, response) => {
-    response.render('off_topic.hbs');
+    let db = utils.getDb();
+    db.collection('threads').find({Category: 'off_topic_discussion'}).toArray(function(err, threads){
+        if(err){
+            console.log(err);
+            response.send('Unable to retrieve posts');
+        }
+        else{
+            // console.log(threads);
+            response.render('off_topic.hbs', {
+                objects: threads
+            });
+
+        }
+    });
+
+    // response.render('off_topic.hbs');
 });
 //Music Reviews thread page
 // app.get('/music_reviews.hbs', (request, response) => {
@@ -56,7 +87,21 @@ app.get('/off_topic.hbs', (request, response) => {
 
 //Latest Music thread page
 app.get('/latest_music', (request, response) => {
-  response.render('latest_music.hbs');
+    let db = utils.getDb();
+    db.collection('threads').find({Category: 'latest_music'}).toArray(function(err, threads){
+        if(err){
+            console.log(err);
+            response.send('Unable to retrieve posts');
+        }
+        else{
+            // console.log(threads);
+            response.render('latest_music.hbs', {
+                objects: threads
+            });
+
+        }
+    });
+  // response.render('latest_music.hbs');
 });
 
 //Create Post Page
@@ -185,19 +230,22 @@ app.post('/thread_form', (request, response) => {
 
 
 app.get('/music_reviews.hbs', (request, response) => {
-  var db = utils.getDb();
-  db.collection('threads').find({}).toArray(function(err, threads){
-      if(err){
-        console.log(err);
-        response.send('Unable to retrieve posts');
-      }
-      else{
-        response.send(threads);
-        // console.log(threads)
-        
-      }
-  });
+    let db = utils.getDb();
+    db.collection('threads').find({Category: 'music_reviews'}).toArray(function(err, threads){
+        if(err){
+            console.log(err);
+            response.send('Unable to retrieve posts');
+        }
+        else{
+            // console.log(threads);
+            response.render('music_reviews.hbs', {
+                objects: threads
+            });
+
+        }
+    });
 });
+
 
 
 app.listen(port, () => {
