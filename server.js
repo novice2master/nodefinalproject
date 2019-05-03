@@ -135,7 +135,6 @@ app.post('/login_form', (request, response) => {
 
       else{
         response.cookie('username', doc.First_Name);
-        response.cookie('email', doc.Email);
         response.redirect('/');
       }
     })
