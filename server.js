@@ -13,8 +13,9 @@ app.use(bodyparser.urlencoded({ extended: false }));
 app.use(express.static(__dirname, + '/public/'));
 hbs.registerPartials(__dirname + '/views/partials/');
 hbs.registerHelper('getCurrentYear', () => {
-  return new Date().getFullYear();
+    return new Date().getFullYear();
 });
+
 
 app.set('view engine', 'hbs');
 
@@ -25,9 +26,60 @@ app.get('/', (request, response) => {
 
 //General Music thread page
 app.get('/general_music', (request, response) => {
-  response.render('general_music.hbs');
+    let db = utils.getDb();
+    db.collection('threads').find({Category: 'general_music_discussion'}).toArray(function(err, threads){
+        if(err){
+            console.log(err);
+            response.send('Unable to retrieve posts');
+        }
+        else{
+            // console.log(threads);
+            response.render('general_music.hbs', {
+                objects: threads
+            });
+
+        }
+    });
+
 });
 
+app.get('/all_posts', (request, response) => {
+    let db = utils.getDb();
+    db.collection('threads').find({}).toArray(function(err, threads){
+        if(err){
+            console.log(err);
+            response.send('Unable to retrieve posts');
+        }
+        else{
+            // console.log(threads);
+            response.render('all_posts.hbs', {
+                objects: threads
+            });
+
+        }
+    });
+
+    // response.render('all_posts.hbs');
+});
+
+app.get('/off_topic', (request, response) => {
+    let db = utils.getDb();
+    db.collection('threads').find({Category: 'off_topic_discussion'}).toArray(function(err, threads){
+        if(err){
+            console.log(err);
+            response.send('Unable to retrieve posts');
+        }
+        else{
+            // console.log(threads);
+            response.render('off_topic.hbs', {
+                objects: threads
+            });
+
+        }
+    });
+
+    // response.render('off_topic.hbs');
+});
 //Music Reviews thread page
 // app.get('/music_reviews.hbs', (request, response) => {
 //   response.render('music_reviews.hbs');
@@ -35,24 +87,38 @@ app.get('/general_music', (request, response) => {
 
 //Latest Music thread page
 app.get('/latest_music', (request, response) => {
-  response.render('latest_music.hbs');
+    let db = utils.getDb();
+    db.collection('threads').find({Category: 'latest_music'}).toArray(function(err, threads){
+        if(err){
+            console.log(err);
+            response.send('Unable to retrieve posts');
+        }
+        else{
+            // console.log(threads);
+            response.render('latest_music.hbs', {
+                objects: threads
+            });
+
+        }
+    });
+    // response.render('latest_music.hbs');
 });
 
 //Create Post Page
-// app.get('/create_post', (request, response) => {
-//   response.render('create_post.hbs');
-//   register.getElements;
-// })
+app.get('/create_post', (request, response) => {
+    response.render('create_post.hbs');
+    register.getElements;
+});
 
 //Signup Page
 app.get('/signup', (request, response) => {
-  response.render('signup.hbs');
-  register.getElements;
-})
+    response.render('signup.hbs');
+    register.getElements;
+});
 
 //Signup Confirmation Page
 app.get('/confirmsignup', (request, response) => {
-  response.render('confirm.hbs');
+    response.render('confirm.hbs');
 });
 
 //Login Page
@@ -92,10 +158,10 @@ app.post('/signup_form', (request, response) => {
     // request(verifyURL, (err, response, body) => {
     //     body = JSON.parse(body);
 
-        //If Not Successful
-        // if (body.success !== undefined && !body.success) {
-        //     return response.json({"success": false, "msg": "Failed captcha verification"});
-        // }
+    //If Not Successful
+    // if (body.success !== undefined && !body.success) {
+    //     return response.json({"success": false, "msg": "Failed captcha verification"});
+    // }
     user.findOne({Email: email}, function (err, users) {
         if (err) {
             console.log(err);
@@ -110,13 +176,13 @@ app.post('/signup_form', (request, response) => {
                 Last_Name: lname,
                 Email: email,
                 Password: psw
-            })
-          response.render('confirm.hbs');
+            });
+            response.render('confirm.hbs');
         }
 
     });
     //
-        
+
     // });
 });
 
@@ -126,17 +192,18 @@ app.post('/login_form', (request, response) => {
     var psw = request.body.psw;
     var db = utils.getDb();
     db.collection('users').findOne({Email: email, Password: psw}).then((doc)=>{
-      if(doc == null){
-        console.log('Login Failed');
-        response.render('login.hbs',{
-          login_error:'Incorrect login info...Try Again!!'
-        })
-      }
+        if(doc == null){
+            console.log('Login Failed');
+            response.render('login.hbs',{
+                login_error:'Incorrect login info...Try Again!!'
+            })
+        }
 
-      else{
-        response.cookie('username', doc.First_Name);
-        response.redirect('/');
-      }
+        else{
+            response.cookie('username', doc.First_Name);
+            response.cookie('email', doc.Email);
+            response.redirect('/');
+        }
     })
 });
 
@@ -149,36 +216,41 @@ app.post('/thread_form', (request, response) => {
 
     var db = utils.getDb();
     db.collection('threads').insertOne({
-      Email: email,
-      Title: title,
-      Message: message,
-      Category: category
+        Email: email,
+        Title: title,
+        Message: message,
+        Category: category
     }, (err) => {
-      if(err) {
-        response.send('Unable to add user.');
-      }
-      
-      response.render('postconfirm.hbs');
+        if(err) {
+            response.send('Unable to add user.');
+        }
+
+        response.render('postconfirm.hbs');
     })
 });
 
 
 app.get('/music_reviews', (request, response) => {
-  var db = utils.getDb();
-  db.collection('threads').find({}).toArray(function(err, threads){
-      if(err){
-        console.log(err);
-        response.send('Unable to retrieve posts');
-      }
-      else{
-        response.send(threads);
-        // console.log(threads)
-        
-      }
-  });
+    let db = utils.getDb();
+    db.collection('threads').find({Category: 'music_reviews'}).toArray(function(err, threads){
+        if(err){
+            console.log(err);
+            response.send('Unable to retrieve posts');
+        }
+        else{
+            // console.log(threads);
+            response.render('music_reviews.hbs', {
+                objects: threads
+            });
+
+        }
+    });
 });
+
 
 
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`);
 });
+
+module.exports = app;
