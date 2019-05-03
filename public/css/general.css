@@ -290,6 +290,12 @@ textarea {
 
 #generalThreads .card .card-body .accordion .card .card-header {
     border-radius: 8px;
+    background-color: lightgrey;
+    color: #2f254b;
+}
+
+#generalThreads .card .card-body .accordion .card .card-header h5 button {
+    color: #2f254b;
 }
 
 .button-name {
