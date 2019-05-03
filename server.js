@@ -152,5 +152,5 @@ app.get('/music_reviews.hbs', (request, response) => {
 
 app.listen(8080, () => {
     console.log('Server is up on the port 8080');
-    utils.init();
+    // utils.init();
 });

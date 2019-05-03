@@ -302,7 +302,11 @@ textarea {
     padding-top:  10px;
 }
 
-/* to override */
+.test {
+    width: 1000px;
+}
+
+/* placed at bottom to override */
 .index-nav{
 
     border-bottom-right-radius: 0;
