@@ -16,7 +16,6 @@ hbs.registerHelper('getCurrentYear', () => {
   return new Date().getFullYear();
 });
 
-
 app.set('view engine', 'hbs');
 
 //Homepage
@@ -26,60 +25,9 @@ app.get('/', (request, response) => {
 
 //General Music thread page
 app.get('/general_music', (request, response) => {
-    let db = utils.getDb();
-    db.collection('threads').find({Category: 'general_music_discussion'}).toArray(function(err, threads){
-        if(err){
-            console.log(err);
-            response.send('Unable to retrieve posts');
-        }
-        else{
-            // console.log(threads);
-            response.render('general_music.hbs', {
-                objects: threads
-            });
-
-        }
-    });
-
+  response.render('general_music.hbs');
 });
 
-app.get('/all_posts', (request, response) => {
-    let db = utils.getDb();
-    db.collection('threads').find({}).toArray(function(err, threads){
-        if(err){
-            console.log(err);
-            response.send('Unable to retrieve posts');
-        }
-        else{
-            // console.log(threads);
-            response.render('all_posts.hbs', {
-                objects: threads
-            });
-
-        }
-    });
-
-    // response.render('all_posts.hbs');
-});
-
-app.get('/off_topic', (request, response) => {
-    let db = utils.getDb();
-    db.collection('threads').find({Category: 'off_topic_discussion'}).toArray(function(err, threads){
-        if(err){
-            console.log(err);
-            response.send('Unable to retrieve posts');
-        }
-        else{
-            // console.log(threads);
-            response.render('off_topic.hbs', {
-                objects: threads
-            });
-
-        }
-    });
-
-    // response.render('off_topic.hbs');
-});
 //Music Reviews thread page
 // app.get('/music_reviews.hbs', (request, response) => {
 //   response.render('music_reviews.hbs');
@@ -87,34 +35,20 @@ app.get('/off_topic', (request, response) => {
 
 //Latest Music thread page
 app.get('/latest_music', (request, response) => {
-    let db = utils.getDb();
-    db.collection('threads').find({Category: 'latest_music'}).toArray(function(err, threads){
-        if(err){
-            console.log(err);
-            response.send('Unable to retrieve posts');
-        }
-        else{
-            // console.log(threads);
-            response.render('latest_music.hbs', {
-                objects: threads
-            });
-
-        }
-    });
-  // response.render('latest_music.hbs');
+  response.render('latest_music.hbs');
 });
 
 //Create Post Page
-app.get('/create_post', (request, response) => {
-  response.render('create_post.hbs');
-  register.getElements;
-});
+// app.get('/create_post', (request, response) => {
+//   response.render('create_post.hbs');
+//   register.getElements;
+// })
 
 //Signup Page
 app.get('/signup', (request, response) => {
   response.render('signup.hbs');
   register.getElements;
-});
+})
 
 //Signup Confirmation Page
 app.get('/confirmsignup', (request, response) => {
@@ -176,7 +110,7 @@ app.post('/signup_form', (request, response) => {
                 Last_Name: lname,
                 Email: email,
                 Password: psw
-            });
+            })
           response.render('confirm.hbs');
         }
 
@@ -231,26 +165,21 @@ app.post('/thread_form', (request, response) => {
 
 
 app.get('/music_reviews', (request, response) => {
-    let db = utils.getDb();
-    db.collection('threads').find({Category: 'music_reviews'}).toArray(function(err, threads){
-        if(err){
-            console.log(err);
-            response.send('Unable to retrieve posts');
-        }
-        else{
-            // console.log(threads);
-            response.render('music_reviews.hbs', {
-                objects: threads
-            });
-
-        }
-    });
+  var db = utils.getDb();
+  db.collection('threads').find({}).toArray(function(err, threads){
+      if(err){
+        console.log(err);
+        response.send('Unable to retrieve posts');
+      }
+      else{
+        response.send(threads);
+        // console.log(threads)
+        
+      }
+  });
 });
-
 
 
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`);
 });
-
-module.exports = app;
