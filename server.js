@@ -43,6 +43,7 @@ app.get('/general_music', (request, response) => {
 
 });
 
+
 app.get('/all_posts', (request, response) => {
     let db = utils.getDb();
     db.collection('threads').find({}).toArray(function(err, threads){

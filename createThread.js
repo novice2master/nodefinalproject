@@ -9,7 +9,8 @@ var obj = JSON.parse(request.responseText);
 
 
 
-
+<!--addThread(obj[i].Category + String(i), "collapse" + obj[i].Category + String(i), "comments go here", obj[i]);-->
+<!--{{Category}}{{@Index}}     'collapse{{Category}}{{@Index}}'         {{Comments}}-->
 
 
 
