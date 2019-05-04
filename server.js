@@ -248,9 +248,6 @@ app.post('/thread_form', (request, response) => {
 //     });
 // });
 
-
-<<<<<<< HEAD
-
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`);
     utils.init();
@@ -261,5 +258,3 @@ module.exports = app;
 app.listen(8080, () => {
     console.log('Server is up on the port 8080');
     utils.init();
-});
->>>>>>> parent of e8464a0... committ
