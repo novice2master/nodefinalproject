@@ -8,11 +8,13 @@ module.exports.getDb = function() {
 
 };
 
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-    if (err)
-        return err;
+module.exports.init = function(callback) {
+    const client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+        if (err)
+            return err;
 
-    _db = client.db('muziki');
-    console.log('Successfully connected to MongoDB server')
-});
+        _db = client.db('muziki');
+        console.log('Successfully connected to MongoDB server')
+    });
+};
