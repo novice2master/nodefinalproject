@@ -1,49 +1,25 @@
-/*
 var request = new XMLHttpRequest();
 request.open("GET", "threads.json", false);
 request.send(null);
 var obj = JSON.parse(request.responseText);
-*/
-//const utils = require('./utils');
 
 
-
-
-
-
-
-
-function fillThreades(objects, category) {
-
+function fillThreades(category) {
     for (i in obj) {
         if (obj[i].Category === category) {
-            addThread(obj[i].Category + String(i), "collapse" + obj[i].Category + String(i), "comments go here", obj[i]);
-
+            addThread(obj[i].Category + String(i), "collapse" + category + String(i), "comments go here", obj[i]);
         }
     }
 }
 
-/*
 function fillThreadesAll() {
-
-    var db = getDb();
-    db.collection('threads').find({}).toArray(function (err, obj) {
-        if (err) {
-            console.log(err);
-            // response.send('Unable to retrieve posts');
-        } else {
-            // response.send(threads);
-            console.log(obj);
-
-            for (i in obj) {
-                addThread(obj[i].Category + String(i), "collapse" + obj[i].Category + String(i), "comments go here", obj[i]);
-            }
-        }
-    });
+    for (i in obj) {
+        addThread(obj[i].Category + String(i), "collapse" + obj[i].Category + String(i), "comments go here", obj[i]);
+    }
 }
-*/
+
+
 function addThread(heading, collapse, comments, object) {
-    console.log('worked');
     var threadlist = document.getElementById('generalThreads');
     threadlist.innerHTML += `
         <div class="card border-0" >
