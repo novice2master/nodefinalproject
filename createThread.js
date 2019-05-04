@@ -1,11 +1,3 @@
-var request = new XMLHttpRequest();
-request.open("GET", "threads.json", false);
-request.send(null);
-var obj = JSON.parse(request.responseText);
-
-
-
-
 function test() {
     console.log
 }
