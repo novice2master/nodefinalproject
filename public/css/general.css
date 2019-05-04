@@ -131,6 +131,7 @@ body {
     color: #f2f2f2;
     height: 260px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .musicCard h2 {
@@ -347,11 +348,7 @@ textarea {
     padding-top:  10px;
 }
 
-.test {
-    width: 1000px;
-}
-
-/* placed at bottom to override */
+/* to override */
 .index-nav{
 
     border-bottom-right-radius: 0;

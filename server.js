@@ -43,6 +43,7 @@ app.get('/general_music', (request, response) => {
 
 });
 
+
 app.get('/all_posts', (request, response) => {
     let db = utils.getDb();
     db.collection('threads').find({}).toArray(function(err, threads){
@@ -230,27 +231,35 @@ app.post('/thread_form', (request, response) => {
 });
 
 
-app.get('/music_reviews', (request, response) => {
-    let db = utils.getDb();
-    db.collection('threads').find({Category: 'music_reviews'}).toArray(function(err, threads){
-        if(err){
-            console.log(err);
-            response.send('Unable to retrieve posts');
-        }
-        else{
-            // console.log(threads);
-            response.render('music_reviews.hbs', {
-                objects: threads
-            });
+// app.get('/music_reviews', (request, response) => {
+//     let db = utils.getDb();
+//     db.collection('threads').find({Category: 'music_reviews'}).toArray(function(err, threads){
+//         if(err){
+//             console.log(err);
+//             response.send('Unable to retrieve posts');
+//         }
+//         else{
+//             // console.log(threads);
+//             response.render('music_reviews.hbs', {
+//                 objects: threads
+//             });
+//
+//         }
+//     });
+// });
 
-        }
-    });
-});
 
-
+<<<<<<< HEAD
 
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`);
+    utils.init();
 });
 
 module.exports = app;
+=======
+app.listen(8080, () => {
+    console.log('Server is up on the port 8080');
+    utils.init();
+});
+>>>>>>> parent of e8464a0... committ
