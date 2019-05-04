@@ -4,7 +4,14 @@ request.send(null);
 var obj = JSON.parse(request.responseText);
 
 
-function fillThreades(category) {
+
+
+
+
+
+
+function fillThreades(objects, category) {
+
     for (i in obj) {
         if (obj[i].Category === category) {
             addThread(obj[i].Category + String(i), "collapse" + category + String(i), "comments go here", obj[i]);

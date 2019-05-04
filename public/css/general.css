@@ -131,6 +131,7 @@ body {
     color: #f2f2f2;
     height: 260px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .musicCard h2 {

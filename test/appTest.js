@@ -1,5 +1,3 @@
-
-
 const request = require('supertest');
 const assert = require('chai').assert;
 const expect = require('chai').expect;
@@ -40,7 +38,7 @@ describe('GET /general_music', function () {
         chai.request(app)
             .get('/general_music')
             .end(function(err, response) {
-                // console.log(response.text);
+                console.log(response.text);
                 expect(response).to.have.status(200);
                 done()
             })
