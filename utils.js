@@ -14,5 +14,5 @@ client.connect(err => {
         return err;
 
     _db = client.db('muziki');
-    console.log('Successfully connected to MongoDB server')
+    console.log('Successfully connected to MongoDB server');
 });

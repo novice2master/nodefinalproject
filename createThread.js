@@ -9,11 +9,13 @@ var obj = JSON.parse(request.responseText);
 
 
 
+function test() {
+    console.log
+}
 
 
 
-
-function fillThreades(objects, category) {
+function fillThreades(obj, category) {
 
     for (i in obj) {
         if (obj[i].Category === category) {
