@@ -43,6 +43,7 @@ app.get('/general_music', (request, response) => {
 
 });
 
+
 app.get('/all_posts', (request, response) => {
     let db = utils.getDb();
     db.collection('threads').find({}).toArray(function(err, threads){
@@ -175,8 +176,10 @@ app.post('/signup_form', (request, response) => {
                 First_Name: fname,
                 Last_Name: lname,
                 Email: email,
+
                 Password: psw
             });
+
             response.render('confirm.hbs');
         }
 
@@ -192,6 +195,7 @@ app.post('/login_form', (request, response) => {
     var psw = request.body.psw;
     var db = utils.getDb();
     db.collection('users').findOne({Email: email, Password: psw}).then((doc)=>{
+
         if(doc == null){
             console.log('Login Failed');
             response.render('login.hbs',{
@@ -204,6 +208,7 @@ app.post('/login_form', (request, response) => {
             response.cookie('email', doc.Email);
             response.redirect('/');
         }
+
     })
 });
 
@@ -230,27 +235,28 @@ app.post('/thread_form', (request, response) => {
 });
 
 
-app.get('/music_reviews', (request, response) => {
-    let db = utils.getDb();
-    db.collection('threads').find({Category: 'music_reviews'}).toArray(function(err, threads){
-        if(err){
-            console.log(err);
-            response.send('Unable to retrieve posts');
-        }
-        else{
-            // console.log(threads);
-            response.render('music_reviews.hbs', {
-                objects: threads
-            });
-
-        }
-    });
-});
+// app.get('/music_reviews', (request, response) => {
+//     let db = utils.getDb();
+//     db.collection('threads').find({Category: 'music_reviews'}).toArray(function(err, threads){
+//         if(err){
+//             console.log(err);
+//             response.send('Unable to retrieve posts');
+//         }
+//         else{
+//             // console.log(threads);
+//             response.render('music_reviews.hbs', {
+//                 objects: threads
+//             });
+//
+//         }
+//     });
+// });
 
 
 
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`);
+    utils.init();
 });
 
 module.exports = app;

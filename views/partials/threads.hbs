@@ -1,30 +1,43 @@
+
+
 {{#each objects}}
-<div class="card border-0">
-    <div class="card-header" id="threadCardHeader" data-toggle="collapse" data-target="#threadCollapse">
-        <h5 class="mb-0">
-            {{Title}}
-        </h5>
-    </div>
-    <div id="threadCollapse" class="collapse" data-parent="#generalThreads">
-        <div class="card-body">
-            {{Message}}
-            <div class="accordion" id="commentsAccordion">
-                <div class="card" data-toggle="collapse" data-target="#comments">
-                    <div class="card-header">
-                        <h5 class="mb-0">
-                            <button class="btn" type="button">
-                                Comments
-                            </button>
-                        </h5>
-                    </div>
-                    <div id="comments" class="collapse" data-parent="#commentsAccordion">
-                        <div class="card-body">
-                        Comments go here
+    {{@Index}}
+    <div class="card border-0" >
+        <div class="card-header threadCardHeader" id={{_id}}  data-toggle="collapse" data-target='#collapse{{_id}}'>
+            <h5 class="mb-0">
+                <button class="btn btn-link" type="button"  aria-expanded="true" aria-controls='collapse{{_id}}'>
+                    {{Title}}
+                    <small>&lt{{Email}}&gt</small>
+                </button>
+            </h5>
+        </div>
+
+        <div id='collapse{{_id}}' class="collapse" aria-labelledby={{_id}}   data-parent="#generalThreads">
+            <div class="card-body">
+                {{Message}}
+                <div class="row commentTopMargin">
+                    <div class="col-md-4">&nbsp;</div>
+                    <div class="accordion col-md-8" id='{{_id}}accordion' data-toggle="collapse" data-target='#{{Comments}}'>
+                    <div class="card border-0">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button">
+                                    Comments
+                                </button>
+                            </h5>
+                        </div>
+                        <div id=${Comments} class="collapse" data-parent='#{{_id}}accordion'>
+                            <div class="card-body">
+                                {{Comments}}
+                                Comments go here
+                            </div>
                         </div>
                     </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
-</div>
+
 {{/each}}
