@@ -217,6 +217,11 @@ textarea {
     height: 225px;
 }
 
+.comment-box {
+    margin-top: 10px;
+    height: 125px;
+}
+
 .btn{
     border-radius: 6px;
     background-color: #563d7c;
