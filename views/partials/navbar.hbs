@@ -9,7 +9,7 @@
                 <div class="navbar-nav ml-auto mt-lg-0" id="topNav-right">
                     <button type="button"  class="btn nav-btn" data-toggle="modal" data-target="#postModal" {{disabled}}>Post a Thread</button>
                     <button type="button" class="btn nav-btn" data-toggle="modal" data-target="#signupModal">Sign Up</button>
-                    <form id="log-out-form" action="#">
+                    <form id="log-out-form" action="#" method="get">
                         <button type="button" id="nav-btn" class="btn nav-btn" data-toggle="modal" data-target="#loginModal" value={{loggedin}}>Log in</button>
                     </form>
                 </div>
@@ -74,7 +74,7 @@
                     <input type="email" placeholder="Enter Email" name="email" id="email" required>
 
                     <label for="password"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="password" id="password" required>
+                    <input type="password" placeholder="Enter Password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                     <small>
                         By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.
                     </small>
@@ -85,6 +85,13 @@
                         <button type="submit" class="btn">Sign Up</button>
                     </div>
                 </form>
+                <div id="passwordcheck">
+                    <h5>Password must contain the following</h5>
+                    <p id="lower" class="invalid">A <b>lowercase</b> letter</p>
+                    <p id="upper" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                    <p id="number" class="invalid">A <b>number</b></p>
+                    <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                </div>
             </div>
         </div>
     </div>
@@ -111,7 +118,7 @@
                     <!--<div class = "g-recaptcha" data-sitekey="6LfWI6EUAAAAAK7fZapTU8vw4-oxxi08_RTwHgUL"></div>-->
                     <div class="buttonArea">
                         <button type="button" onclick="" data-dismiss="modal" class="cancelbtn">Cancel</button>
-                        <button type="submit" class="btn">Login</button>
+                        <button type="submit" onsubmit="updateButton()" class="btn">Login</button>
                     </div>
                 </form>
             </div>
@@ -170,4 +177,53 @@
     updateButton();
 
 
+</script>
+
+<script>
+    var myInput = document.getElementById("password");
+    var letter = document.getElementById("lower");
+    var capital = document.getElementById("upper");
+    var number = document.getElementById("number");
+    var length = document.getElementById("length");
+
+    myInput.onkeyup = function() {
+        // Validate lowercase letters
+        var lowerCaseLetters = /[a-z]/g;
+        if(myInput.value.match(lowerCaseLetters)) {
+            letter.classList.remove("invalid");
+            letter.classList.add("valid");
+        } else {
+            letter.classList.remove("valid");
+            letter.classList.add("invalid");
+        }
+
+        // Validate capital letters
+        var upperCaseLetters = /[A-Z]/g;
+        if(myInput.value.match(upperCaseLetters)) {
+            capital.classList.remove("invalid");
+            capital.classList.add("valid");
+        } else {
+            capital.classList.remove("valid");
+            capital.classList.add("invalid");
+        }
+
+        // Validate numbers
+        var numbers = /[0-9]/g;
+        if(myInput.value.match(numbers)) {
+            number.classList.remove("invalid");
+            number.classList.add("valid");
+        } else {
+            number.classList.remove("valid");
+            number.classList.add("invalid");
+        }
+
+        // Validate length
+        if(myInput.value.length >= 8) {
+            length.classList.remove("invalid");
+            length.classList.add("valid");
+        } else {
+            length.classList.remove("valid");
+            length.classList.add("invalid");
+        }
+    }
 </script>
