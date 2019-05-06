@@ -25,6 +25,7 @@ app.use(session({
 
 app.set('view engine', 'hbs');
 
+
 //Homepage
 app.get('/', (request, response) => {
 
@@ -32,14 +33,16 @@ app.get('/', (request, response) => {
         try {
             if (typeof request.session.email !== "undefined") {
                 response.render('index.hbs', {
-                        disabled: null
+                        disabled: null,
+                        loggedin: "True"
                     })
             } else
                 throw new Error("User is not signed-in")
         } catch (e) {
             console.log(e.message);
             response.render('index.hbs', {
-                disabled: 'disabled'
+                disabled: 'disabled',
+                loggedin: "False"
             })
         }
 
@@ -59,7 +62,8 @@ app.get('/general_music', (request, response) => {
                 if (typeof request.session.email !== "undefined") {
                     response.render('general_music.hbs', {
                         objects: threads,
-                        disabled: null
+                        disabled: null,
+                        loggedin: "True"
                     })
                 } else
                     throw new Error("User is not signed-in")
@@ -67,7 +71,8 @@ app.get('/general_music', (request, response) => {
                 console.log(e.message);
                 response.render('general_music.hbs', {
                     objects: threads,
-                    disabled: 'disabled'
+                    disabled: 'disabled',
+                    loggedin: "False"
                 })
             }}
     });
@@ -88,7 +93,8 @@ app.get('/all_posts', (request, response) => {
                 if (typeof request.session.email !== "undefined") {
                     response.render('all_posts.hbs', {
                         objects: threads,
-                        disabled: null
+                        disabled: null,
+                        loggedin: "True"
                     })
                 } else
                     throw new Error("User is not signed-in")
@@ -96,7 +102,8 @@ app.get('/all_posts', (request, response) => {
                 console.log(e.message);
                 response.render('all_posts.hbs', {
                     objects: threads,
-                    disabled: 'disabled'
+                    disabled: 'disabled',
+                    loggedin: "False"
                 })}
         }
     });
@@ -117,7 +124,8 @@ app.get('/off_topic', (request, response) => {
                 if (typeof request.session.email !== "undefined") {
                     response.render('off_topic.hbs', {
                         objects: threads,
-                        disabled: null
+                        disabled: null,
+                        loggedin: "True"
                     })
                 } else
                     throw new Error("User is not signed-in")
@@ -125,7 +133,8 @@ app.get('/off_topic', (request, response) => {
                 console.log(e.message);
                 response.render('off_topic.hbs', {
                     objects: threads,
-                    disabled: 'disabled'
+                    disabled: 'disabled',
+                    loggedin: "False"
                 })}
 
 
@@ -153,7 +162,8 @@ app.get('/latest_music', (request, response) => {
                 if (typeof request.session.email !== "undefined") {
                     response.render('latest_music.hbs', {
                         objects: threads,
-                        disabled: null
+                        disabled: null,
+                        loggedin: "True"
                     })
                 } else
                     throw new Error("User is not signed-in")
@@ -161,7 +171,8 @@ app.get('/latest_music', (request, response) => {
                 console.log(e.message);
                 response.render('latest_music.hbs', {
                     objects: threads,
-                    disabled: 'disabled'
+                    disabled: 'disabled',
+                    loggedin: "False"
                 })}
         }
     });
@@ -180,14 +191,16 @@ app.get('/signup', (request, response) => {
     try {
         if (typeof request.session.email !== "undefined") {
             response.render('signup.hbs', {
-                disabled: null
+                disabled: null,
+                loggedin: "True"
             })
         } else
             throw new Error("User is not signed-in")
     } catch (e) {
         console.log(e.message);
         response.render('signup.hbs', {
-            disabled: 'disabled'
+            disabled: 'disabled',
+            loggedin: "False"
         })}
 
     register.getElements;
@@ -203,14 +216,16 @@ app.get('/login', (request, response) => {
     try {
         if (typeof request.session.email !== "undefined") {
             response.render('login.hbs', {
-                disabled: null
+                disabled: null,
+                loggedin: "True"
             })
         } else
             throw new Error("User is not signed-in")
     } catch (e) {
         console.log(e.message);
         response.render('login.hbs', {
-            disabled: 'disabled'
+            disabled: 'disabled',
+            loggedin: "False"
         })}
 
 });
@@ -222,18 +237,21 @@ app.get('/login_form', (request, response)=> {
     try {
         if (typeof request.session.email !== "undefined") {
             response.render('login.hbs', {
-                disabled: null
+                disabled: null,
+                loggedin: "True"
             })
         } else
             throw new Error("User is not signed-in")
     } catch (e) {
         console.log(e.message);
         response.render('login.hbs', {
-            disabled: 'disabled'
+            disabled: 'disabled',
+            loggedin: "False"
         })}
 
     // response.redirect('/');
 });
+
 //Add user information to database
 app.post('/signup_form', (request, response) => {
     var fname = request.body.firstName;
@@ -312,12 +330,14 @@ app.post('/login_form', (request, response) => {
     //         disabled: 'disabled'
     //     })}
 
+
     db.collection('users').findOne({Email: email, Password: psw}).then((doc)=>{
         if(doc == null){
             console.log('Login Failed');
             response.render('login.hbs',{
                 login_error:'Incorrect login info...Try Again!!',
-                disabled: "disabled"
+                disabled: "disabled",
+                loggedin: "False"
             })
         }
 
@@ -351,7 +371,6 @@ app.post('/thread_form', (request, response) => {
         response.render('postconfirm.hbs');
     })
 });
-
 
 // app.get('/music_reviews', (request, response) => {
 //     let db = utils.getDb();
@@ -389,7 +408,6 @@ app.get('/sign-out', (req, res) => {
         }
 
 })});
-
 
 
 app.listen(port, () => {

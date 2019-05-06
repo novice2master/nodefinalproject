@@ -7,9 +7,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto mt-lg-0" id="topNav-right">
-                    <button type="button"  class="btn nav-btn" data-toggle="modal" data-target="#postModal" {{disabled}}>Post a Thread</button>
-                    <button type="button" class="btn nav-btn" data-toggle="modal" data-target="#signupModal">Sign Up</button>
-                    <button type="button" class="btn nav-btn" data-toggle="modal" data-target="#loginModal">Log in</button>
+                    <button type="button" class="btn nav-btn" data-toggle="modal" data-target="#postModal" value="{{loggedin}}" {{disabled}}>Post a Thread</button>
+                    <button type="button" class="btn nav-btn" data-toggle="modal" data-target="#signupModal" value="{{loggedin}}">Sign Up</button>
+                    <button type="button" id="nav-btn" class="btn nav-btn" data-toggle="modal" data-target="#loginModal" value="{{loggedin}}">Log in</button>
                 </div>
             </div>
         </nav>
@@ -105,7 +105,7 @@
                     <input type="text" placeholder="Enter Email" name="email" id="email" required>
 
                     <label for="password"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" id="password" required>
+                    <input type="password" placeholder="Enter Password" name="password" id="password" required>
                     <!--<div class = "g-recaptcha" data-sitekey="6LfWI6EUAAAAAK7fZapTU8vw4-oxxi08_RTwHgUL"></div>-->
                     <div class="buttonArea">
                         <button type="button" onclick="" data-dismiss="modal" class="cancelbtn">Cancel</button>
@@ -147,8 +147,8 @@
         //Changes log-in button to a log-out button
         if (loggedin.value === 'True') {
             loggedin.innerHTML = 'Log Out';
-            $('#nav-btn').attr('action', '#');
-            $('#nav-btn').attr('onclick', 'logOut()');
+            $('#nav-btn').attr('action', '/sign-out');
+            $('#nav-btn').attr('onclick', '');
 
         } else {
             loggedin.innerHTML = 'Log In';
