@@ -218,7 +218,22 @@ app.get('/login', (request, response) => {
 // app.get('/login2.hbs', (request, response) => {
 //     response.render('login2.hbs');
 // })
+app.get('/login_form', (request, response)=> {
+    try {
+        if (typeof request.session.email !== "undefined") {
+            response.render('login.hbs', {
+                disabled: null
+            })
+        } else
+            throw new Error("User is not signed-in")
+    } catch (e) {
+        console.log(e.message);
+        response.render('login.hbs', {
+            disabled: 'disabled'
+        })}
 
+    // response.redirect('/');
+});
 //Add user information to database
 app.post('/signup_form', (request, response) => {
     var fname = request.body.firstName;
@@ -277,16 +292,32 @@ app.post('/signup_form', (request, response) => {
     // });
 });
 
+
 //Logs in user if they match information in database
 app.post('/login_form', (request, response) => {
     var email = request.body.email;
     var psw = request.body.password;
     var db = utils.getDb();
+
+    // try {
+    //     if (typeof request.session.email !== "undefined") {
+    //         response.render('login.hbs', {
+    //             disabled: null
+    //         })
+    //     } else
+    //         throw new Error("User is not signed-in")
+    // } catch (e) {
+    //     console.log(e.message);
+    //     response.render('login.hbs', {
+    //         disabled: 'disabled'
+    //     })}
+
     db.collection('users').findOne({Email: email, Password: psw}).then((doc)=>{
         if(doc == null){
             console.log('Login Failed');
             response.render('login.hbs',{
-                login_error:'Incorrect login info...Try Again!!'
+                login_error:'Incorrect login info...Try Again!!',
+                disabled: "disabled"
             })
         }
 
