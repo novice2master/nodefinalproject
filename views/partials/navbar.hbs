@@ -9,9 +9,9 @@
                 <div class="navbar-nav ml-auto mt-lg-0" id="topNav-right">
                     <button type="button"  class="btn nav-btn" data-toggle="modal" data-target="#postModal" {{disabled}}>Post a Thread</button>
                     <button type="button" class="btn nav-btn" data-toggle="modal" data-target="#signupModal">Sign Up</button>
-                    <form id="log-out-form" action="#" method="get">
-                        <button type="button" id="nav-btn" class="btn nav-btn" data-toggle="modal" data-target="#loginModal" value={{loggedin}}>Log in</button>
-                    </form>
+
+                    <button type="button" id="nav-btn" class="btn nav-btn" data-toggle="modal" data-target="#loginModal" value={{loggedin}}>Log in</button>
+
                 </div>
             </div>
         </nav>
@@ -148,14 +148,18 @@
     function updateButton() {
         //Changes log-in button to a log-out button
         if (loggedin.value === 'True') {
+            console.log('signed in');
             loggedin.innerHTML = 'Log Out';
             $('#nav-btn').attr('action', '#');
             $('#nav-btn').attr('onclick', 'logOut()');
+            $('#nav-btn').attr('data-target', '');
 
         } else {
+            console.log('signed out');
             loggedin.innerHTML = 'Log In';
             $('#nav-btn').attr('action', '/login');
             $('#nav-btn').attr('onclick', '');
+            $('#nav-btn').attr('data-target', '#loginModal')
         }
     }
 
