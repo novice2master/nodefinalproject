@@ -9,7 +9,9 @@
                 <div class="navbar-nav ml-auto mt-lg-0" id="topNav-right">
                     <button type="button"  class="btn nav-btn" data-toggle="modal" data-target="#postModal" {{disabled}}>Post a Thread</button>
                     <button type="button" class="btn nav-btn" data-toggle="modal" data-target="#signupModal">Sign Up</button>
-                    <button type="button" class="btn nav-btn" data-toggle="modal" data-target="#loginModal">Log in</button>
+                    <form id="log-out-form" action="#">
+                        <button type="button" id="nav-btn" class="btn nav-btn" data-toggle="modal" data-target="#loginModal" value={{loggedin}}>Log in</button>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -160,7 +162,7 @@
     //Deals with what happens when you click the log-out button
     function logOut(){
 
-
+        $('#log-out-form').attr('action', '/sign-out');
         //updates button to become a log-in button again
         updateButton();
     }
