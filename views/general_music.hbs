@@ -14,7 +14,7 @@
 
 {{> navbar}}
 <div class="container containerMargin">
-    <h1>Thread List</h1>
+    <h1 id="thread-titles">Thread List</h1>
     <!--Added a accordion to house the threads-->
     <div class="accordion" id="generalThreads">
         {{>threads}}
@@ -32,4 +32,14 @@
 {{> footer}}
 
 </body>
+
+<script>
+    url = (window.location.href.split('/')[3]).split('_');
+    temp = [];
+    for (var i in url) {
+        temp.push(url[i].charAt(0).toUpperCase() + url[i].slice(1))
+    }
+    $("#thread-titles").html((temp.join(' ')));
+</script>
+
 </html>
