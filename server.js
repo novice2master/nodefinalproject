@@ -27,7 +27,6 @@ app.set('view engine', 'hbs');
 
 //Homepage
 app.get('/', (request, response) => {
-    console.log(request.session);
 
     {
         try {
@@ -178,7 +177,19 @@ app.get('/create_post', (request, response) => {
 
 //Signup Page
 app.get('/signup', (request, response) => {
-    response.render('signup.hbs');
+    try {
+        if (typeof request.session.email !== "undefined") {
+            response.render('signup.hbs', {
+                disabled: null
+            })
+        } else
+            throw new Error("User is not signed-in")
+    } catch (e) {
+        console.log(e.message);
+        response.render('signup.hbs', {
+            disabled: 'disabled'
+        })}
+
     register.getElements;
 });
 
@@ -189,7 +200,19 @@ app.get('/confirmsignup', (request, response) => {
 
 //Login Page
 app.get('/login', (request, response) => {
-    response.render('login.hbs');
+    try {
+        if (typeof request.session.email !== "undefined") {
+            response.render('login.hbs', {
+                disabled: null
+            })
+        } else
+            throw new Error("User is not signed-in")
+    } catch (e) {
+        console.log(e.message);
+        response.render('login.hbs', {
+            disabled: 'disabled'
+        })}
+
 });
 
 // app.get('/login2.hbs', (request, response) => {
@@ -271,7 +294,6 @@ app.post('/login_form', (request, response) => {
         else{
             response.cookie('username', doc.First_Name);
             request.session.email = doc.Email;
-            console.log(request.session);
             response.redirect('/');
         }
 
@@ -317,6 +339,7 @@ app.post('/thread_form', (request, response) => {
 //         }
 //     });
 // });
+
 app.get('/sign-out', (req, res) => {
     req.session.destroy(function (err) {
 
