@@ -317,19 +317,6 @@ app.post('/login_form', (request, response) => {
     var psw = request.body.password;
     var db = utils.getDb();
 
-    // try {
-    //     if (typeof request.session.email !== "undefined") {
-    //         response.render('login.hbs', {
-    //             disabled: null
-    //         })
-    //     } else
-    //         throw new Error("User is not signed-in")
-    // } catch (e) {
-    //     console.log(e.message);
-    //     response.render('login.hbs', {
-    //         disabled: 'disabled'
-    //     })}
-
 
     db.collection('users').findOne({Email: email, Password: psw}).then((doc)=>{
         if(doc == null){
