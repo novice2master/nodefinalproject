@@ -27,10 +27,11 @@ app.set('view engine', 'hbs');
 
 //Homepage
 app.get('/', (request, response) => {
+    console.log(request.session);
 
     {
         try {
-            if (typeof response.session.email !== "undefined") {
+            if (typeof request.session.email !== "undefined") {
                 response.render('index.hbs', {
                         disabled: null
                     })
@@ -56,7 +57,7 @@ app.get('/general_music', (request, response) => {
         }
         else{
             try {
-                if (typeof response.session.email !== "undefined") {
+                if (typeof request.session.email !== "undefined") {
                     response.render('general_music.hbs', {
                         objects: threads,
                         disabled: null
@@ -85,7 +86,7 @@ app.get('/all_posts', (request, response) => {
         else{
             // console.log(threads);
             try {
-                if (typeof response.session.email !== "undefined") {
+                if (typeof request.session.email !== "undefined") {
                     response.render('all_posts.hbs', {
                         objects: threads,
                         disabled: null
@@ -114,7 +115,7 @@ app.get('/off_topic', (request, response) => {
         else{
             // console.log(threads);
             try {
-                if (typeof response.session.email !== "undefined") {
+                if (typeof request.session.email !== "undefined") {
                     response.render('off_topic.hbs', {
                         objects: threads,
                         disabled: null
@@ -144,13 +145,13 @@ app.get('/latest_music', (request, response) => {
     let db = utils.getDb();
     db.collection('threads').find({Category: 'latest_music'}).toArray(function(err, threads){
         if(err){
-            console.log(err);
+            // console.log(err);
             response.send('Unable to retrieve posts');
         }
         else{
             // console.log(threads);
             try {
-                if (typeof response.session.email !== "undefined") {
+                if (typeof request.session.email !== "undefined") {
                     response.render('latest_music.hbs', {
                         objects: threads,
                         disabled: null
@@ -259,7 +260,7 @@ app.post('/login_form', (request, response) => {
     var psw = request.body.psw;
     var db = utils.getDb();
     db.collection('users').findOne({Email: email, Password: psw}).then((doc)=>{
-
+        console.log(doc);
         if(doc == null){
             console.log('Login Failed');
             response.render('login.hbs',{
@@ -269,7 +270,8 @@ app.post('/login_form', (request, response) => {
 
         else{
             response.cookie('username', doc.First_Name);
-            response.session.email = doc.Email;
+            request.session.email = doc.Email;
+            console.log(request.session);
             response.redirect('/');
         }
 
