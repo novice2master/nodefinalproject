@@ -303,10 +303,9 @@ textarea {
 #generalThreads .card:nth-child(odd) .card-header {
     background-color: #563d7c;
     color: #f2f2f2;
-    border-radius: 8px;
 }
 
-#generalThreads .card:nth-child(odd) .card-header {
+#generalThreads .card:nth-child(even) .card-header {
     background-color: rgb(139, 121, 162);
     color: #f2f2f2;
 }
@@ -327,7 +326,11 @@ textarea {
 
 #generalThreads .card .card-header:hover {
     background-color: lightgrey;
-    color: #2f254b;
+    cursor: pointer;
+}
+
+#generalThreads .card .card-header:hover h5 button {
+    color: #563d7c;
 }
 
 #generalThreads .card .card-body .row {
@@ -348,13 +351,8 @@ textarea {
     padding-top:  10px;
 }
 
-.test {
-    width: 1000px;
-}
-
-/* placed at bottom to override */
+/* to override */
 .index-nav{
-
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }

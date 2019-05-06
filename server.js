@@ -283,7 +283,6 @@ app.post('/login_form', (request, response) => {
     var psw = request.body.password;
     var db = utils.getDb();
     db.collection('users').findOne({Email: email, Password: psw}).then((doc)=>{
-        console.log(doc);
         if(doc == null){
             console.log('Login Failed');
             response.render('login.hbs',{

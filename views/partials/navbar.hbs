@@ -8,12 +8,8 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto mt-lg-0" id="topNav-right">
                     <button type="button"  class="btn nav-btn" data-toggle="modal" data-target="#postModal" {{disabled}}>Post a Thread</button>
-                    <form id="sign-up" action="/signup">
-                        <button type="submit"  class="btn nav-btn">Sign Up</button>
-                    </form>
-                    <form method="get" id="log-in" action="/login">
-                        <button type="submit" id="nav-btn" class="btn nav-btn" onclick="" value={{LoggedIn}}>Log In</button>
-                    </form>
+                    <button type="button" class="btn nav-btn" data-toggle="modal" data-target="#signupModal">Sign Up</button>
+                    <button type="button" class="btn nav-btn" data-toggle="modal" data-target="#loginModal">Log in</button>
                 </div>
             </div>
         </nav>
@@ -54,6 +50,73 @@
     </div>
 </div>
 
+<div class="modal" id="signupModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="modalContent">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    Sign Up
+                </h3>
+            </div>
+            <div class="modal-body">
+                <form action="/signup_form" method="POST">
+                    <p>Please fill in this form to create an account.</p>
+                    <hr>
+                    <label for="firstName"><b>First Name</b></label>
+                    <input type="text" placeholder="Enter first name" name="firstName" id="firstName" required>
+
+                    <label for="lastName"><b>Last Name</b></label>
+                    <input type="text" placeholder="Enter last name" name="lastName" id="lastName" required>
+
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" placeholder="Enter Email" name="email" id="email" required>
+
+                    <label for="password"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="password" id="password" required>
+                    <small>
+                        By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.
+                    </small>
+
+                    <div class="buttonArea">
+                        <!--<div class = "g-recaptcha" data-sitekey="6LfWI6EUAAAAAK7fZapTU8vw4-oxxi08_RTwHgUL"></div>-->
+                        <button type="button" onclick="" data-dismiss="modal" class="cancelbtn">Cancel</button>
+                        <button type="submit" class="btn">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="loginModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="modalContent">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    Login
+                </h3>
+            </div>
+            <div class="modal-body">
+                <form action="/login_form" method="POST">
+                    <p>Please fill in your email and password to log in.</p>
+                    <hr>
+
+                    <label for="email"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Email" name="email" id="email" required>
+
+                    <label for="password"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" id="password" required>
+                    <!--<div class = "g-recaptcha" data-sitekey="6LfWI6EUAAAAAK7fZapTU8vw4-oxxi08_RTwHgUL"></div>-->
+                    <div class="buttonArea">
+                        <button type="button" onclick="" data-dismiss="modal" class="cancelbtn">Cancel</button>
+                        <button type="submit" class="btn">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     var urls = {
         'latest_music' : 'latest_music',
@@ -79,6 +142,7 @@
 
     //Pass the value 'True' to LoggedIn of the log-in button
     loggedin = document.getElementById('nav-btn');
+    console.log(loggedin);
     function updateButton() {
         //Changes log-in button to a log-out button
         if (loggedin.value === 'True') {

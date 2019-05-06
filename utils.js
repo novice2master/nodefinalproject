@@ -13,7 +13,6 @@ module.exports.init = function(callback) {
     client.connect(err => {
         if (err)
             return err;
-
         _db = client.db('muziki');
         console.log('Successfully connected to MongoDB server')
     });
