@@ -15,16 +15,16 @@
     "chai": "^4.2.0",
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
+    "express-session": "^1.16.1",
     "hbs": "^4.0.4",
     "html": "^1.0.0",
     "md5": "^2.2.1",
     "mocha": "^6.1.4",
     "mockgoose": "^8.0.1",
-
     "mongodb": "^3.2.3",
     "mongoose": "^5.5.0",
-    "request": "^2.88.0",
-    "nodemon": "latest"
+    "nodemon": "latest",
+    "request": "^2.88.0"
   },
   "repository": {
     "type": "git",

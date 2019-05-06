@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const MongoClient = require('mongodb').MongoClient;
 const utils = require('./utils');
 const port = process.env.PORT || 8080;
+const session = require('express-session');
 var app = express();
 app.use(cookieParser());
 app.use(bodyparser.json());
@@ -16,13 +17,34 @@ hbs.registerHelper('getCurrentYear', () => {
     return new Date().getFullYear();
 });
 
+app.use(session({
+    secret: 'very safe',
+    resave: true,
+    saveUninitialized: false,
+}));
 
 app.set('view engine', 'hbs');
 
 //Homepage
 app.get('/', (request, response) => {
-    response.render('index.hbs');
-});
+
+    {
+        try {
+            if (typeof response.session.email !== "undefined") {
+                response.render('index.hbs', {
+                        disabled: null
+                    })
+            } else
+                throw new Error("User is not signed-in")
+        } catch (e) {
+            console.log(e.message);
+            response.render('index.hbs', {
+                disabled: 'disabled'
+            })
+        }
+
+
+    }});
 
 //General Music thread page
 app.get('/general_music', (request, response) => {
@@ -33,12 +55,21 @@ app.get('/general_music', (request, response) => {
             response.send('Unable to retrieve posts');
         }
         else{
-            // console.log(threads);
-            response.render('general_music.hbs', {
-                objects: threads
-            });
-
-        }
+            try {
+                if (typeof response.session.email !== "undefined") {
+                    response.render('general_music.hbs', {
+                        objects: threads,
+                        disabled: null
+                    })
+                } else
+                    throw new Error("User is not signed-in")
+            } catch (e) {
+                console.log(e.message);
+                response.render('general_music.hbs', {
+                    objects: threads,
+                    disabled: 'disabled'
+                })
+            }}
     });
 
 });
@@ -53,10 +84,20 @@ app.get('/all_posts', (request, response) => {
         }
         else{
             // console.log(threads);
-            response.render('all_posts.hbs', {
-                objects: threads
-            });
-
+            try {
+                if (typeof response.session.email !== "undefined") {
+                    response.render('all_posts.hbs', {
+                        objects: threads,
+                        disabled: null
+                    })
+                } else
+                    throw new Error("User is not signed-in")
+            } catch (e) {
+                console.log(e.message);
+                response.render('all_posts.hbs', {
+                    objects: threads,
+                    disabled: 'disabled'
+                })}
         }
     });
 
@@ -72,15 +113,26 @@ app.get('/off_topic', (request, response) => {
         }
         else{
             // console.log(threads);
-            response.render('off_topic.hbs', {
-                objects: threads
-            });
+            try {
+                if (typeof response.session.email !== "undefined") {
+                    response.render('off_topic.hbs', {
+                        objects: threads,
+                        disabled: null
+                    })
+                } else
+                    throw new Error("User is not signed-in")
+            } catch (e) {
+                console.log(e.message);
+                response.render('off_topic.hbs', {
+                    objects: threads,
+                    disabled: 'disabled'
+                })}
+
 
         }
-    });
 
     // response.render('off_topic.hbs');
-});
+})});
 //Music Reviews thread page
 // app.get('/music_reviews.hbs', (request, response) => {
 //   response.render('music_reviews.hbs');
@@ -88,6 +140,7 @@ app.get('/off_topic', (request, response) => {
 
 //Latest Music thread page
 app.get('/latest_music', (request, response) => {
+
     let db = utils.getDb();
     db.collection('threads').find({Category: 'latest_music'}).toArray(function(err, threads){
         if(err){
@@ -96,14 +149,25 @@ app.get('/latest_music', (request, response) => {
         }
         else{
             // console.log(threads);
-            response.render('latest_music.hbs', {
-                objects: threads
-            });
-
+            try {
+                if (typeof response.session.email !== "undefined") {
+                    response.render('latest_music.hbs', {
+                        objects: threads,
+                        disabled: null
+                    })
+                } else
+                    throw new Error("User is not signed-in")
+            } catch (e) {
+                console.log(e.message);
+                response.render('latest_music.hbs', {
+                    objects: threads,
+                    disabled: 'disabled'
+                })}
         }
     });
     // response.render('latest_music.hbs');
 });
+
 
 //Create Post Page
 app.get('/create_post', (request, response) => {
@@ -205,7 +269,7 @@ app.post('/login_form', (request, response) => {
 
         else{
             response.cookie('username', doc.First_Name);
-            response.cookie('email', doc.Email);
+            response.session.email = doc.Email;
             response.redirect('/');
         }
 
@@ -251,6 +315,25 @@ app.post('/thread_form', (request, response) => {
 //         }
 //     });
 // });
+app.get('/sign-out', (req, res) => {
+    req.session.destroy(function (err) {
+
+        try {
+            console.log(req.session.email)
+        }catch(e){
+            // let time = new Date().toString();
+            // let log = `${time}: ${err} ${req.url}`;
+            // fs.appendFile('server.log', log + '\n', (error) => {
+                // if (error) {
+                    console.log('Unable to log message');
+                // }})}
+        }
+
+        finally {
+            res.redirect('/');
+        }
+
+})});
 
 
 
