@@ -3,16 +3,19 @@ const uri = "mongodb+srv://agile:u1wtUop4dTfKLxxo@cluster0-1dr0b.mongodb.net/tes
 
 var _db = null;
 
-// function connect() {
-//     return new Promise((resolve, reject) => {
-//         MongoClient.connect(uri,
-//             { useNewUrlParser: true, useCreateIndex: true })
-//             .then((response, err) => {
-//                 if (err) return reject(err);
-//                 resolve();
-//             })
-//         })
-// }
+function connect() {
+
+    return new Promise((resolve, reject) => {
+
+        if (process.env.Node_)
+        MongoClient.connect(uri,
+            { useNewUrlParser: true, useCreateIndex: true })
+            .then((response, err) => {
+                if (err) return reject(err);
+                resolve();
+            })
+        })
+}
 
 const client = new MongoClient(uri, { useNewUrlParser: true });
 client.connect(err => {
