@@ -326,6 +326,7 @@ textarea {
 
 #generalThreads .card .card-header:hover {
     background-color: lightgrey;
+    cursor: pointer;
 }
 
 #generalThreads .card .card-header:hover h5 button {
