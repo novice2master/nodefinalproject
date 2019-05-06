@@ -9,7 +9,9 @@
                 <div class="navbar-nav ml-auto mt-lg-0" id="topNav-right">
                     <button type="button"  class="btn nav-btn" data-toggle="modal" data-target="#postModal" {{disabled}}>Post a Thread</button>
                     <button type="button" class="btn nav-btn" data-toggle="modal" data-target="#signupModal">Sign Up</button>
-                    <button type="button" class="btn nav-btn" data-toggle="modal" data-target="#loginModal">Log in</button>
+                    <form id="log-out-form" action="#">
+                        <button type="button" id="nav-btn" class="btn nav-btn" data-toggle="modal" data-target="#loginModal" value={{loggedin}}>Log in</button>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -69,7 +71,7 @@
                     <input type="text" placeholder="Enter last name" name="lastName" id="lastName" required>
 
                     <label for="email"><b>Email</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" id="email" required>
+                    <input type="email" placeholder="Enter Email" name="email" id="email" required>
 
                     <label for="password"><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="password" id="password" required>
@@ -102,7 +104,7 @@
                     <hr>
 
                     <label for="email"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" id="email" required>
+                    <input type="email" placeholder="Enter Email" name="email" id="email" required>
 
                     <label for="password"><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="psw" id="password" required>
@@ -160,7 +162,7 @@
     //Deals with what happens when you click the log-out button
     function logOut(){
 
-
+        $('#log-out-form').attr('action', '/sign-out');
         //updates button to become a log-in button again
         updateButton();
     }

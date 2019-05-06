@@ -28,6 +28,10 @@
                                 <div class="card-body">
                                     {{Comments}}
                                     Comments go here
+                                    <form action="/addComment" method="post">
+                                    <textarea class='comment-box' placeholder="Enter a message here" name="comment" id="comment" required></textarea>
+                                    <button type="submit" class="btn">Submit</button>
+                                </form>
                                 </div>
                             </div>
                         </div>

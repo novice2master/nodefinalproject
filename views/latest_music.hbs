@@ -17,7 +17,7 @@
 <div class="container containerMargin">
     <div class="row">
         <div class="col-md-6">
-            <h1>Thread List</h1>
+            <h1 id="thread-titles">Thread List</h1>
         </div>
         <div class="col-md-6">
             <input type="text" id="searchVal" onsubmit="search()" placeholder="search for by title or user" title="Type in a name">
@@ -33,6 +33,14 @@
 
 </body>
 <script src="../functionality.js"></script>
+<script>
+    url = (window.location.href.split('/')[3]).split('_');
+    temp = [];
+    for (var i in url) {
+        temp.push(url[i].charAt(0).toUpperCase() + url[i].slice(1))
+    }
+    $("#thread-titles").html((temp.join(' ')));
+</script>
 </html>
 
 <!--<script>-->
