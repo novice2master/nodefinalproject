@@ -209,12 +209,20 @@ textarea {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-
     width: 100%;
+}
+
+#comment{
+    border-radius: 4px;
 }
 
 .message-box {
     height: 225px;
+}
+
+.comment-box {
+    margin-top: 10px;
+    height: 125px;
 }
 
 .btn{
@@ -317,6 +325,7 @@ textarea {
 
 #generalThreads .card .card-header:hover {
     background-color: lightgrey;
+    cursor: pointer;
 }
 
 #generalThreads .card .card-header:hover h5 button {

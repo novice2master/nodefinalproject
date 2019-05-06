@@ -3,7 +3,7 @@
 {{#each objects}}
     {{@Index}}
     <div class="card border-0" >
-        <div class="card-header threadCardHeader" id={{_id}}  data-toggle="collapse" data-target='#collapse{{_id}}'>
+        <div class="card-header threadCardHeader" id={{_id}} data-toggle="collapse" data-target='#collapse{{_id}}'>
             <h5 class="mb-0">
                 <button class="btn btn-link" type="button"  aria-expanded="true" aria-controls='collapse{{_id}}'>
                     {{Title}}
@@ -17,19 +17,23 @@
                 {{Message}}
                 <div class="row commentTopMargin">
                     <div class="col-md-4">&nbsp;</div>
-                    <div class="accordion col-md-8" id='{{_id}}accordion' data-toggle="collapse" data-target='#{{Comments}}'>
+                    <div class="accordion col-md-8" id='accordion{{_id}}'>
                     <div class="card border-0">
-                        <div class="card-header">
+                        <div class="card-header" data-toggle="collapse" data-target='#comments{{_id}}'>
                             <h5 class="mb-0">
                                 <button class="btn btn-link" type="button">
                                     Comments
                                 </button>
                             </h5>
                         </div>
-                        <div id=${Comments} class="collapse" data-parent='#{{_id}}accordion'>
+                        <div id='comments{{_id}}' class="collapse" data-parent='#accordion{{_id}}'>
                             <div class="card-body">
                                 {{Comments}}
                                 Comments go here
+                                <form action="/addComment" method="post">
+                                    <textarea class='comment-box' placeholder="Enter a message here" name="comment" id="comment" required></textarea>
+                                    <button type="submit" class="btn">Submit</button>
+                                </form>
                             </div>
                         </div>
                     </div>
