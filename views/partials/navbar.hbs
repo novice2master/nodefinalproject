@@ -82,7 +82,7 @@
                     <div class="buttonArea">
                         <!--<div class = "g-recaptcha" data-sitekey="6LfWI6EUAAAAAK7fZapTU8vw4-oxxi08_RTwHgUL"></div>-->
                         <button type="button" onclick="" data-dismiss="modal" class="cancelbtn">Cancel</button>
-                        <button type="submit" class="btn">Sign Up</button>
+                        <button type="submit" class="btn" id="signup-btn">Sign Up</button>
                     </div>
                 </form>
                 <div id="passwordcheck">
@@ -189,16 +189,24 @@
     var capital = document.getElementById("upper");
     var number = document.getElementById("number");
     var length = document.getElementById("length");
-
+    var lowercase = false;
+    var uppercase = false;
+    var num = false;
+    var len = false;
+    $('#signup-btn').addClass('disabled');
+    
     myInput.onkeyup = function() {
+        console.log(uppercase);
         // Validate lowercase letters
         var lowerCaseLetters = /[a-z]/g;
         if(myInput.value.match(lowerCaseLetters)) {
             letter.classList.remove("invalid");
             letter.classList.add("valid");
+            lowercase = true;
         } else {
             letter.classList.remove("valid");
             letter.classList.add("invalid");
+            lowercase = false;
         }
 
         // Validate capital letters
@@ -206,9 +214,11 @@
         if(myInput.value.match(upperCaseLetters)) {
             capital.classList.remove("invalid");
             capital.classList.add("valid");
+            uppercase = true;
         } else {
             capital.classList.remove("valid");
             capital.classList.add("invalid");
+            uppercase = false;
         }
 
         // Validate numbers
@@ -216,18 +226,29 @@
         if(myInput.value.match(numbers)) {
             number.classList.remove("invalid");
             number.classList.add("valid");
+            num = true;
         } else {
             number.classList.remove("valid");
             number.classList.add("invalid");
+            num = false;
         }
 
         // Validate length
         if(myInput.value.length >= 8) {
             length.classList.remove("invalid");
             length.classList.add("valid");
+            len = true;
         } else {
             length.classList.remove("valid");
             length.classList.add("invalid");
+            len = false;
+        }
+        if (uppercase && lowercase && num && len){
+            $('#signup-btn').removeClass('disabled');
+        }else{
+            $('#signup-btn').addClass('disabled');
         }
     }
+
+
 </script>
