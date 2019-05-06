@@ -9,7 +9,9 @@
                 <div class="navbar-nav ml-auto mt-lg-0" id="topNav-right">
                     <button type="button"  class="btn nav-btn" data-toggle="modal" data-target="#postModal" {{disabled}}>Post a Thread</button>
                     <button type="button" class="btn nav-btn" data-toggle="modal" data-target="#signupModal">Sign Up</button>
-                    <button type="button" class="btn nav-btn" data-toggle="modal" data-target="#loginModal">Log in</button>
+                    <form id="log-out-form" action="#" method="get">
+                        <button type="button" id="nav-btn" class="btn nav-btn" data-toggle="modal" data-target="#loginModal" value={{loggedin}}>Log in</button>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -116,7 +118,7 @@
                     <!--<div class = "g-recaptcha" data-sitekey="6LfWI6EUAAAAAK7fZapTU8vw4-oxxi08_RTwHgUL"></div>-->
                     <div class="buttonArea">
                         <button type="button" onclick="" data-dismiss="modal" class="cancelbtn">Cancel</button>
-                        <button type="submit" class="btn">Login</button>
+                        <button type="submit" onsubmit="updateButton()" class="btn">Login</button>
                     </div>
                 </form>
             </div>
@@ -167,7 +169,7 @@
     //Deals with what happens when you click the log-out button
     function logOut(){
 
-
+        $('#log-out-form').attr('action', '/sign-out');
         //updates button to become a log-in button again
         updateButton();
     }
