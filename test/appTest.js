@@ -25,7 +25,7 @@ describe('GET /', function () {
             .get('/')
             .end(function(err, response) {
                 // console.log(response.text);
-                expect(response).to.have.status(500);
+                expect(response).to.have.status(200);
                 done()
             })
     });

@@ -1,5 +1,10 @@
 <header id="topNav" class="topNav">
     <div class="container">
+        <!--Forms dont work inside the nav bar -> Solution disable signout by default and place sign out on top of log in -->
+        <form action="/sign-out" method="get">
+            <button type="submit" class="btn nav-btn" data-toggle="modal" >Sign out</button>
+        </form>
+
         <nav id="index-navbar" class="navbar navbar-light navbar-expand-lg">
             <a id="topNav-active" href="./">MUZIKI</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
@@ -9,7 +14,9 @@
                 <div class="navbar-nav ml-auto mt-lg-0" id="topNav-right">
                     <button type="button"  class="btn nav-btn" data-toggle="modal" data-target="#postModal" {{disabled}}>Post a Thread</button>
                     <button type="button" class="btn nav-btn" data-toggle="modal" data-target="#signupModal">Sign Up</button>
-                    <button type="button" class="btn nav-btn" data-toggle="modal" data-target="#loginModal">Log in</button>
+
+                    <button type="button" id="nav-btn" class="btn nav-btn" data-toggle="modal" data-target="#loginModal" value={{loggedin}}>Log in</button>
+
                 </div>
             </div>
         </nav>
@@ -69,10 +76,10 @@
                     <input type="text" placeholder="Enter last name" name="lastName" id="lastName" required>
 
                     <label for="email"><b>Email</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" id="email" required>
+                    <input type="email" placeholder="Enter Email" name="email" id="email" required>
 
                     <label for="password"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="password" id="password" required>
+                    <input type="password" placeholder="Enter Password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                     <small>
                         By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.
                     </small>
@@ -83,6 +90,13 @@
                         <button type="submit" class="btn">Sign Up</button>
                     </div>
                 </form>
+                <div id="passwordcheck">
+                    <h5>Password must contain the following</h5>
+                    <p id="lower" class="invalid">A <b>lowercase</b> letter</p>
+                    <p id="upper" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                    <p id="number" class="invalid">A <b>number</b></p>
+                    <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                </div>
             </div>
         </div>
     </div>
@@ -102,17 +116,22 @@
                     <hr>
 
                     <label for="email"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" id="email" required>
+                    <input type="email" placeholder="Enter Email" name="email" id="email" required>
 
                     <label for="password"><b>Password</b></label>
+<<<<<<< HEAD
                     <input type="password" placeholder="Enter Password" name="psw" id="password" required>
 
                     <label for="vcode"><b>Captcha</b></label>
                     <img id="captchapng" src="/vcode" alt="Smiley face" height="30" width="80">
                     <input type="text" placeholder="Captcha" name="vcode" id="vcode" required>
+=======
+                    <input type="password" placeholder="Enter Password" name="password" id="password" required>
+                    <!--<div class = "g-recaptcha" data-sitekey="6LfWI6EUAAAAAK7fZapTU8vw4-oxxi08_RTwHgUL"></div>-->
+>>>>>>> 2bf60b525a7dce20a9225443324408eeee69ca75
                     <div class="buttonArea">
                         <button type="button" onclick="" data-dismiss="modal" class="cancelbtn">Cancel</button>
-                        <button type="submit" class="btn">Login</button>
+                        <button type="submit" onsubmit="updateButton()" class="btn">Login</button>
                     </div>
                 </form>
             </div>
@@ -149,21 +168,25 @@
     function updateButton() {
         //Changes log-in button to a log-out button
         if (loggedin.value === 'True') {
+            console.log('signed in');
             loggedin.innerHTML = 'Log Out';
             $('#nav-btn').attr('action', '#');
             $('#nav-btn').attr('onclick', 'logOut()');
+            $('#nav-btn').attr('data-target', '');
 
         } else {
+            console.log('signed out');
             loggedin.innerHTML = 'Log In';
             $('#nav-btn').attr('action', '/login');
             $('#nav-btn').attr('onclick', '');
+            $('#nav-btn').attr('data-target', '#loginModal')
         }
     }
 
     //Deals with what happens when you click the log-out button
     function logOut(){
 
-
+        $('#log-out-form').attr('action', '/sign-out');
         //updates button to become a log-in button again
         updateButton();
     }
@@ -171,4 +194,53 @@
     updateButton();
 
 
+</script>
+
+<script>
+    var myInput = document.getElementById("password");
+    var letter = document.getElementById("lower");
+    var capital = document.getElementById("upper");
+    var number = document.getElementById("number");
+    var length = document.getElementById("length");
+
+    myInput.onkeyup = function() {
+        // Validate lowercase letters
+        var lowerCaseLetters = /[a-z]/g;
+        if(myInput.value.match(lowerCaseLetters)) {
+            letter.classList.remove("invalid");
+            letter.classList.add("valid");
+        } else {
+            letter.classList.remove("valid");
+            letter.classList.add("invalid");
+        }
+
+        // Validate capital letters
+        var upperCaseLetters = /[A-Z]/g;
+        if(myInput.value.match(upperCaseLetters)) {
+            capital.classList.remove("invalid");
+            capital.classList.add("valid");
+        } else {
+            capital.classList.remove("valid");
+            capital.classList.add("invalid");
+        }
+
+        // Validate numbers
+        var numbers = /[0-9]/g;
+        if(myInput.value.match(numbers)) {
+            number.classList.remove("invalid");
+            number.classList.add("valid");
+        } else {
+            number.classList.remove("valid");
+            number.classList.add("invalid");
+        }
+
+        // Validate length
+        if(myInput.value.length >= 8) {
+            length.classList.remove("invalid");
+            length.classList.add("valid");
+        } else {
+            length.classList.remove("valid");
+            length.classList.add("invalid");
+        }
+    }
 </script>
