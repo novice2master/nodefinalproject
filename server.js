@@ -175,7 +175,7 @@ app.get('/account', (request, response) => {
 
         }
 
-        
+
         // response.render('off_topic.hbs');
     })});
 //Music Reviews thread page
@@ -191,6 +191,7 @@ app.get('/latest_music', (request, response) => {
         if(err){
             // console.log(err);
             response.send('Unable to retrieve posts');
+
         }
         else{
             // console.log(threads);

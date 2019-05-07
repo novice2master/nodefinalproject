@@ -16,13 +16,12 @@
 <div class="container containerMargin">
     <div class="row">
         <div class="col-md-6">
-            <h1>My Posts</h1>
+            <h1 id="thread-titles">My Posts</h1>
         </div>
         <div class="col-md-6">
             <input type="text" id="searchVal" onsubmit="search()" placeholder="search for by title" title="Type in a name">
         </div>
     </div>
-
     <!--Added a accordion to house the threads-->
     <div class="accordion" id="generalThreads">
         {{>threads}}
