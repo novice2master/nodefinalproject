@@ -119,6 +119,11 @@ body {
     padding-right: 12px;
     padding-top: 6px;
 }
+
+.log-out{
+    display: none;
+}
+
 /* discussionTopicLink
 ============================================================================================ */
 
