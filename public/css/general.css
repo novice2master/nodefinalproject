@@ -292,6 +292,29 @@ textarea {
     color: #2f254b;
 }
 
+/* Chatroom
+============================================= */
+.chatroom {
+    position: relative;
+    top: 100px;
+    height: 600px;
+
+    background-color: #563d7c;
+    color: #f2f2f2;
+    border-radius: 25px;
+}
+
+.chatbox {
+    position: relative;
+    top: 50px;
+    height: 500px;
+    background-color: gainsboro;
+    color: black;
+    margin-left: 37px;
+    margin-right: 37px;
+    border-radius: 25px;
+}
+
 
 /* Thread pages
 ============================================================================================ */
@@ -388,3 +411,5 @@ textarea {
 .invalid {
     color: red;
 }
+
+
