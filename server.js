@@ -72,14 +72,13 @@ app.get('/', (request, response) => {
 
 
 //General Music thread page
-app.get('/general_music', (request, response) => {
-    let db = utils.getDb();
-    db.collection('threads').find({Category: 'general_music_discussion'}).toArray(function(err, threads){
-        if(err){
+app.get('/general_music', async (request, response) => {
+    let db = await utils.getDb();
+    db.collection('threads').find({Category: 'general_music_discussion'}).toArray(function (err, threads) {
+        if (err) {
             console.log(err);
             response.send('Unable to retrieve posts');
-        }
-        else{
+        } else {
             try {
                 if (typeof request.session.email !== "undefined") {
                     response.render('general_music.hbs', {
@@ -97,20 +96,20 @@ app.get('/general_music', (request, response) => {
                     disabled: 'disabled',
                     loggedin: "False"
                 })
-            }}
+            }
+        }
     });
 
 });
 
 
-app.get('/all_posts', (request, response) => {
-    let db = utils.getDb();
-    db.collection('threads').find({}).toArray(function(err, threads){
-        if(err){
+app.get('/all_posts', async (request, response) => {
+    let db = await utils.getDb();
+    db.collection('threads').find({}).toArray(function (err, threads) {
+        if (err) {
             console.log(err);
             response.send('Unable to retrieve posts');
-        }
-        else{
+        } else {
             // console.log(threads);
             try {
                 if (typeof request.session.email !== "undefined") {
@@ -128,21 +127,21 @@ app.get('/all_posts', (request, response) => {
                     objects: threads,
                     disabled: 'disabled',
                     loggedin: "False"
-                })}
+                })
+            }
         }
     });
 
     // response.render('all_posts.hbs');
 });
 
-app.get('/off_topic', (request, response) => {
-    let db = utils.getDb();
-    db.collection('threads').find({Category: 'off_topic_discussion'}).toArray(function(err, threads){
-        if(err){
+app.get('/off_topic', async (request, response) => {
+    let db = await utils.getDb();
+    db.collection('threads').find({Category: 'off_topic_discussion'}).toArray(function (err, threads) {
+        if (err) {
             console.log(err);
             response.send('Unable to retrieve posts');
-        }
-        else{
+        } else {
             // console.log(threads);
             try {
                 if (typeof request.session.email !== "undefined") {
@@ -160,22 +159,31 @@ app.get('/off_topic', (request, response) => {
                     objects: threads,
                     disabled: 'disabled',
                     loggedin: "False"
-                })}
+                })
+            }
 
 
         }
 
         // response.render('off_topic.hbs');
-    })});
+    })
+});
 
-app.get('/account', (request, response) => {
-    let db = utils.getDb();
-    db.collection('threads').find({Email: request.session.email}).toArray(function(err, threads){
-        if(err){
+app.get('/account', async (request, response) => {
+    try {
+        if (typeof request.session.email !== 'string'){
+            response.redirect("/");
+            return
+        }
+    }catch (e) {
+        console.log("User Forbidden")
+    }
+    let db = await utils.getDb();
+    db.collection('threads').find({Email: request.session.email}).toArray(function (err, threads) {
+        if (err) {
             console.log(err);
             response.send('Unable to retrieve posts');
-        }
-        else{
+        } else {
             // console.log(threads);
             try {
                 if (typeof request.session.email !== "undefined") {
@@ -194,30 +202,30 @@ app.get('/account', (request, response) => {
                     disabled: 'disabled',
                     loggedin: "False",
                     email: null
-                })}
+                })
+            }
 
 
         }
 
 
         // response.render('off_topic.hbs');
-    })});
+    })
+});
 //Music Reviews thread page
 // app.get('/music_reviews.hbs', (request, response) => {
 //   response.render('music_reviews.hbs');
 // })
 
 //Latest Music thread page
-app.get('/latest_music', (request, response) => {
-
-    let db = utils.getDb();
-    db.collection('threads').find({Category: 'latest_music'}).toArray(function(err, threads){
-        if(err){
+app.get('/latest_music', async (request, response) => {
+    let db = await utils.getDb();
+    db.collection('threads').find({Category: 'latest_music'}).toArray(function (err, threads) {
+        if (err) {
             // console.log(err);
             response.send('Unable to retrieve posts');
 
-        }
-        else{
+        } else {
             // console.log(threads);
             try {
                 if (typeof request.session.email !== "undefined") {
@@ -235,7 +243,8 @@ app.get('/latest_music', (request, response) => {
                     objects: threads,
                     disabled: 'disabled',
                     loggedin: "False"
-                })}
+                })
+            }
         }
     });
     // response.render('latest_music.hbs');
@@ -315,12 +324,12 @@ app.get('/login_form', (request, response)=> {
 });
 
 //Add user information to database
-app.post('/signup_form', (request, response) => {
+app.post('/signup_form', async (request, response) => {
     var fname = request.body.firstName;
     var lname = request.body.lastName;
     var email = request.body.email;
     var psw = request.body.password;
-    var db = utils.getDb();
+    let db = await utils.getDb();
     var user = db.collection('users');
 
     // if (
@@ -373,7 +382,7 @@ app.post('/signup_form', (request, response) => {
 
 
 //Logs in user if they match information in database
-app.post('/login_form', (request, response) => {
+app.post('/login_form', async (request, response) => {
     if (request.body.vcode != request.session.vcode) {
         response.render('login.hbs', {
             disabled: 'disabled'
@@ -382,20 +391,18 @@ app.post('/login_form', (request, response) => {
     }
     var email = request.body.email;
     var psw = request.body.password;
-    var db = utils.getDb();
+    let db = await utils.getDb();
 
 
-    db.collection('users').findOne({Email: email, Password: psw}).then((doc)=>{
-        if(doc == null){
+    db.collection('users').findOne({Email: email, Password: psw}).then((doc) => {
+        if (doc == null) {
             console.log('Login Failed');
-            response.render('login.hbs',{
-                login_error:'Incorrect login info...Try Again!!',
+            response.render('login.hbs', {
+                login_error: 'Incorrect login info...Try Again!!',
                 disabled: "disabled",
                 loggedin: "False"
             })
-        }
-
-        else{
+        } else {
             response.cookie('username', doc.First_Name);
             request.session.email = doc.Email;
             response.redirect('/');
@@ -406,24 +413,25 @@ app.post('/login_form', (request, response) => {
 
 
 //Enters a thread in a database
-app.post('/thread_form', (request, response) => {
-    var email = request.body.email;
+app.post('/thread_form', async (request, response) => {
+    var email = request.session.email;
     var title = request.body.title;
     var message = request.body.message;
     var category = request.body.categories;
 
-    var db = utils.getDb();
+    let db = await utils.getDb();
+    // console.log(db);
     db.collection('threads').insertOne({
         Email: email,
         Title: title,
         Message: message,
         Category: category
     }, (err) => {
-        if(err) {
+        if (err) {
             response.send('Unable to add user.');
         }
-
-        response.render('postconfirm.hbs');
+        response.redirect(request.get('referer'));
+        // response.render('postconfirm.hbs');
     })
 });
 

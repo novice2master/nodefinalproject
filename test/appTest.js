@@ -70,21 +70,21 @@ function wait(ms){
 // });
 
 describe('POST /thread_form', function () {
-    this.timeout(5000);
+    this.timeout(1000);
     let data = {
         "Email": "jmengi@lol.ke",
         "Title": "Music",
         "Message": "Music today is lit",
         "Category": "General Music"
-    }
+    };
     it("Account created", function (done) {
         wait(1000);
         chai.request(app)
             .post('/thread_form')
             .send(data)
-            .end((err) => {
+            .end((err, response) => {
                 if (err) return done(err);
-                expect(response).to.have.status(200)
+                expect(response).to.have.status(200);
                 done()
             })
     });
