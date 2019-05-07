@@ -24,8 +24,6 @@ app.use(session({
     saveUninitialized: false,
 }));
 
-
-
 app.set('view engine', 'hbs');
 
 const getVcodeImage = (req, res) => {
