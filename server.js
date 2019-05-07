@@ -48,6 +48,29 @@ app.get('/', (request, response) => {
 
 
     }});
+app.get('/account', (request, response) => {
+
+    {
+        try {
+            if (typeof request.session.email !== "undefined") {
+                response.render('account.hbs', {
+                    disabled: null,
+                    loggedin: "True",
+                    email: request.session.email
+                })
+            } else
+                throw new Error("User is not signed-in")
+        } catch (e) {
+            console.log(e.message);
+            response.render('account.hbs', {
+                disabled: 'disabled',
+                loggedin: "False",
+                email: null
+            })
+        }
+
+
+    }});
 
 //General Music thread page
 app.get('/general_music', (request, response) => {
