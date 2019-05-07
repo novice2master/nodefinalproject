@@ -1,3 +1,5 @@
+
+
 url = (window.location.href.split('/')[3]).split('_');
 temp = [];
 for (var i in url) {
