@@ -29,4 +29,9 @@ temp = [];
 for (var i in url) {
     temp.push(url[i].charAt(0).toUpperCase() + url[i].slice(1))
 }
-$("#thread-titles").html((temp.join(' ')));
+temp = temp.join(' ');
+if (temp !== 'Account') {
+    $("#thread-titles").html(temp);
+}else{
+    $("#thread-titles").html('My Posts');
+}

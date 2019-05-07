@@ -24,8 +24,6 @@ app.use(session({
     saveUninitialized: false,
 }));
 
-
-
 app.set('view engine', 'hbs');
 
 const getVcodeImage = (req, res) => {
@@ -47,7 +45,6 @@ const getVcodeImage = (req, res) => {
 };
 
 app.get('/vcode',getVcodeImage);
-
 
 //Homepage
 app.get('/', (request, response) => {
@@ -71,29 +68,7 @@ app.get('/', (request, response) => {
 
 
     }});
-app.get('/account', (request, response) => {
 
-    {
-        try {
-            if (typeof request.session.email !== "undefined") {
-                response.render('account.hbs', {
-                    disabled: null,
-                    loggedin: "True",
-                    email: request.session.email
-                })
-            } else
-                throw new Error("User is not signed-in")
-        } catch (e) {
-            console.log(e.message);
-            response.render('account.hbs', {
-                disabled: 'disabled',
-                loggedin: "False",
-                email: null
-            })
-        }
-
-
-    }});
 
 //General Music thread page
 app.get('/general_music', (request, response) => {
@@ -186,8 +161,43 @@ app.get('/off_topic', (request, response) => {
 
         }
 
-    // response.render('off_topic.hbs');
-})});
+        // response.render('off_topic.hbs');
+    })});
+
+app.get('/account', (request, response) => {
+    let db = utils.getDb();
+    db.collection('threads').find({Email: request.session.email}).toArray(function(err, threads){
+        if(err){
+            console.log(err);
+            response.send('Unable to retrieve posts');
+        }
+        else{
+            // console.log(threads);
+            try {
+                if (typeof request.session.email !== "undefined") {
+                    response.render('off_topic.hbs', {
+                        objects: threads,
+                        disabled: null,
+                        loggedin: "True",
+                        email: request.session.email
+                    })
+                } else
+                    throw new Error("User is not signed-in")
+            } catch (e) {
+                console.log(e.message);
+                response.render('off_topic.hbs', {
+                    objects: threads,
+                    disabled: 'disabled',
+                    loggedin: "False",
+                    email: null
+                })}
+
+
+        }
+
+
+        // response.render('off_topic.hbs');
+    })});
 //Music Reviews thread page
 // app.get('/music_reviews.hbs', (request, response) => {
 //   response.render('music_reviews.hbs');
@@ -201,6 +211,7 @@ app.get('/latest_music', (request, response) => {
         if(err){
             // console.log(err);
             response.send('Unable to retrieve posts');
+
         }
         else{
             // console.log(threads);
@@ -259,17 +270,18 @@ app.get('/confirmsignup', (request, response) => {
 
 //Login Page
 app.get('/login', (request, response) => {
-        if (typeof request.session.email !== "undefined") {
-            console.log('logintest');
-            response.render('login.hbs', {
-                disabled: null,
-                loggedin: "True"
-            })
-        } else {
-            response.render('login.hbs', {
-                disabled: 'disabled'
-            })}
-
+    if (typeof request.session.email !== "undefined") {
+        console.log('logintest');
+        response.render('login.hbs', {
+            disabled: null,
+            loggedin: "True"
+        })
+    } else {
+        response.render('login.hbs', {
+            disabled: 'disabled'
+        })
+    }
+});
 
 app.get('/login_form', (request, response)=> {
     try {
