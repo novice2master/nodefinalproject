@@ -24,8 +24,6 @@ app.use(session({
     saveUninitialized: false,
 }));
 
-
-
 app.set('view engine', 'hbs');
 
 const getVcodeImage = (req, res) => {
@@ -47,7 +45,6 @@ const getVcodeImage = (req, res) => {
 };
 
 app.get('/vcode',getVcodeImage);
-
 
 //Homepage
 app.get('/', (request, response) => {
