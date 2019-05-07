@@ -259,17 +259,18 @@ app.get('/confirmsignup', (request, response) => {
 
 //Login Page
 app.get('/login', (request, response) => {
-        if (typeof request.session.email !== "undefined") {
-            console.log('logintest');
-            response.render('login.hbs', {
-                disabled: null,
-                loggedin: "True"
-            })
-        } else {
-            response.render('login.hbs', {
-                disabled: 'disabled'
-            })}
-
+    if (typeof request.session.email !== "undefined") {
+        console.log('logintest');
+        response.render('login.hbs', {
+            disabled: null,
+            loggedin: "True"
+        })
+    } else {
+        response.render('login.hbs', {
+            disabled: 'disabled'
+        })
+    }
+});
 
 app.get('/login_form', (request, response)=> {
     try {
