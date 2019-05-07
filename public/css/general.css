@@ -124,6 +124,10 @@ body {
     display: none;
 }
 
+.my-email button{
+    float:right;
+}
+
 /* discussionTopicLink
 ============================================================================================ */
 

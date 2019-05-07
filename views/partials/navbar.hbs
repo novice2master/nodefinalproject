@@ -12,7 +12,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto mt-lg-0" id="topNav-right">
-                    <button type="button"  class="btn nav-btn" data-toggle="modal" data-target="#postModal" {{disabled}}>Post a Thread</button>
+                    <a href="account.hbs" class="btn nav-btn">{{email}}</a>
+                    <button type="button" class="btn nav-btn" data-toggle="modal" data-target="#postModal" {{disabled}}>Post a Thread</button>
                     <button type="button" class="btn nav-btn" data-toggle="modal" data-target="#signupModal">Sign Up</button>
 
                     <button type="button" id="nav-btn" class="btn nav-btn" onclick="updateButton();" data-toggle="modal" data-target="#loginModal" value={{loggedin}}>Log in</button>
@@ -164,8 +165,8 @@
             loggedin.innerHTML = 'Log Out';
             $('#nav-btn').attr('onclick', 'updateButton(); logOut()');
             $('#nav-btn').attr('data-target', '');
-
         } else {
+
             console.log('signed out');
             loggedin.innerHTML = 'Log In';
             $('#nav-btn').attr('onclick', 'updateButton();');
