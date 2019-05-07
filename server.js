@@ -46,7 +46,6 @@ const getVcodeImage = (req, res) => {
 
 app.get('/vcode',getVcodeImage);
 
-
 //Homepage
 app.get('/', (request, response) => {
 
