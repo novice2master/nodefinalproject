@@ -101,6 +101,10 @@ body {
     color: #2f254b;
 }
 
+.account-btn-off{
+    pointer-events: none;
+}
+
 #topNav-active {
     color: white;
     font-family: 'Monoton', cursive;
