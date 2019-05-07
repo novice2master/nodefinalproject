@@ -7,6 +7,7 @@ const MongoClient = require('mongodb').MongoClient;
 const utils = require('./utils');
 const port = process.env.PORT || 8080;
 const session = require('express-session');
+const captchapng = require('captchapng');
 var app = express();
 app.use(cookieParser());
 app.use(bodyparser.json());
@@ -23,7 +24,29 @@ app.use(session({
     saveUninitialized: false,
 }));
 
+
+
 app.set('view engine', 'hbs');
+
+const getVcodeImage = (req, res) => {
+    const vcode = parseInt(Math.random() * 9000 + 1000); //Generate random numbers
+
+    // Store the randomly generated verification code in the session
+    req.session.vcode = vcode;
+
+    var p = new captchapng(80, 30, vcode); // width,height,numeric captcha
+    p.color(0, 0, 0, 0); // First color: background (red, green, blue, alpha)
+    p.color(80, 80, 80, 255); // Second color: paint (red, green, blue, alpha)
+
+    var img = p.getBase64();
+    var imgbase64 = new Buffer(img, "base64");
+    res.writeHead(200, {
+        "Content-Type": "image/png"
+    });
+    res.end(imgbase64);
+};
+
+app.get('/vcode',getVcodeImage);
 
 
 //Homepage
@@ -250,35 +273,32 @@ app.get('/confirmsignup', (request, response) => {
 
 //Login Page
 app.get('/login', (request, response) => {
-    try {
-        if (typeof request.session.email !== "undefined") {
-            response.render('login.hbs', {
-                disabled: null,
-                loggedin: "True"
-            })
-        } else
-            throw new Error("User is not signed-in")
-    } catch (e) {
-        console.log(e.message);
+    if (typeof request.session.email !== "undefined") {
+        console.log('logintest');
         response.render('login.hbs', {
-            disabled: 'disabled',
-            loggedin: "False"
-        })}
-
+            disabled: null,
+            loggedin: "True"
+        })
+    } else {
+        response.render('login.hbs', {
+            disabled: 'disabled'
+        })
+    }
 });
 
-// app.get('/login2.hbs', (request, response) => {
-//     response.render('login2.hbs');
-// })
 app.get('/login_form', (request, response)=> {
     try {
+        console.log('run');
         if (typeof request.session.email !== "undefined") {
+            console.log('undefined');
             response.render('login.hbs', {
                 disabled: null,
                 loggedin: "True"
             })
-        } else
+        } else {
+            console.log('fail');
             throw new Error("User is not signed-in")
+        }
     } catch (e) {
         console.log(e.message);
         response.render('login.hbs', {
@@ -350,6 +370,12 @@ app.post('/signup_form', (request, response) => {
 
 //Logs in user if they match information in database
 app.post('/login_form', (request, response) => {
+    if (request.body.vcode != request.session.vcode) {
+        response.render('login.hbs', {
+            disabled: 'disabled'
+        });
+        return;
+    }
     var email = request.body.email;
     var psw = request.body.password;
     var db = utils.getDb();
