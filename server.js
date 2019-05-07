@@ -279,7 +279,6 @@ app.post('/signup_form', (request, response) => {
                 First_Name: fname,
                 Last_Name: lname,
                 Email: email,
-
                 Password: psw
             });
 
