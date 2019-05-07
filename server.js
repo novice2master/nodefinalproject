@@ -54,7 +54,8 @@ app.get('/', (request, response) => {
             if (typeof request.session.email !== "undefined") {
                 response.render('index.hbs', {
                         disabled: null,
-                        loggedin: "True"
+                        loggedin: "True",
+                        email: request.session.email
                     })
             } else
                 throw new Error("User is not signed-in")
@@ -84,7 +85,8 @@ app.get('/general_music', (request, response) => {
                     response.render('general_music.hbs', {
                         objects: threads,
                         disabled: null,
-                        loggedin: "True"
+                        loggedin: "True",
+                        email: request.session.email
                     })
                 } else
                     throw new Error("User is not signed-in")
@@ -115,7 +117,8 @@ app.get('/all_posts', (request, response) => {
                     response.render('all_posts.hbs', {
                         objects: threads,
                         disabled: null,
-                        loggedin: "True"
+                        loggedin: "True",
+                        email: request.session.email
                     })
                 } else
                     throw new Error("User is not signed-in")
@@ -146,7 +149,8 @@ app.get('/off_topic', (request, response) => {
                     response.render('off_topic.hbs', {
                         objects: threads,
                         disabled: null,
-                        loggedin: "True"
+                        loggedin: "True",
+                        email: request.session.email
                     })
                 } else
                     throw new Error("User is not signed-in")
@@ -220,7 +224,8 @@ app.get('/latest_music', (request, response) => {
                     response.render('latest_music.hbs', {
                         objects: threads,
                         disabled: null,
-                        loggedin: "True"
+                        loggedin: "True",
+                        email: request.session.email
                     })
                 } else
                     throw new Error("User is not signed-in")
@@ -249,7 +254,8 @@ app.get('/signup', (request, response) => {
         if (typeof request.session.email !== "undefined") {
             response.render('signup.hbs', {
                 disabled: null,
-                loggedin: "True"
+                loggedin: "True",
+                email: request.session.email
             })
         } else
             throw new Error("User is not signed-in")
@@ -274,7 +280,8 @@ app.get('/login', (request, response) => {
         console.log('logintest');
         response.render('login.hbs', {
             disabled: null,
-            loggedin: "True"
+            loggedin: "True",
+            email: request.session.email
         })
     } else {
         response.render('login.hbs', {
@@ -290,7 +297,8 @@ app.get('/login_form', (request, response)=> {
             console.log('undefined');
             response.render('login.hbs', {
                 disabled: null,
-                loggedin: "True"
+                loggedin: "True",
+                email: request.session.email
             })
         } else {
             console.log('fail');
@@ -395,6 +403,7 @@ app.post('/login_form', (request, response) => {
 
     })
 });
+
 
 //Enters a thread in a database
 app.post('/thread_form', (request, response) => {
