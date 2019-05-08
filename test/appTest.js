@@ -59,15 +59,33 @@ before(function(done){
         });
 });
 
-describe('GET /login', function (done) {
-    this.timeout(5000);
-    it("Account exists", function (done) {
-        wait(1000);
-        request.agent(app).get('/login')
-        .expect(200, done);
-    });
+// describe('GET /login', function (done) {
+//     this.timeout(5000);
+//     it("Account exists", function (done) {
+//         wait(1000);
+//         request.agent(app).get('/login')
+//         .expect(200, done);
+// describe('POST /thread_form', function () {
+//     this.timeout(1000);
+//     let data = {
+//         "Email": "jmengi@lol.ke",
+//         "Title": "Music",
+//         "Message": "Music today is lit",
+//         "Category": "General Music"
+//     };
+//     it("Account created", function (done) {
+//         wait(1000);
+//         chai.request(app)
+//             .post('/thread_form')
+//             .send(data)
+//             .end((err, response) => {
+//                 if (err) return done(err);
+//                 expect(response).to.have.status(200);
+//                 done()
+//             })
+//     });
     
-});
+// });
 
 // describe('POST /thread', function () {
 //     this.timeout(5000);
