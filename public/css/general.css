@@ -347,6 +347,11 @@ textarea {
     color: #2f254b;
 }
 
+#generalThreads .card .card-body .accordion .card .card-body form textarea {
+    border-radius: 1px;
+    box-shadow: none;
+}
+
 .button-name {
     padding-top:  10px;
 }
