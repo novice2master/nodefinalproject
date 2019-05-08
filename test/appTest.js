@@ -32,8 +32,7 @@ function wait(ms){
 //         chai.request(app)
 //             .post('/signup')
 //             .send(data)
-//             .end((err) => {
-//                 // console.log(response.text);
+//             .end((err, response) => {
 //                 if (err) return done(err);
 //                 expect(response).to.have.status(200);
 //                 done()
@@ -42,53 +41,54 @@ function wait(ms){
 // });
 
 
-// const data = {
-//         "Email": "jmengi@lol.ke",
-//         "Password": "lol"
-//     }
-
-
-// before(function(done){
-//   request.agent(app)
-//     .post('/login')
-//     .send(data)
-//     .end(function(err, response){
-//       expect('Location', '/');
-//       if (err) return done(err);
-//       done();
-//     });
-// });
-
-// describe('GET /login', function (done) {
-//     this.timeout(5000);
-//     it("Account exists", function (done) {
-//         wait(1000);
-//         request.agent(app).get('/login')
-//         .expect(200, done);
-//     });
-    
-// });
-
-describe('POST /thread_form', function () {
-    this.timeout(5000);
-    let data = {
+const data = {
         "Email": "jmengi@lol.ke",
-        "Title": "Music",
-        "Message": "Music today is lit",
-        "Category": "General Music"
+        "Password": "lol"
     }
-    it("Account created", function (done) {
-        wait(1000);
-        chai.request(app)
-            .post('/thread_form')
-            .send(data)
-            .end((err) => {
-                if (err) return done(err);
-                expect(response).to.have.status(200)
-                done()
-            })
-    });
+
+
+before(function(done){
+    // this.timeout(5000);
+      request.agent(app)
+        .post('/login_form')
+        .send(data)
+        .end(function(err, response){
+          expect('Location', '/');
+          if (err) return done(err);
+          done();
+        });
 });
+
+describe('GET /login', function (done) {
+    this.timeout(5000);
+    it("Account exists", function (done) {
+        wait(1000);
+        request.agent(app).get('/login')
+        .expect(200, done);
+    });
+    
+});
+
+// describe('POST /thread', function () {
+//     this.timeout(5000);
+//     let data = {
+//         "Email": "jmengi@lol.ke",
+//         "Title": "Music",
+//         "Message": "Music today is lit",
+//         "Category": "General Music"
+//     }
+//     it("Account created", function (done) {
+//         wait(1000);
+//         chai.request(app)
+//             .post('/thread')
+//             .send(data)
+//             .end((err, response) => {
+//                 if (err) return done(err);
+//                 expect(response).to.have.status(200)
+//                 done()
+//             })
+//     });
+// });
 
 // it('account doesnt exist', function(done){
 //         request(app).get('/login')

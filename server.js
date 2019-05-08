@@ -427,6 +427,23 @@ app.post('/thread_form', (request, response) => {
     })
 });
 
+app.get('/thread', (request, response) => {
+    if (typeof request.session.email !== "undefined") {
+        console.log('threadtest');
+        response.render('create_post.hbs', {
+            disabled: null,
+            loggedin: "True",
+            email: request.session.email
+        })
+    } else {
+        response.render('create_post.hbs', {
+            disabled: 'disabled',
+            loggedin: "False"
+        })
+    }
+});
+
+
 // app.get('/music_reviews', (request, response) => {
 //     let db = utils.getDb();
 //     db.collection('threads').find({Category: 'music_reviews'}).toArray(function(err, threads){
@@ -466,8 +483,9 @@ app.get('/sign-out', (req, res) => {
 
 
 app.listen(port, () => {
-    console.log(`Server is up on port ${port}`);
     utils.init();
+    console.log(`Server is up on port ${port}`);
+    
 });
 
 module.exports = app;
