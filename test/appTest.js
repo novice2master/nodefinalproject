@@ -20,21 +20,21 @@ function wait(ms){
 }
 
 // describe('POST /signup', function () {
-//     this.timeout(5000);
+//     // this.timeout(5000);
 //     let data = {
 //         "First_Name": "John",
 //         "Last_Name": "Mengi",
 //         "Email": "jmengi@lol.ke",
-//         "Password": "pass"
+//         "Password": "RegMengi123"
 //     }
 //     it("Account created", function (done) {
 //         wait(1000);
-//         chai.request(app)
+//         request.agent(app)
 //             .post('/signup')
 //             .send(data)
+//             .expect(404)
 //             .end((err, response) => {
 //                 if (err) return done(err);
-//                 expect(response).to.have.status(200);
 //                 done()
 //             })
 //     });
@@ -50,21 +50,22 @@ const data = {
 before(function(done){
     // this.timeout(5000);
       request.agent(app)
-        .post('/login_form')
+        .post('/login')
         .send(data)
-        .end(function(err, response){
+        .end(function(err){
           expect('Location', '/');
           if (err) return done(err);
           done();
         });
 });
 
-// describe('GET /login', function (done) {
-//     this.timeout(5000);
-//     it("Account exists", function (done) {
-//         wait(1000);
-//         request.agent(app).get('/login')
-//         .expect(200, done);
+describe('POST /login', function (done) {
+    it("Account exists", function (done) {
+        wait(1000);
+        request.agent(app).get('/login')
+        .expect(200, done);
+  });
+});
 // describe('POST /thread_form', function () {
 //     this.timeout(1000);
 //     let data = {
