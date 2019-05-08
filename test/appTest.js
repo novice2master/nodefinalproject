@@ -63,9 +63,9 @@ describe('POST /login', function (done) {
 });
 
 
-describe('POST /thread', function () {
-    this.timeout(1000);
-    let data = {
+describe('GET /thread_form', function () {
+    this.timeout(5000);
+    let threadform = {
         "Email": "jmengi@lol.ke",
         "Title": "Music",
         "Message": "Music today is lit",
@@ -73,10 +73,11 @@ describe('POST /thread', function () {
     };
     it("Account created", function (done) {
         wait(1000);
-        chai.request(app)
-            .post('/thread')
-            .send(data)
+        request.agent(app)
+            .get('/thread_form')
+            .send(threadform)
             .end((err, response) => {
+                expect(response).to.have.status(200)
                 if (err) return done(err);
                 done()
             })
