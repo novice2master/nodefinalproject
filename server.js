@@ -206,6 +206,17 @@ app.get('/account', async (request, response) => {
     })
 });
 
+        // response.render('off_topic.hbs');
+    // })});
+
+
+app.get('/chatroom', (request, response) => {
+    response.render('chatroom.hbs')
+});
+//Music Reviews thread page
+// app.get('/music_reviews.hbs', (request, response) => {
+//   response.render('music_reviews.hbs');
+// })
 
 //Latest Music thread page
 app.get('/latest_music', async (request, response) => {
