@@ -76,8 +76,7 @@ describe('GET /thread_form', function () {
         request.agent(app)
             .get('/thread_form')
             .send(threadform)
-            .end((err, response) => {
-                expect(response).to.have.status(200)
+            .end((err) => {
                 if (err) return done(err);
                 done()
             })
@@ -114,33 +113,33 @@ describe('GET /thread_form', function () {
 //   });
 
 
-// describe('GET /', function () {
-//     this.timeout(5000);
-//     it("Main page test", function (done) {
-//         wait(1000);
-//         chai.request(app)
-//             .get('/')
-//             .end(function(err, response) {
-//                 // console.log(response.text);
-//                 expect(response).to.have.status(500);
-//                 done()
-//             })
-//     });
-// });
+describe('GET /', function () {
+    this.timeout(5000);
+    it("Main page test", function (done) {
+        wait(1000);
+        chai.request(app)
+            .get('/')
+            .end(function(err, response) {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+                done()
+            })
+    });
+});
 
-// describe('GET /general_music', function () {
-//     this.timeout(5000);
-//     it("General Music test", function (done) {
-//         wait(1000);
-//         chai.request(app)
-//             .get('/general_music')
-//             .end(function(err, response) {
-//                 console.log(response.text);
-//                 expect(response).to.have.status(200);
-//                 done()
-//             })
-//     });
-// });
+describe('GET /general_music', function () {
+    this.timeout(5000);
+    it("General Music test", function (done) {
+        wait(1000);
+        chai.request(app)
+            .get('/general_music')
+            .end(function(err, response) {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+                done()
+            })
+    });
+});
 
 // describe('GET /latest_music', function () {
 //     this.timeout(5000);
@@ -156,73 +155,61 @@ describe('GET /thread_form', function () {
 //     });
 // });
 
-// describe('GET /create_post', function () {
-//     this.timeout(5000);
-//     it("Crete Post test", function (done) {
-//         wait(1000);
-//         chai.request(app)
-//             .get('/create_post')
-//             .end(function(err, response) {
-//                 // console.log(response.text);
-//                 expect(response).to.have.status(200);
-//                 done()
-//             })
-//     });
-// });
+describe('GET /create_post', function () {
+    this.timeout(5000);
+    it("Crete Post test", function (done) {
+        wait(1000);
+        chai.request(app)
+            .get('/create_post')
+            .end(function(err, response) {
+                // console.log(response.text);
+                expect(response).to.have.status(200);
+                done()
+            })
+    });
+});
 
-// describe('GET /signup', function () {
-//     this.timeout(5000);
-//     it("Sign up test", function (done) {
-//         wait(1000);
-//         chai.request(app)
-//             .get('/signup')
-//             .end(function(err, response) {
-//                 // console.log(response.text);
-//                 expect(response).to.have.status(200);
-//                 done()
-//             })
-//     });
-// });
-
+describe('GET /signup', function () {
+    this.timeout(5000);
+    it("Sign up test", function (done) {
+        wait(1000);
+        chai.request(app)
+            .get('/signup')
+            .end(function(err, response) {
+                expect(response).to.have.status(200);
+                done()
+            })
+    });
+});
 
 
 
-// describe('GET /confirmsignup', function () {
-//     this.timeout(5000);
-//     it("confirm page test", function (done) {
-//         wait(1000);
-//         chai.request(app)
-//             .get('/confirmsignup')
-//             .end(function(err, response) {
-//                 // console.log(response.text);
-//                 expect(response).to.have.status(200);
-//                 done()
-//             })
-//     });
-// });
 
-// describe('GET /login', function () {
-//     this.timeout(5000);
-//     it("Main page test", function (done) {
-//         wait(1000);
-//         chai.request(app)
-//             .get('/login')
-//             .end(function(err, response) {
-//                 // console.log(response.text);
-//                 expect(response).to.have.status(200);
-//                 done()
-//             })
-//     });
-// });
+describe('GET /confirmsignup', function () {
+    this.timeout(5000);
+    it("confirm page test", function (done) {
+        wait(1000);
+        chai.request(app)
+            .get('/confirmsignup')
+            .end(function(err, response) {
+                // console.log(response.text);
+                expect(response).to.have.status(200);
+                done()
+            })
+    });
+});
 
-// describe('POST /signup_forum', function (){
-//     this.timeout(5000);
-//     it("Creating user sign up", function (done) {
-//         request(app).post('/signup_forum')
-//             .send({'fname' : 'Homer',
-//                     'lname': 'Simpson',
-//                     'email' : 'homer.simpson@gmail.com',
-//                     'psw' : 'homersimpson'})
-//             .then()
-//     })
-// })
+describe('GET /login', function () {
+    this.timeout(5000);
+    it("Main page test", function (done) {
+        wait(1000);
+        chai.request(app)
+            .get('/login')
+            .end(function(err, response) {
+                // console.log(response.text);
+                expect(response).to.have.status(200);
+                done()
+            })
+    });
+});
+
