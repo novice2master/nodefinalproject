@@ -126,8 +126,6 @@ app.get('/all_posts', async (request, response) => {
             }
         }
     });
-
-    // response.render('all_posts.hbs');
 });
 
 app.get('/off_topic', async (request, response) => {
@@ -156,11 +154,7 @@ app.get('/off_topic', async (request, response) => {
                     loggedin: "False"
                 })
             }
-
-
         }
-
-        // response.render('off_topic.hbs');
     })
 });
 
@@ -179,7 +173,6 @@ app.get('/account', async (request, response) => {
             console.log(err);
             response.send('Unable to retrieve posts');
         } else {
-            // console.log(threads);
             try {
                 if (typeof request.session.email !== "undefined") {
                     response.render('off_topic.hbs', {
@@ -203,14 +196,9 @@ app.get('/account', async (request, response) => {
 
         }
 
-
-        // response.render('off_topic.hbs');
     })
 });
-//Music Reviews thread page
-// app.get('/music_reviews.hbs', (request, response) => {
-//   response.render('music_reviews.hbs');
-// })
+
 
 //Latest Music thread page
 app.get('/latest_music', async (request, response) => {
@@ -221,7 +209,7 @@ app.get('/latest_music', async (request, response) => {
             response.send('Unable to retrieve posts');
 
         } else {
-            // console.log(threads);
+
             try {
                 if (typeof request.session.email !== "undefined") {
                     response.render('latest_music.hbs', {
@@ -242,7 +230,6 @@ app.get('/latest_music', async (request, response) => {
             }
         }
     });
-    // response.render('latest_music.hbs');
 });
 
 
@@ -294,7 +281,7 @@ app.get('/login', (request, response) => {
     }
 });
 
-
+//login user based if able to location user info from DB
 app.get('/login_form', (request, response)=> {
     try {
 
@@ -314,9 +301,8 @@ app.get('/login_form', (request, response)=> {
         response.render('login.hbs', {
             disabled: 'disabled',
             loggedin: "False"
-        })}
-
-    // response.redirect('/');
+        })
+    }
 });
 
 //Add user information to database
@@ -349,9 +335,7 @@ app.post('/signup_form', async (request, response) => {
         }
 
     });
-    //
 
-    // });
 });
 
 //Logs in user if they match information in database
@@ -366,9 +350,9 @@ app.post('/login_form', async (request, response) => {
     }
 
     var email = request.body.email;
-    // console.log(email);
+    console.log(email);
     var password = request.body.password;
-    // console.log(password);
+    console.log(password);
     var db = utils.getDb();
 
 

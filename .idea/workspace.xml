@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f4fb859-8894-4463-805e-5528b27c580c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/account.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functionality.js" beforeDir="false" afterPath="$PROJECT_DIR$/functionality.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/general.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/general.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/appTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/appTest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/appTestDemo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/login-1.hbs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/navbar.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/navbar.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/title.js" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/test/node_modules/" />
@@ -35,17 +24,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="378" column="62" lean-forward="true" selection-start-line="378" selection-start-column="62" selection-end-line="378" selection-end-column="62" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/partials/navbar.hbs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-102">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="1545">
+              <caret line="128" selection-start-line="128" selection-end-line="128" />
             </state>
           </provider>
         </entry>
@@ -79,29 +59,19 @@
         <subPane>
           <expand>
             <path>
-              <item name="nodefinalproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nodefinalproject" type="462c0819:PsiDirectoryNode" />
+              <item name="Agile-Development" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Agile-Development" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="nodefinalproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nodefinalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nodefinalproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nodefinalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nodefinalproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nodefinalproject" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nodefinalproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nodefinalproject" type="462c0819:PsiDirectoryNode" />
+              <item name="Agile-Development" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Agile-Development" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Agile-Development" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Agile-Development" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="partials" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -151,12 +121,12 @@
       <workItem from="1557182474250" duration="1848000" />
       <workItem from="1557248894597" duration="780000" />
       <workItem from="1557261795452" duration="435000" />
-      <workItem from="1557426405700" duration="1862000" />
+      <workItem from="1557426405700" duration="2172000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6337000" />
+    <option name="totallyTimeSpent" value="6647000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
@@ -275,8 +245,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="378" column="62" lean-forward="true" selection-start-line="378" selection-start-column="62" selection-end-line="378" selection-end-column="62" />
+        <state relative-caret-position="1545">
+          <caret line="128" selection-start-line="128" selection-end-line="128" />
         </state>
       </provider>
     </entry>
