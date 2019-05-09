@@ -37,7 +37,7 @@ const getVcodeImage = (req, res) => {
     p.color(80, 80, 80, 255); // Second color: paint (red, green, blue, alpha)
 
     var img = p.getBase64();
-    var imgbase64 = new Buffer(img, "base64");
+    var imgbase64 = new Buffer.from(img, "base64");
     res.writeHead(200, {
         "Content-Type": "image/png"
     });
@@ -48,8 +48,7 @@ app.get('/vcode',getVcodeImage);
 
 //Homepage
 app.get('/', (request, response) => {
-
-    {
+    //checks if the user is signed in, if so displays renders a page that is useful to the user
         try {
             if (typeof request.session.email !== "undefined") {
                 response.render('index.hbs', {
@@ -65,14 +64,12 @@ app.get('/', (request, response) => {
                 disabled: 'disabled',
                 loggedin: "False"
             })
-        }
-
-
     }});
 
 
 //General Music thread page
 app.get('/general_music', async (request, response) => {
+    //retrives data from the databse and sends back genderal_music dicussion posts
     let db = await utils.getDb();
     db.collection('threads').find({Category: 'general_music_discussion'}).toArray(function (err, threads) {
         if (err) {
@@ -104,6 +101,8 @@ app.get('/general_music', async (request, response) => {
 
 
 app.get('/all_posts', async (request, response) => {
+//retrives data from the databse and sends back all posts
+
     let db = await utils.getDb();
     db.collection('threads').find({}).toArray(function (err, threads) {
         if (err) {
@@ -131,11 +130,10 @@ app.get('/all_posts', async (request, response) => {
             }
         }
     });
-
-    // response.render('all_posts.hbs');
 });
 
 app.get('/off_topic', async (request, response) => {
+//retrives data from the databse and sends back off topic disucssion posts
     let db = await utils.getDb();
     db.collection('threads').find({Category: 'off_topic_discussion'}).toArray(function (err, threads) {
         if (err) {
@@ -161,15 +159,12 @@ app.get('/off_topic', async (request, response) => {
                     loggedin: "False"
                 })
             }
-
-
         }
-
-        // response.render('off_topic.hbs');
     })
 });
-
+//personal account page
 app.get('/account', async (request, response) => {
+    // if users ins't loggedin, they aren't allowed to the page
     try {
         if (typeof request.session.email !== 'string'){
             response.redirect("/");
@@ -179,15 +174,15 @@ app.get('/account', async (request, response) => {
         console.log("User Forbidden")
     }
     let db = await utils.getDb();
+    //retrives data from the database with posts that the users posted
     db.collection('threads').find({Email: request.session.email}).toArray(function (err, threads) {
         if (err) {
             console.log(err);
             response.send('Unable to retrieve posts');
         } else {
-            // console.log(threads);
             try {
                 if (typeof request.session.email !== "undefined") {
-                    response.render('off_topic.hbs', {
+                    response.render('account.hbs', {
                         objects: threads,
                         disabled: null,
                         loggedin: "True",
@@ -197,7 +192,7 @@ app.get('/account', async (request, response) => {
                     throw new Error("User is not signed-in")
             } catch (e) {
                 console.log(e.message);
-                response.render('off_topic.hbs', {
+                response.render('account.hbs', {
                     objects: threads,
                     disabled: 'disabled',
                     loggedin: "False",
@@ -208,9 +203,15 @@ app.get('/account', async (request, response) => {
 
         }
 
+    })
+});
 
         // response.render('off_topic.hbs');
-    })
+    // })});
+
+
+app.get('/chatroom', (request, response) => {
+    response.render('chatroom.hbs')
 });
 //Music Reviews thread page
 // app.get('/music_reviews.hbs', (request, response) => {
@@ -219,6 +220,7 @@ app.get('/account', async (request, response) => {
 
 //Latest Music thread page
 app.get('/latest_music', async (request, response) => {
+    //retrives data from the database with latest music posts 
     let db = await utils.getDb();
     db.collection('threads').find({Category: 'latest_music'}).toArray(function (err, threads) {
         if (err) {
@@ -226,7 +228,7 @@ app.get('/latest_music', async (request, response) => {
             response.send('Unable to retrieve posts');
 
         } else {
-            // console.log(threads);
+
             try {
                 if (typeof request.session.email !== "undefined") {
                     response.render('latest_music.hbs', {
@@ -247,7 +249,6 @@ app.get('/latest_music', async (request, response) => {
             }
         }
     });
-    // response.render('latest_music.hbs');
 });
 
 
@@ -299,9 +300,10 @@ app.get('/login', (request, response) => {
     }
 });
 
+//login user based if able to location user info from DB
 app.get('/login_form', (request, response)=> {
     try {
-        console.log('run');
+
         if (typeof request.session.email !== "undefined") {
             console.log('undefined');
             response.render('login.hbs', {
@@ -310,7 +312,7 @@ app.get('/login_form', (request, response)=> {
                 email: request.session.email
             })
         } else {
-            console.log('fail');
+
             throw new Error("User is not signed-in")
         }
     } catch (e) {
@@ -318,9 +320,8 @@ app.get('/login_form', (request, response)=> {
         response.render('login.hbs', {
             disabled: 'disabled',
             loggedin: "False"
-        })}
-
-    // response.redirect('/');
+        })
+    }
 });
 
 //Add user information to database
@@ -332,29 +333,7 @@ app.post('/signup_form', async (request, response) => {
     let db = await utils.getDb();
     var user = db.collection('users');
 
-    // if (
-    //     request.body.captcha === undefined ||
-    //     request.body.captcha === "" ||
-    //     request.body.captcha === null
-    // ) {
-    //     return response.json({"success": false, "msg": "please select captcha"});
-    // }
 
-    // // Secret Key
-    // const secretKey = '6LfWI6EUAAAAAEnFDSW9SMUiqH4ns05r_-ZGzNhV';
-
-    // // Verify URL
-    // const verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${request.body.captcha}
-    // &remoteip=${request.connection.remoteAddress}`;
-
-    // Make Request to VerifyURL
-    // request(verifyURL, (err, response, body) => {
-    //     body = JSON.parse(body);
-
-    //If Not Successful
-    // if (body.success !== undefined && !body.success) {
-    //     return response.json({"success": false, "msg": "Failed captcha verification"});
-    // }
     user.findOne({Email: email}, function (err, users) {
         if (err) {
             console.log(err);
@@ -375,41 +354,43 @@ app.post('/signup_form', async (request, response) => {
         }
 
     });
-    //
 
-    // });
 });
 
-
 //Logs in user if they match information in database
+
 app.post('/login_form', async (request, response) => {
+
     if (request.body.vcode != request.session.vcode) {
         response.render('login.hbs', {
             disabled: 'disabled'
         });
         return;
     }
+
     var email = request.body.email;
-    var psw = request.body.password;
-    let db = await utils.getDb();
+    console.log(email);
+    var password = request.body.password;
+    console.log(password);
+    var db = utils.getDb();
 
 
-    db.collection('users').findOne({Email: email, Password: psw}).then((doc) => {
-        if (doc == null) {
-            console.log('Login Failed');
-            response.render('login.hbs', {
-                login_error: 'Incorrect login info...Try Again!!',
-                disabled: "disabled",
-                loggedin: "False"
+    db.collection('users').findOne({Email: email, Password: password}).then((doc) => {
+    if (doc == null) {
+        console.log('Login Failed');
+        response.render('login.hbs', {
+            login_error: 'Incorrect login info...Try Again!!',
+            disabled: "disabled",
+            loggedin: "False"
+        })
+    } else {
+        response.cookie('username', doc.First_Name);
+        request.session.email = doc.Email;
+        response.redirect('/');
+    }
+
             })
-        } else {
-            response.cookie('username', doc.First_Name);
-            request.session.email = doc.Email;
-            response.redirect('/');
-        }
-
-    })
-});
+    });
 
 
 //Enters a thread in a database
@@ -420,7 +401,7 @@ app.post('/thread_form', async (request, response) => {
     var category = request.body.categories;
 
     let db = await utils.getDb();
-    // console.log(db);
+
     db.collection('threads').insertOne({
         Email: email,
         Title: title,
@@ -452,48 +433,27 @@ app.get('/thread', (request, response) => {
 });
 
 
-// app.get('/music_reviews', (request, response) => {
-//     let db = utils.getDb();
-//     db.collection('threads').find({Category: 'music_reviews'}).toArray(function(err, threads){
-//         if(err){
-//             console.log(err);
-//             response.send('Unable to retrieve posts');
-//         }
-//         else{
-//             // console.log(threads);
-//             response.render('music_reviews.hbs', {
-//                 objects: threads
-//             });
-//
-//         }
-//     });
-// });
-
 app.get('/sign-out', (req, res) => {
     req.session.destroy(function (err) {
 
         try {
             console.log(req.session.email)
         }catch(e){
-            // let time = new Date().toString();
-            // let log = `${time}: ${err} ${req.url}`;
-            // fs.appendFile('server.log', log + '\n', (error) => {
-                // if (error) {
+
                     console.log('Unable to log message');
-                // }})}
         }
 
         finally {
             res.redirect('/');
         }
-
-})});
+    })
+});
 
 
 app.listen(port, () => {
     utils.init();
     console.log(`Server is up on port ${port}`);
-    
+
 });
 
 module.exports = app;
