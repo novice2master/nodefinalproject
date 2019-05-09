@@ -39,7 +39,7 @@ const getVcodeImage = (req, res) => {
     p.color(80, 80, 80, 255); // Second color: paint (red, green, blue, alpha)
 
     var img = p.getBase64();
-    var imgbase64 = new Buffer(img, "base64");
+    var imgbase64 = new Buffer.from(img, "base64");
     res.writeHead(200, {
         "Content-Type": "image/png"
     });
@@ -236,21 +236,23 @@ app.get('/confirmsignup', (request, response) => {
 
 //Login Page
 app.get('/login', (request, response) => {
-        if (typeof request.session.email !== "undefined") {
-            console.log('logintest');
-            response.render('login.hbs', {
-                disabled: null,
-                loggedin: "True"
-            })
-        } else {
-            response.render('login.hbs', {
-                disabled: 'disabled'
-            })}
+    if (typeof request.session.email !== "undefined") {
+        console.log('logintest');
+        response.render('login.hbs', {
+            disabled: null,
+            loggedin: "True"
+        })
+    } else {
+        response.render('login.hbs', {
+            disabled: 'disabled'
+        })
+    }
+});
 
 
 app.get('/login_form', (request, response)=> {
     try {
-        console.log('run');
+
         if (typeof request.session.email !== "undefined") {
             console.log('undefined');
             response.render('login.hbs', {
@@ -258,7 +260,7 @@ app.get('/login_form', (request, response)=> {
                 loggedin: "True"
             })
         } else {
-            console.log('fail');
+
             throw new Error("User is not signed-in")
         }
     } catch (e) {
@@ -280,29 +282,7 @@ app.post('/signup_form', (request, response) => {
     var db = utils.getDb();
     var user = db.collection('users');
 
-    // if (
-    //     request.body.captcha === undefined ||
-    //     request.body.captcha === "" ||
-    //     request.body.captcha === null
-    // ) {
-    //     return response.json({"success": false, "msg": "please select captcha"});
-    // }
 
-    // // Secret Key
-    // const secretKey = '6LfWI6EUAAAAAEnFDSW9SMUiqH4ns05r_-ZGzNhV';
-
-    // // Verify URL
-    // const verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${request.body.captcha}
-    // &remoteip=${request.connection.remoteAddress}`;
-
-    // Make Request to VerifyURL
-    // request(verifyURL, (err, response, body) => {
-    //     body = JSON.parse(body);
-
-    //If Not Successful
-    // if (body.success !== undefined && !body.success) {
-    //     return response.json({"success": false, "msg": "Failed captcha verification"});
-    // }
     user.findOne({Email: email}, function (err, users) {
         if (err) {
             console.log(err);
@@ -330,8 +310,11 @@ app.post('/signup_form', (request, response) => {
 });
 
 
+
 //Logs in user if they match information in database
 app.post('/login_form', (request, response) => {
+    // console.log(request.body);
+
     if (request.body.vcode != request.session.vcode) {
         response.render('login.hbs', {
             disabled: 'disabled'
@@ -339,12 +322,15 @@ app.post('/login_form', (request, response) => {
         return;
     }
     var email = request.body.email;
-    var psw = request.body.password;
+    console.log(email)
+    var password = request.body.password;
+    console.log(password)
     var db = utils.getDb();
 
 
-    db.collection('users').findOne({Email: email, Password: psw}).then((doc)=>{
+    db.collection('users').findOne({Email: email, Password: password}).then((doc)=>{
         if(doc == null){
+            console.log(doc);
             console.log('Login Failed');
             response.render('login.hbs',{
                 login_error:'Incorrect login info...Try Again!!',
