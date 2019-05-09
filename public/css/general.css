@@ -101,6 +101,10 @@ body {
     color: #2f254b;
 }
 
+.account-btn-off{
+    pointer-events: none;
+}
+
 #topNav-active {
     color: white;
     font-family: 'Monoton', cursive;
@@ -119,6 +123,15 @@ body {
     padding-right: 12px;
     padding-top: 6px;
 }
+
+.log-out{
+    display: none;
+}
+
+.my-email button{
+    float:right;
+}
+
 /* discussionTopicLink
 ============================================================================================ */
 
@@ -163,7 +176,7 @@ label {
     color: #f2f2f2;
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=email] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -209,20 +222,29 @@ textarea {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-
     width: 100%;
+}
+
+#comment{
+    border-radius: 4px;
 }
 
 .message-box {
     height: 225px;
 }
 
-.btn{
+.comment-box {
+    margin-top: 10px;
+    height: 125px;
+}
+
+.btn,.cancelbtn{
     border-radius: 6px;
     background-color: #563d7c;
     color: #f2f2f2;
     margin: 10px;
     text-align: center;
+    vertical-align: bottom;
     padding: 10px;
 }
 
@@ -254,15 +276,6 @@ textarea {
     height: 225px;
 }
 
-.btn{
-    border-radius: 6px;
-    background-color: #563d7c;
-    color: #f2f2f2;
-    margin: 10px;
-    text-align: center;
-    padding: 10px;
-}
-
 #sign-in-btn {
     float: left;
     color: #f2f2f2;
@@ -277,6 +290,29 @@ textarea {
 
     background-color: rgb(139, 121, 162);
     color: #2f254b;
+}
+
+/* Chatroom
+============================================= */
+.chatroom {
+    position: relative;
+    top: 100px;
+    height: 600px;
+
+    background-color: #563d7c;
+    color: #f2f2f2;
+    border-radius: 25px;
+}
+
+.chatbox {
+    position: relative;
+    top: 50px;
+    height: 500px;
+    background-color: gainsboro;
+    color: black;
+    margin-left: 37px;
+    margin-right: 37px;
+    border-radius: 25px;
 }
 
 
@@ -303,10 +339,9 @@ textarea {
 #generalThreads .card:nth-child(odd) .card-header {
     background-color: #563d7c;
     color: #f2f2f2;
-    border-radius: 8px;
 }
 
-#generalThreads .card:nth-child(odd) .card-header {
+#generalThreads .card:nth-child(even) .card-header {
     background-color: rgb(139, 121, 162);
     color: #f2f2f2;
 }
@@ -327,7 +362,11 @@ textarea {
 
 #generalThreads .card .card-header:hover {
     background-color: lightgrey;
-    color: #2f254b;
+    cursor: pointer;
+}
+
+#generalThreads .card .card-header:hover h5 button {
+    color: #563d7c;
 }
 
 #generalThreads .card .card-body .row {
@@ -344,17 +383,38 @@ textarea {
     color: #2f254b;
 }
 
+#generalThreads .card .card-body .accordion .card .card-body form textarea {
+    border-radius: 1px;
+    box-shadow: none;
+}
+
 .button-name {
     padding-top:  10px;
 }
 
-.test {
-    width: 1000px;
-}
-
-/* placed at bottom to override */
+/* to override */
 .index-nav{
-
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
+
+#passwordcheck{
+    display: block;
+    background: #f2f2f2;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+/* Add a green text color when the requirements are right */
+.valid {
+    color: green;
+}
+
+/* Add a red text color when the requirements are wrong */
+.invalid {
+    color: red;
+}
+
+
