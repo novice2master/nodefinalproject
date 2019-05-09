@@ -101,6 +101,10 @@ body {
     color: #2f254b;
 }
 
+.account-btn-off{
+    pointer-events: none;
+}
+
 #topNav-active {
     color: white;
     font-family: 'Monoton', cursive;
@@ -119,6 +123,15 @@ body {
     padding-right: 12px;
     padding-top: 6px;
 }
+
+.log-out{
+    display: none;
+}
+
+.my-email button{
+    float:right;
+}
+
 /* discussionTopicLink
 ============================================================================================ */
 

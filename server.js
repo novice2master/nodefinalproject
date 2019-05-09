@@ -24,8 +24,6 @@ app.use(session({
     saveUninitialized: false,
 }));
 
-
-
 app.set('view engine', 'hbs');
 
 const getVcodeImage = (req, res) => {
@@ -48,16 +46,14 @@ const getVcodeImage = (req, res) => {
 
 app.get('/vcode',getVcodeImage);
 
-
 //Homepage
 app.get('/', (request, response) => {
-
-    {
         try {
             if (typeof request.session.email !== "undefined") {
                 response.render('index.hbs', {
                         disabled: null,
-                        loggedin: "True"
+                        loggedin: "True",
+                        email: request.session.email
                     })
             } else
                 throw new Error("User is not signed-in")
@@ -67,26 +63,24 @@ app.get('/', (request, response) => {
                 disabled: 'disabled',
                 loggedin: "False"
             })
-        }
-
-
     }});
 
+
 //General Music thread page
-app.get('/general_music', (request, response) => {
-    let db = utils.getDb();
-    db.collection('threads').find({Category: 'general_music_discussion'}).toArray(function(err, threads){
-        if(err){
+app.get('/general_music', async (request, response) => {
+    let db = await utils.getDb();
+    db.collection('threads').find({Category: 'general_music_discussion'}).toArray(function (err, threads) {
+        if (err) {
             console.log(err);
             response.send('Unable to retrieve posts');
-        }
-        else{
+        } else {
             try {
                 if (typeof request.session.email !== "undefined") {
                     response.render('general_music.hbs', {
                         objects: threads,
                         disabled: null,
-                        loggedin: "True"
+                        loggedin: "True",
+                        email: request.session.email
                     })
                 } else
                     throw new Error("User is not signed-in")
@@ -97,27 +91,28 @@ app.get('/general_music', (request, response) => {
                     disabled: 'disabled',
                     loggedin: "False"
                 })
-            }}
+            }
+        }
     });
 
 });
 
 
-app.get('/all_posts', (request, response) => {
-    let db = utils.getDb();
-    db.collection('threads').find({}).toArray(function(err, threads){
-        if(err){
+app.get('/all_posts', async (request, response) => {
+    let db = await utils.getDb();
+    db.collection('threads').find({}).toArray(function (err, threads) {
+        if (err) {
             console.log(err);
             response.send('Unable to retrieve posts');
-        }
-        else{
+        } else {
             // console.log(threads);
             try {
                 if (typeof request.session.email !== "undefined") {
                     response.render('all_posts.hbs', {
                         objects: threads,
                         disabled: null,
-                        loggedin: "True"
+                        loggedin: "True",
+                        email: request.session.email
                     })
                 } else
                     throw new Error("User is not signed-in")
@@ -127,28 +122,29 @@ app.get('/all_posts', (request, response) => {
                     objects: threads,
                     disabled: 'disabled',
                     loggedin: "False"
-                })}
+                })
+            }
         }
     });
 
     // response.render('all_posts.hbs');
 });
 
-app.get('/off_topic', (request, response) => {
-    let db = utils.getDb();
-    db.collection('threads').find({Category: 'off_topic_discussion'}).toArray(function(err, threads){
-        if(err){
+app.get('/off_topic', async (request, response) => {
+    let db = await utils.getDb();
+    db.collection('threads').find({Category: 'off_topic_discussion'}).toArray(function (err, threads) {
+        if (err) {
             console.log(err);
             response.send('Unable to retrieve posts');
-        }
-        else{
+        } else {
             // console.log(threads);
             try {
                 if (typeof request.session.email !== "undefined") {
                     response.render('off_topic.hbs', {
                         objects: threads,
                         disabled: null,
-                        loggedin: "True"
+                        loggedin: "True",
+                        email: request.session.email
                     })
                 } else
                     throw new Error("User is not signed-in")
@@ -158,35 +154,81 @@ app.get('/off_topic', (request, response) => {
                     objects: threads,
                     disabled: 'disabled',
                     loggedin: "False"
-                })}
+                })
+            }
 
 
         }
 
-    // response.render('off_topic.hbs');
-})});
+        // response.render('off_topic.hbs');
+    })
+});
+
+app.get('/account', async (request, response) => {
+    try {
+        if (typeof request.session.email !== 'string'){
+            response.redirect("/");
+            return
+        }
+    }catch (e) {
+        console.log("User Forbidden")
+    }
+    let db = await utils.getDb();
+    db.collection('threads').find({Email: request.session.email}).toArray(function (err, threads) {
+        if (err) {
+            console.log(err);
+            response.send('Unable to retrieve posts');
+        } else {
+            // console.log(threads);
+            try {
+                if (typeof request.session.email !== "undefined") {
+                    response.render('off_topic.hbs', {
+                        objects: threads,
+                        disabled: null,
+                        loggedin: "True",
+                        email: request.session.email
+                    })
+                } else
+                    throw new Error("User is not signed-in")
+            } catch (e) {
+                console.log(e.message);
+                response.render('off_topic.hbs', {
+                    objects: threads,
+                    disabled: 'disabled',
+                    loggedin: "False",
+                    email: null
+                })
+            }
+
+
+        }
+
+
+        // response.render('off_topic.hbs');
+    })
+});
 //Music Reviews thread page
 // app.get('/music_reviews.hbs', (request, response) => {
 //   response.render('music_reviews.hbs');
 // })
 
 //Latest Music thread page
-app.get('/latest_music', (request, response) => {
-
-    let db = utils.getDb();
-    db.collection('threads').find({Category: 'latest_music'}).toArray(function(err, threads){
-        if(err){
+app.get('/latest_music', async (request, response) => {
+    let db = await utils.getDb();
+    db.collection('threads').find({Category: 'latest_music'}).toArray(function (err, threads) {
+        if (err) {
             // console.log(err);
             response.send('Unable to retrieve posts');
-        }
-        else{
+
+        } else {
             // console.log(threads);
             try {
                 if (typeof request.session.email !== "undefined") {
                     response.render('latest_music.hbs', {
                         objects: threads,
                         disabled: null,
-                        loggedin: "True"
+                        loggedin: "True",
+                        email: request.session.email
                     })
                 } else
                     throw new Error("User is not signed-in")
@@ -196,7 +238,8 @@ app.get('/latest_music', (request, response) => {
                     objects: threads,
                     disabled: 'disabled',
                     loggedin: "False"
-                })}
+                })
+            }
         }
     });
     // response.render('latest_music.hbs');
@@ -215,7 +258,8 @@ app.get('/signup', (request, response) => {
         if (typeof request.session.email !== "undefined") {
             response.render('signup.hbs', {
                 disabled: null,
-                loggedin: "True"
+                loggedin: "True",
+                email: request.session.email
             })
         } else
             throw new Error("User is not signed-in")
@@ -240,7 +284,8 @@ app.get('/login', (request, response) => {
         console.log('logintest');
         response.render('login.hbs', {
             disabled: null,
-            loggedin: "True"
+            loggedin: "True",
+            email: request.session.email
         })
     } else {
         response.render('login.hbs', {
@@ -257,7 +302,8 @@ app.get('/login_form', (request, response)=> {
             console.log('undefined');
             response.render('login.hbs', {
                 disabled: null,
-                loggedin: "True"
+                loggedin: "True",
+                email: request.session.email
             })
         } else {
 
@@ -274,12 +320,12 @@ app.get('/login_form', (request, response)=> {
 });
 
 //Add user information to database
-app.post('/signup_form', (request, response) => {
+app.post('/signup_form', async (request, response) => {
     var fname = request.body.firstName;
     var lname = request.body.lastName;
     var email = request.body.email;
     var psw = request.body.password;
-    var db = utils.getDb();
+    let db = await utils.getDb();
     var user = db.collection('users');
 
 
@@ -296,7 +342,6 @@ app.post('/signup_form', (request, response) => {
                 First_Name: fname,
                 Last_Name: lname,
                 Email: email,
-
                 Password: psw
             });
 
@@ -309,11 +354,9 @@ app.post('/signup_form', (request, response) => {
     // });
 });
 
-
-
 //Logs in user if they match information in database
-app.post('/login_form', (request, response) => {
-    // console.log(request.body);
+
+app.post('/login_form', async (request, response) => {
 
     if (request.body.vcode != request.session.vcode) {
         response.render('login.hbs', {
@@ -321,71 +364,71 @@ app.post('/login_form', (request, response) => {
         });
         return;
     }
+
     var email = request.body.email;
-    console.log(email)
+    // console.log(email);
     var password = request.body.password;
-    console.log(password)
+    // console.log(password);
     var db = utils.getDb();
 
 
-    db.collection('users').findOne({Email: email, Password: password}).then((doc)=>{
-        if(doc == null){
-            console.log(doc);
-            console.log('Login Failed');
-            response.render('login.hbs',{
-                login_error:'Incorrect login info...Try Again!!',
-                disabled: "disabled",
-                loggedin: "False"
+    db.collection('users').findOne({Email: email, Password: password}).then((doc) => {
+    if (doc == null) {
+        console.log('Login Failed');
+        response.render('login.hbs', {
+            login_error: 'Incorrect login info...Try Again!!',
+            disabled: "disabled",
+            loggedin: "False"
+        })
+    } else {
+        response.cookie('username', doc.First_Name);
+        request.session.email = doc.Email;
+        response.redirect('/');
+    }
+
             })
-        }
+    });
 
-        else{
-            response.cookie('username', doc.First_Name);
-            request.session.email = doc.Email;
-            response.redirect('/');
-        }
-
-    })
-});
 
 //Enters a thread in a database
-app.post('/thread_form', (request, response) => {
-    var email = request.body.email;
+app.post('/thread_form', async (request, response) => {
+    var email = request.session.email;
     var title = request.body.title;
     var message = request.body.message;
     var category = request.body.categories;
 
-    var db = utils.getDb();
+    let db = await utils.getDb();
+
     db.collection('threads').insertOne({
         Email: email,
         Title: title,
         Message: message,
         Category: category
     }, (err) => {
-        if(err) {
+        if (err) {
             response.send('Unable to add user.');
         }
-
-        response.render('postconfirm.hbs');
+        response.redirect(request.get('referer'));
+        // response.render('postconfirm.hbs');
     })
 });
 
-// app.get('/music_reviews', (request, response) => {
-//     let db = utils.getDb();
-//     db.collection('threads').find({Category: 'music_reviews'}).toArray(function(err, threads){
-//         if(err){
-//             console.log(err);
-//             response.send('Unable to retrieve posts');
-//         }
-//         else{
-//             // console.log(threads);
-//             response.render('music_reviews.hbs', {
-//                 objects: threads
-//             });
-//
-//         }
-//     });
-// });
+app.get('/thread', (request, response) => {
+    if (typeof request.session.email !== "undefined") {
+        console.log('threadtest');
+        response.render('create_post.hbs', {
+            disabled: null,
+            loggedin: "True",
+            email: request.session.email
+        })
+    } else {
+        response.render('create_post.hbs', {
+            disabled: 'disabled',
+            loggedin: "False"
+        })
+    }
+});
+
 
 app.get('/sign-out', (req, res) => {
     req.session.destroy(function (err) {
@@ -393,24 +436,21 @@ app.get('/sign-out', (req, res) => {
         try {
             console.log(req.session.email)
         }catch(e){
-            // let time = new Date().toString();
-            // let log = `${time}: ${err} ${req.url}`;
-            // fs.appendFile('server.log', log + '\n', (error) => {
-                // if (error) {
+
                     console.log('Unable to log message');
-                // }})}
         }
 
         finally {
             res.redirect('/');
         }
-
-})});
+    })
+});
 
 
 app.listen(port, () => {
-    console.log(`Server is up on port ${port}`);
     utils.init();
+    console.log(`Server is up on port ${port}`);
+
 });
 
 module.exports = app;
