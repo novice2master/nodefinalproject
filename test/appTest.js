@@ -162,8 +162,8 @@ describe('GET /create_post', function () {
         chai.request(app)
             .get('/create_post')
             .end(function(err, response) {
-                // console.log(response.text);
                 expect(response).to.have.status(200);
+                if (err) return done(err);
                 done()
             })
     });
@@ -177,6 +177,7 @@ describe('GET /signup', function () {
             .get('/signup')
             .end(function(err, response) {
                 expect(response).to.have.status(200);
+                if (err) return done(err);
                 done()
             })
     });
@@ -192,8 +193,8 @@ describe('GET /confirmsignup', function () {
         chai.request(app)
             .get('/confirmsignup')
             .end(function(err, response) {
-                // console.log(response.text);
                 expect(response).to.have.status(200);
+                if (err) return done(err);
                 done()
             })
     });
@@ -206,8 +207,8 @@ describe('GET /login', function () {
         chai.request(app)
             .get('/login')
             .end(function(err, response) {
-                // console.log(response.text);
                 expect(response).to.have.status(200);
+                if (err) return done(err);
                 done()
             })
     });
