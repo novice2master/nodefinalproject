@@ -48,6 +48,7 @@ app.get('/vcode',getVcodeImage);
 
 //Homepage
 app.get('/', (request, response) => {
+    //checks if the user is signed in, if so displays renders a page that is useful to the user
         try {
             if (typeof request.session.email !== "undefined") {
                 response.render('index.hbs', {
@@ -68,6 +69,7 @@ app.get('/', (request, response) => {
 
 //General Music thread page
 app.get('/general_music', async (request, response) => {
+    //retrives data from the databse and sends back genderal_music dicussion posts
     let db = await utils.getDb();
     db.collection('threads').find({Category: 'general_music_discussion'}).toArray(function (err, threads) {
         if (err) {
@@ -99,6 +101,8 @@ app.get('/general_music', async (request, response) => {
 
 
 app.get('/all_posts', async (request, response) => {
+//retrives data from the databse and sends back all posts
+
     let db = await utils.getDb();
     db.collection('threads').find({}).toArray(function (err, threads) {
         if (err) {
@@ -129,6 +133,7 @@ app.get('/all_posts', async (request, response) => {
 });
 
 app.get('/off_topic', async (request, response) => {
+//retrives data from the databse and sends back off topic disucssion posts
     let db = await utils.getDb();
     db.collection('threads').find({Category: 'off_topic_discussion'}).toArray(function (err, threads) {
         if (err) {
@@ -157,8 +162,9 @@ app.get('/off_topic', async (request, response) => {
         }
     })
 });
-
+//personal account page
 app.get('/account', async (request, response) => {
+    // if users ins't loggedin, they aren't allowed to the page
     try {
         if (typeof request.session.email !== 'string'){
             response.redirect("/");
@@ -168,6 +174,7 @@ app.get('/account', async (request, response) => {
         console.log("User Forbidden")
     }
     let db = await utils.getDb();
+    //retrives data from the database with posts that the users posted
     db.collection('threads').find({Email: request.session.email}).toArray(function (err, threads) {
         if (err) {
             console.log(err);
@@ -175,7 +182,7 @@ app.get('/account', async (request, response) => {
         } else {
             try {
                 if (typeof request.session.email !== "undefined") {
-                    response.render('off_topic.hbs', {
+                    response.render('account.hbs', {
                         objects: threads,
                         disabled: null,
                         loggedin: "True",
@@ -185,7 +192,7 @@ app.get('/account', async (request, response) => {
                     throw new Error("User is not signed-in")
             } catch (e) {
                 console.log(e.message);
-                response.render('off_topic.hbs', {
+                response.render('account.hbs', {
                     objects: threads,
                     disabled: 'disabled',
                     loggedin: "False",
@@ -199,9 +206,21 @@ app.get('/account', async (request, response) => {
     })
 });
 
+        // response.render('off_topic.hbs');
+    // })});
+
+
+app.get('/chatroom', (request, response) => {
+    response.render('chatroom.hbs')
+});
+//Music Reviews thread page
+// app.get('/music_reviews.hbs', (request, response) => {
+//   response.render('music_reviews.hbs');
+// })
 
 //Latest Music thread page
 app.get('/latest_music', async (request, response) => {
+    //retrives data from the database with latest music posts 
     let db = await utils.getDb();
     db.collection('threads').find({Category: 'latest_music'}).toArray(function (err, threads) {
         if (err) {
