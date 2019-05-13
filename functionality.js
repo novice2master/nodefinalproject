@@ -2,6 +2,7 @@
 (function() {
     var searchTerm, cardContainerID, card;
     $('#searchVal').on('change keyup', function() {
+        $('.collapse').collapse('hide');
         searchTerm = $(this).val();
         $('.accordion > .card').each(function() {
             cardContainerID = '#' + $(this).attr('id');
