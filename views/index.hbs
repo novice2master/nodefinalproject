@@ -36,11 +36,10 @@
     <div class="row">
         <div class="col-md-6" onclick="window.location.href = './latest_music';">
             <div class="card border-0 discussionCard">
-                <div class="card-body musicCard">
+                <div class="card-header musicCardHead">
                     <h2>Latest Music</h2>
-                    <p>The latest music news, announcements, industry rumours, sales figures, etc. The pulse of the music
-                        industry.</p>
                 </div>
+                <img class="card-img-bottom" alt="cardImage1" src="../public/images/cardImg1.png" height="200" width="540">
             </div>
         </div>
         <div class="col-md-6" onclick="window.location.href = './general_music';">
@@ -73,5 +72,8 @@
     </div>
 </div>
 {{> footer}}
+<script>
+    $(".card .card-header").css({"background-color":"#563d7c", "color":"white", "border-top-right-radius":"10px", "border-top-left-radius":"10px"});
+</script>
 </body>
 </html>
