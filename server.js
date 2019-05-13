@@ -5,7 +5,7 @@ const bodyparser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const MongoClient = require('mongodb').MongoClient;
 const utils = require('./utils');
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8081;
 const session = require('express-session');
 const captchapng = require('captchapng');
 var app = express();
@@ -363,7 +363,8 @@ app.post('/login_form', async (request, response) => {
 
     if (request.body.vcode != request.session.vcode) {
         response.render('login.hbs', {
-            disabled: 'disabled'
+            disabled: 'disabled',
+            login_error: 'Incorrect captcha',
         });
         return;
     }
