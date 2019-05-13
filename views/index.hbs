@@ -36,17 +36,17 @@
     <div class="row">
         <div class="col-md-6" onclick="window.location.href = './latest_music';">
             <div class="card border-0 discussionCard">
-                <div class="card-header musicCardHead">
-                    <h2>Latest Music</h2>
+                <img class="card-img-top" alt="cardImage1" src="../public/images/cardImg1.png" height="200" width="540">
+                <div class="card-body border-0 musicCard">
+                    <h3>Latest Music</h3>
                 </div>
-                <img class="card-img-bottom" alt="cardImage1" src="../public/images/cardImg1.png" height="200" width="540">
             </div>
         </div>
         <div class="col-md-6" onclick="window.location.href = './general_music';">
             <div class="card border-0 discussionCard">
-                <div class="card-body musicCard">
-                    <h2>General Music Discussion</h2>
-                    <p>A space to discuss and share any song or album old and new with your fellow Muziki members!</p>
+                <img class="card-img-top" alt="cardImage1" src="../public/images/cardImg2.png" height="200" width="540">
+                <div class="card-body border-0 musicCard">
+                    <h3>General Music</h3>
                 </div>
             </div>
         </div>
@@ -54,18 +54,17 @@
     <div class="row">
         <div class="col-md-6" onclick="window.location.href = './all_posts';">
             <div class="card border-0 discussionCard">
-                <div class="card-body musicCard">
-                    <h2>All Threads</h2>
-                    <p>From the latest albums to the classics, post your reviews on here to see how you enjoyed these
-                        albums!</p>
+                <img class="card-img-top" alt="cardImage1" src="../public/images/cardImg3.png" height="200" width="540">
+                <div class="card-body border-0 musicCard">
+                    <h3>All Threads</h3>
                 </div>
             </div>
         </div>
         <div class="col-md-6" onclick="window.location.href = './off_topic';">
             <div class="card border-0 discussionCard">
-                <div class="card-body musicCard">
-                    <h2>Off-Topic Discussion</h2>
-                    <p>Any topics or news outside of music can be discussed freely here! </p>
+                <img class="card-img-top" alt="cardImage1" src="../public/images/cardImg4.png" height="200" width="540">
+                <div class="card-body border-0 musicCard">
+                    <h3>Off Topic</h3>
                 </div>
             </div>
         </div>
@@ -73,7 +72,13 @@
 </div>
 {{> footer}}
 <script>
-    $(".card .card-header").css({"background-color":"#563d7c", "color":"white", "border-top-right-radius":"10px", "border-top-left-radius":"10px"});
+    $(".card .card-img-top").css({"border-top-right-radius": "10px", "border-top-left-radius": "10px"}).hover(
+            function () {
+                $(this).siblings().css({"background-color": "rgb(139, 121, 162)"});
+            }, function () {
+                $(this).siblings().css({"background-color": "#e1dbe5"});
+            }
+    )
 </script>
 </body>
 </html>
