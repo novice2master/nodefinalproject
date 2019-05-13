@@ -6,7 +6,7 @@ node_js:
 #  - NODE_ENV="development"
 #  - NODE_ENV="production"; SESSION_SECRET='la li'
 
-before_script:
-  - npm install -g gulp-cli
-
-script: test/appTest.js
+#before_script:
+#  - npm install -g gulp-cli
+#
+#script: test/appTest.js
