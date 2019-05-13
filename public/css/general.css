@@ -140,20 +140,19 @@ body {
 }
 
 .musicCard {
-    background-color: #563d7c;
-    color: #f2f2f2;
-    height: 260px;
-    border-radius: 10px;
+    background-color: #e1dbe5;
+    color: #2e2142;
+    height: 54px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
     cursor: pointer;
 }
 
-.musicCard h2 {
-    padding-top: 28px;
-    font-weight: 600;
-}
-
-.musicCard p {
-    font-size: 16px;
+.musicCard h3 {
+    margin-top: -10px;
+    font-weight: 300;
 }
 
 .musicCard:hover{
@@ -416,5 +415,7 @@ textarea {
 .invalid {
     color: red;
 }
-
+.row{
+    color: #ebe7ea
+}
 

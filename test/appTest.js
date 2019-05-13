@@ -17,6 +17,27 @@ function wait(ms){
     }
 }
 
+describe("POST /thread_form", function (done) {
+    let data = {
+        "_method": "post",
+        "First_Name": "John",
+        "Last_Name": "Mengi",
+        "Email": "jmengi@lol.ke",
+        "Password": "RegMengi123"
+    };
+    chai.request(app)
+        .post('/thread_form')
+        .type('form')
+        .timeout(1000)
+        .send(data)
+
+        .end(function (err, res) {
+            console.log(res);
+            expect(err).to.be.null;
+            expect(res).to.have.status(200);
+            done()
+        })
+    });
 
 describe('POST /signup', function () {
     let data = {
@@ -24,7 +45,7 @@ describe('POST /signup', function () {
         "Last_Name": "Mengi",
         "Email": "jmengi@lol.ke",
         "Password": "RegMengi123"
-    }
+    };
     it("Account created", function (done) {
         wait(1000);
         chai.request("http://localhost:8080")
@@ -34,7 +55,7 @@ describe('POST /signup', function () {
                 expect(response).to.have.status(200);
                 expect('Location', '/confirmsignup');
                 if (err) return done(err);
-            })
+            });
         done()
     });
 });
@@ -43,7 +64,7 @@ describe('POST /signup', function () {
 const data = {
         "Email": "jmengi@lol.ke",
         "Password": "RegMengi123"
-    }
+    };
 before(function(done){
       request.agent(app)
         .post('/login')
@@ -58,7 +79,7 @@ describe('POST /login', function (done) {
     it("Account exists", function (done) {
         wait(1000);
         request.agent("http://localhost:8080").post('/login')
-        .expect(200)
+        .expect(200);
         done();
   });
 });
@@ -70,7 +91,7 @@ describe('POST /thread_form', function () {
         "Title": "Music",
         "Message": "Music today is lit",
         "Category": "General Music"
-    }
+    };
     it("Account created", function (done) {
         wait(1000);
         chai.request(app)
@@ -78,8 +99,8 @@ describe('POST /thread_form', function () {
             .send(data)
             .end((err, response) => {
                 if (err) return done(err);
-                expect(response).to.have.status(200) 
-            })
+                expect(response).to.have.status(200)
+            });
         done()
     });
 });
@@ -93,8 +114,8 @@ describe('GET /latest_music', function () {
             .get('/latest_music')
             .end(function(err, response) {
                 expect(response).to.have.status(200);
-                if (err) return done(err); 
-            })
+                if (err) return done(err);
+            });
         done()
     });
 });
@@ -110,7 +131,7 @@ describe('GET /create_post', function () {
             .end(function(err, response) {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
-            })
+            });
         done()
     });
 });
@@ -140,7 +161,7 @@ describe('GET /general_music', function () {
             .end(function(err, response) {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
-            })
+            });
         done()
     });
 });
@@ -154,7 +175,7 @@ describe('GET /signup', function () {
             .end(function(err, response) {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
-            })
+            });
         done()
     });
 });
@@ -171,7 +192,7 @@ describe('GET /confirmsignup', function () {
             .end(function(err, response) {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
-            })
+            });
         done()
     });
 });
@@ -185,7 +206,7 @@ describe('GET /login', function () {
             .end(function(err, response) {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
-            })
+            });
         done()
     });
 });
