@@ -363,6 +363,7 @@ app.post('/login_form', async (request, response) => {
 
     if (request.body.vcode != request.session.vcode) {
         response.render('login.hbs', {
+            login_error: 'Captcha incorrect',
             disabled: 'disabled'
         });
         return;
