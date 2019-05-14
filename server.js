@@ -299,9 +299,16 @@ app.post('/addComment', async (request, response) => {
         comment: comment,
         email: email
     };
-
-    console.log(new_comment);
-    thread.Comments.unshift(new_comment);
+    if (typeof request.session.email !== "undefined") {
+        console.log('threadtest');
+        response.render('threads.hbs', {
+            disabled: null,
+            loggedin: "True",
+            email: request.session.email
+        })
+    } else {
+        thread.Comments.unshift(new_comment);
+    }
 
     db.collection('threads').findOneAndUpdate({
          _id: ObjectId(thread_id)
