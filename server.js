@@ -69,7 +69,7 @@ app.get('/', (request, response) => {
 
 //General Music thread page
 app.get('/general_music', async (request, response) => {
-    //retrives data from the databse and sends back genderal_music dicussion posts
+    //retrieves data from the database and sends back general_music discussion posts
     let db = await utils.getDb();
     db.collection('threads').find({Category: 'general_music_discussion'}).toArray(function (err, threads) {
         if (err) {
@@ -101,7 +101,7 @@ app.get('/general_music', async (request, response) => {
 
 
 app.get('/all_posts', async (request, response) => {
-//retrives data from the databse and sends back all posts
+//retrieves data from the database and sends back all posts
 
     let db = await utils.getDb();
     db.collection('threads').find({}).toArray(function (err, threads) {
@@ -133,7 +133,7 @@ app.get('/all_posts', async (request, response) => {
 });
 
 app.get('/off_topic', async (request, response) => {
-//retrives data from the databse and sends back off topic disucssion posts
+//retrieves data from the database and sends back off topic discussion posts
     let db = await utils.getDb();
     db.collection('threads').find({Category: 'off_topic_discussion'}).toArray(function (err, threads) {
         if (err) {
@@ -174,7 +174,7 @@ app.get('/account', async (request, response) => {
         console.log("User Forbidden")
     }
     let db = await utils.getDb();
-    //retrives data from the database with posts that the users posted
+    //retrieves data from the database with posts that the users posted
     db.collection('threads').find({Email: request.session.email}).toArray(function (err, threads) {
         if (err) {
             console.log(err);
@@ -220,7 +220,7 @@ app.get('/chatroom', (request, response) => {
 
 //Latest Music thread page
 app.get('/latest_music', async (request, response) => {
-    //retrives data from the database with latest music posts 
+    //retrieves data from the database with latest music posts
     let db = await utils.getDb();
     db.collection('threads').find({Category: 'latest_music'}).toArray(function (err, threads) {
         if (err) {
@@ -282,6 +282,41 @@ app.get('/signup', (request, response) => {
 //Signup Confirmation Page
 app.get('/confirmsignup', (request, response) => {
     response.render('confirm.hbs');
+});
+
+app.post('/addComment', async (request, response) => {
+    var thread_id = request.body.id;
+    var comment = request.body.comment;
+    var email = request.session.email;
+    var db = utils.getDb();
+    var ObjectId = utils.getObjectId();
+
+    var thread = await db.collection('threads').findOne({
+        _id: ObjectId(thread_id)
+    });
+
+    var new_comment = {
+        comment: comment,
+        email: email
+    };
+    if (typeof request.session.email !== "undefined") {
+        console.log('threadtest');
+        response.render('threads.hbs', {
+            disabled: null,
+            loggedin: "True",
+            email: request.session.email
+        })
+    } else {
+        thread.Comments.unshift(new_comment);
+    }
+
+    db.collection('threads').findOneAndUpdate({
+         _id: ObjectId(thread_id)
+    }, {
+    $set: {Comments: thread.Comments}
+    }, (err, items) => {});
+
+    response.redirect('back')
 });
 
 //Login Page
@@ -407,7 +442,8 @@ app.post('/thread_form', async (request, response) => {
         Email: email,
         Title: title,
         Message: message,
-        Category: category
+        Category: category,
+        Comments: []
     }, (err) => {
         if (err) {
             response.send('Unable to add user.');
