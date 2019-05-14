@@ -31,6 +31,7 @@
     <div class="col">
         <br>
         <h1>Forum List</h1>
+        <br>
     </div>
     <br>
     <div class="row">
@@ -72,13 +73,20 @@
 </div>
 {{> footer}}
 <script>
-    $(".card .card-img-top").css({"border-top-right-radius": "10px", "border-top-left-radius": "10px"}).hover(
+    $(".card .card-img-top").css({"border-top-right-radius": "10px", "border-top-left-radius": "10px", "cursor": "pointer"}).hover(
             function () {
                 $(this).siblings().css({"background-color": "rgb(139, 121, 162)"});
             }, function () {
                 $(this).siblings().css({"background-color": "#e1dbe5"});
             }
-    )
+    );
+    $(".musicCard").hover(
+            function () {
+                $(this).css({"background-color": "rgb(139, 121, 162)"});
+            }, function () {
+                $(this).css({"background-color": "#e1dbe5"});
+            }
+    );
 </script>
 </body>
 </html>

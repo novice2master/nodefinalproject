@@ -36,7 +36,7 @@ body {
 }
 
 .footerSpacing {
-    height: 140px;
+    height: 120px;
 }
 
 .footer {
@@ -86,8 +86,6 @@ body {
     border-top-left-radius: 0;
 }
 
-
-
 #topNav a{
     float: left;
     color: #f2f2f2;
@@ -135,8 +133,12 @@ body {
 /* discussionTopicLink
 ============================================================================================ */
 
+#thread-titles {
+    color: black;
+}
+
 .discussionCard {
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 }
 
 .musicCard {
@@ -153,11 +155,6 @@ body {
 .musicCard h3 {
     margin-top: -10px;
     font-weight: 300;
-}
-
-.musicCard:hover{
-    background-color: rgb(139, 121, 162);
-    color: #2f254b;
 }
 
 

@@ -43,6 +43,38 @@ const getVcodeImage = (req, res) => {
     });
     res.end(imgbase64);
 };
+app.get('/all_threads', async (request, response) => {
+    let db = await utils.getDb();
+    db.collection('threads').find({}).toArray(function (err, threads) {
+        if (err) {
+            console.log(err);
+            response.send('Unable to retrieve posts');
+        } else {
+            // console.log(threads);
+
+            response.json({success: true});
+            response.send(threads);
+            // try {
+            //     if (typeof request.session.email !== "undefined") {
+            //         response.render('all_posts.hbs', {
+            //             objects: threads,
+            //             disabled: null,
+            //             loggedin: "True",
+            //             email: request.session.email
+            //         })
+            //     } else
+            //         throw new Error("User is not signed-in")
+            // } catch (e) {
+            //     console.log(e.message);
+            //     response.render('all_posts.hbs', {
+            //         objects: threads,
+            //         disabled: 'disabled',
+            //         loggedin: "False"
+            //     })
+            // }
+        }
+    });
+});
 
 app.get('/vcode',getVcodeImage);
 
