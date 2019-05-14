@@ -299,16 +299,9 @@ app.post('/addComment', async (request, response) => {
         comment: comment,
         email: email
     };
-    if (typeof request.session.email !== "undefined") {
-        console.log('threadtest');
-        response.render('threads.hbs', {
-            disabled: null,
-            loggedin: "True",
-            email: request.session.email
-        })
-    } else {
-        thread.Comments.unshift(new_comment);
-    }
+
+    console.log(new_comment);
+    thread.Comments.unshift(new_comment);
 
     db.collection('threads').findOneAndUpdate({
          _id: ObjectId(thread_id)
@@ -468,6 +461,7 @@ app.get('/thread', (request, response) => {
         })
     }
 });
+
 
 
 app.get('/sign-out', (req, res) => {
