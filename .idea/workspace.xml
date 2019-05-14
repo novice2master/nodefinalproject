@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8f4fb859-8894-4463-805e-5528b27c580c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/views/partials/threads.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/threads.hbs" afterDir="false" />
-    </list>
+    <list default="true" id="8f4fb859-8894-4463-805e-5528b27c580c" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,10 +17,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3359">
+            <state relative-caret-position="3767">
               <caret line="475" lean-forward="true" selection-start-line="475" selection-end-line="475" />
             </state>
           </provider>
@@ -47,10 +45,10 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/partials/threads.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-701">
+            <state relative-caret-position="425">
               <caret line="31" column="80" selection-start-line="31" selection-start-column="74" selection-end-line="31" selection-end-column="80" />
               <folding>
                 <element signature="n#style#0;n#li#0;n#ul#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -168,16 +166,15 @@
       <workItem from="1557357475520" duration="145000" />
       <workItem from="1557762137335" duration="10785000" />
       <workItem from="1557783972815" duration="4868000" />
-      <workItem from="1557859923965" duration="3560000" />
+      <workItem from="1557859923965" duration="3895000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21664000" />
+    <option name="totallyTimeSpent" value="21999000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17992565" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24983074" />
@@ -302,13 +299,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3359">
-          <caret line="475" lean-forward="true" selection-start-line="475" selection-end-line="475" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/partials/navbar.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4250">
@@ -329,11 +319,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/partials/threads.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-701">
+        <state relative-caret-position="425">
           <caret line="31" column="80" selection-start-line="31" selection-start-column="74" selection-end-line="31" selection-end-column="80" />
           <folding>
             <element signature="n#style#0;n#li#0;n#ul#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3767">
+          <caret line="475" lean-forward="true" selection-start-line="475" selection-end-line="475" />
         </state>
       </provider>
     </entry>
