@@ -463,6 +463,7 @@ app.get('/thread', (request, response) => {
 });
 
 
+
 app.get('/sign-out', (req, res) => {
     req.session.destroy(function (err) {
 
