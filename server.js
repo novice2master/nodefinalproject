@@ -313,7 +313,7 @@ app.post('/addComment', async (request, response) => {
     db.collection('threads').findOneAndUpdate({
          _id: ObjectId(thread_id)
     }, {
-    $set: {Comments: thread.Comments}
+        $set: {Comments: thread.Comments}
     }, (err, items) => {});
 
     response.redirect('back')
