@@ -470,16 +470,6 @@ app.get('/thread', (request, response) => {
 });
 
 
-app.post('/add_comment', async (request, response) => {
-	var email = request.session.email;
-
-	let db = await utils.getDb();
-	db.collection('threads').update({'_id':ObjectID(email), {$set: {"comment": $comment}}, (err, result) => {
-		response.send({$comment})
-	}})
-
-})
-
 
 app.get('/sign-out', (req, res) => {
     req.session.destroy(function (err) {
