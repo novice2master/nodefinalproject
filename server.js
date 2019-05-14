@@ -284,6 +284,41 @@ app.get('/confirmsignup', (request, response) => {
     response.render('confirm.hbs');
 });
 
+app.post('/addComment', async (request, response) => {
+    var thread_id = request.body.id;
+    var comment = request.body.comment;
+    var email = request.session.email;
+    var db = utils.getDb();
+    var ObjectId = utils.getObjectId();
+
+    var thread = await db.collection('threads').findOne({
+        _id: ObjectId(thread_id)
+    });
+
+    var new_comment = {
+        comment: comment,
+        email: email
+    };
+    if (typeof request.session.email !== "undefined") {
+        console.log('threadtest');
+        response.render('threads.hbs', {
+            disabled: null,
+            loggedin: "True",
+            email: request.session.email
+        })
+    } else {
+        thread.Comments.unshift(new_comment);
+    }
+
+    db.collection('threads').findOneAndUpdate({
+         _id: ObjectId(thread_id)
+    }, {
+    $set: {Comments: thread.Comments}
+    }, (err, items) => {});
+
+    response.redirect('back')
+});
+
 //Login Page
 app.get('/login', (request, response) => {
     if (typeof request.session.email !== "undefined") {
@@ -407,7 +442,8 @@ app.post('/thread_form', async (request, response) => {
         Email: email,
         Title: title,
         Message: message,
-        Category: category
+        Category: category,
+        Comments: []
     }, (err) => {
         if (err) {
             response.send('Unable to add user.');

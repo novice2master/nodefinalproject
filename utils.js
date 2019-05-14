@@ -7,6 +7,10 @@ module.exports.getDb = function() {
 
 };
 
+module.exports.getObjectId = () => {
+    return require('mongodb').ObjectID;
+};
+
 module.exports.init = function(callback) {
     return new Promise(((resolve, reject) => {
         const client = new MongoClient(uri, { useNewUrlParser: true });

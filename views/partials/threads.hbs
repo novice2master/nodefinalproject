@@ -27,11 +27,15 @@
                             <div id='comments{{_id}}' class="collapse" data-parent='#accordion{{_id}}'>
                                 <div class="card-body">
                                     <form action="/addComment" method="post">
+                                        <input type="hidden" name="id" value="{{_id}}">
                                     <textarea class='comment-box' placeholder="Enter a message here" name="comment" id="comment" required></textarea>
                                     <button type="submit" class="btn">Submit</button>
                                         <br>
-                                        {{Comments}}
-                                        Comments go here
+                                        <ul>
+                                        {{#each Comments}}
+                                            <li style="color: black">{{comment}} - {{email}}</li>
+                                        {{/each}}
+                                        </ul>
                                 </form>
 
                                 </div>
