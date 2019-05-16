@@ -203,7 +203,8 @@ app.get('/account', async (request, response) => {
             return
         }
     }catch (e) {
-        console.log("User Forbidden")
+        response.send("User Forbidden");
+        return
     }
     let db = await utils.getDb();
     //retrieves data from the database with posts that the users posted
@@ -318,14 +319,15 @@ app.get('/confirmsignup', (request, response) => {
 
 app.post('/addComment', async (request, response) => {
     var thread_id = request.body.id;
-    console.log(thread_id);
+    // console.log(thread_id);
     var comment = request.body.comment;
-    console.log(comment);
+    // console.log(comment);
     var email = request.session.email;
-    console.log(email);
+    // console.log(email);
     var db = utils.getDb();
     var ObjectId = utils.getObjectId();
-    console.log(ObjectId);
+    // console.log(ObjectId);
+
 
     var thread = await db.collection('threads').findOne({
         _id: ObjectId(thread_id)
@@ -336,7 +338,7 @@ app.post('/addComment', async (request, response) => {
         email: email
     };
     if (typeof request.session.email == "undefined") {
-        console.log('threadtest');
+        // console.log('threadtest');
         // response.redirect()
         // response.refresh('back', {
         //     disabled: null,
@@ -346,7 +348,7 @@ app.post('/addComment', async (request, response) => {
         response.json({success: false});
         return
     } else {
-        console.log(thread.Comments);
+        // console.log(thread.Comments);
         thread.Comments.unshift(new_comment);
     }
 
@@ -362,7 +364,7 @@ app.post('/addComment', async (request, response) => {
 //Login Page
 app.get('/login', (request, response) => {
     if (typeof request.session.email !== "undefined") {
-        console.log('logintest');
+        // console.log('logintest');
         response.render('login.hbs', {
             disabled: null,
             loggedin: "True",
@@ -445,9 +447,9 @@ app.post('/login_form', async (request, response) => {
     }
 
     var email = request.body.email;
-    console.log(email);
+    // console.log(email);
     var password = request.body.password;
-    console.log(password);
+    // console.log(password);
     var db = utils.getDb();
 
 
@@ -495,7 +497,7 @@ app.post('/thread_form', async (request, response) => {
 
 app.get('/thread', (request, response) => {
     if (typeof request.session.email !== "undefined") {
-        console.log('threadtest');
+        // console.log('threadtest');
         response.render('create_post.hbs', {
             disabled: null,
             loggedin: "True",
