@@ -8,6 +8,7 @@ const utils = require('./utils');
 const port = process.env.PORT || 8080;
 const session = require('express-session');
 const captchapng = require('captchapng');
+const lyrics = require('./song_search.js');
 var app = express();
 app.use(cookieParser());
 app.use(bodyparser.json());
