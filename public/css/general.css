@@ -417,9 +417,13 @@ textarea {
     margin-top: 20px;
     background-color: #563d7c;
     color: white;
+    padding: 10px;
 }
 
 .containerMargin > p{
     padding: 100px;
 }
 
+#song_lyrics{
+    margin-top: 20px;
+}
