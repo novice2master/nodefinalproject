@@ -248,6 +248,10 @@ app.get('/account', async (request, response) => {
 app.get('/chatroom', (request, response) => {
     response.render('chatroom.hbs')
 });
+
+app.get('/song_lyrics', (request, response) => {
+    response.render('song_lyrics.hbs')
+});
 //Music Reviews thread page
 // app.get('/music_reviews.hbs', (request, response) => {
 //   response.render('music_reviews.hbs');
