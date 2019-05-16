@@ -36,27 +36,28 @@ function wait(ms){
 //             assert.typeOf(result, 'array');
 //         });
 
-// describe("POST /thread_form", function (done) {
-//     let data = {
-//         "_method": "post",
-//         "First_Name": "John",
-//         "Last_Name": "Mengi",
-//         "Email": "jmengi@lol.ke",
-//         "Password": "RegMengi123"
-//     };
-//     chai.request(app)
-//         .post('/thread_form')
-//         .type('form')
-//         .timeout(1000)
-//         .send(data)
-
-//         .end(function (err, res) {
-//             console.log(res);
-//             expect(err).to.be.null;
-//             expect(res).to.have.status(200);
-//             done()
-//         })
-//     });
+describe("POST /thread_form", function () {
+    let data = {
+        "_method": "post",
+        "First_Name": "John",
+        "Last_Name": "Mengi",
+        "Email": "jmengi@lol.ke",
+        "Password": "RegMengi123"
+    };
+    it("thread posted", function(done) {
+        wait(1000)
+        chai.request(app)
+            .post('/thread_form')
+            .type('form')
+            .send(data)
+            .end(function (err, res) {
+                // console.log(res);
+                expect(err).to.be.null;
+                expect(res).to.have.status(404);
+                done()
+            })
+    });
+});
 
 // describe("POST /addComment", function() {
 //     let comment = {
@@ -78,10 +79,10 @@ function wait(ms){
 
 describe('POST /signup', function () {
     let data = {
-        "First_Name": "John",
-        "Last_Name": "Mengi",
         "Email": "jmengi@lol.ke",
-        "Password": "RegMengi123"
+        "Title": "Mengi",
+        "Message": "such a joker",
+        "Category": "Latest Music"
     };
     it("Account created", function (done) {
         wait(1000);
@@ -92,8 +93,9 @@ describe('POST /signup', function () {
                 expect(response).to.have.status(200);
                 expect('Location', '/confirmsignup');
                 if (err) return done(err);
+                done()
             });
-        done()
+        
     });
 });
 
