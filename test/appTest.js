@@ -39,6 +39,10 @@ describe("POST /thread_form", function (done) {
         })
     });
 
+describe("POST" "/addComment", function(done){
+
+})
+
 describe('POST /signup', function () {
     let data = {
         "First_Name": "John",
