@@ -15,9 +15,7 @@
                     <a href="/account" id="account-btn" class="btn nav-btn">{{email}}</a>
                     <button type="button" id="post-thread" class="btn nav-btn" data-toggle="modal" data-target="#postModal" {{disabled}}>Post a Thread</button>
                     <button type="button" id="sign-up-btn" class="btn nav-btn" data-toggle="modal" data-target="#signupModal">Sign Up</button>
-
                     <button type="button" id="nav-btn" class="btn nav-btn" onclick="updateButton();" data-toggle="modal" data-target="#loginModal" value={{loggedin}}>Log in</button>
-
                 </div>
             </div>
         </nav>
@@ -46,7 +44,6 @@
                         <select name="categories" id="categories">
                             <option value="latest_music"> Latest Music</option>
                             <option value="general_music_discussion"> General Music Discussion</option>
-                            <option value="music_reviews"> Music Reviews</option>
                             <option value="off_topic_discussion"> Off Topic Discussion</option>
                         </select>
                         <button type="button" onclick="" data-dismiss="modal" class="cancelbtn">Cancel</button>
