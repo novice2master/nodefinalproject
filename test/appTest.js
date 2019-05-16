@@ -39,9 +39,25 @@ describe("POST /thread_form", function (done) {
         })
     });
 
-describe("POST" "/addComment", function(done){
+describe("POST /addComment", function() {
+    let comment = {
+        "email": "joakinsonyango05@gmail.com",
+        "comment": "noothing lol"
+    };
+    it("comment added", function(done) {
+        wait(1000);
+        chai.request("http://localhost:8080")
+            .post("/addComment")
+            .send(comment)
+            .end((err, response) => {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+            })
+        done()
+    });
 
-})
+
+});
 
 describe('POST /signup', function () {
     let data = {
