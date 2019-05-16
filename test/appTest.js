@@ -10,6 +10,12 @@ chai.use(chaiHttp);
 
 const app = require('../server');
 
+before(function (done) {
+    app.on("appRunning", function(){
+        done();
+    });
+});
+
 function wait(ms){
     var start = new Date().getTime();
     var end = start;
@@ -180,7 +186,7 @@ describe("Returns object with lyrics ", function (done) {
 //         done()
 //     });
 // });
-//
+
 // describe('GET /signup', function () {
 //     this.timeout(5000);
 //     it("Sign up test", function (done) {
@@ -194,10 +200,10 @@ describe("Returns object with lyrics ", function (done) {
 //         done()
 //     });
 // });
-//
-//
-//
-//
+
+
+
+
 // describe('GET /confirmsignup', function () {
 //     this.timeout(5000);
 //     it("confirm page test", function (done) {
@@ -211,7 +217,7 @@ describe("Returns object with lyrics ", function (done) {
 //         done()
 //     });
 // });
-//
+
 // describe('GET /login', function () {
 //     this.timeout(5000);
 //     it("Main page test", function (done) {
@@ -225,4 +231,5 @@ describe("Returns object with lyrics ", function (done) {
 //         done()
 //     });
 // });
+
 
