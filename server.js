@@ -318,10 +318,14 @@ app.get('/confirmsignup', (request, response) => {
 
 app.post('/addComment', async (request, response) => {
     var thread_id = request.body.id;
+    console.log(thread_id);
     var comment = request.body.comment;
+    console.log(comment);
     var email = request.session.email;
+    console.log(email);
     var db = utils.getDb();
     var ObjectId = utils.getObjectId();
+    console.log(ObjectId);
 
     var thread = await db.collection('threads').findOne({
         _id: ObjectId(thread_id)
@@ -342,6 +346,7 @@ app.post('/addComment', async (request, response) => {
         response.json({success: false});
         return
     } else {
+        console.log(thread.Comments);
         thread.Comments.unshift(new_comment);
     }
 
