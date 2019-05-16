@@ -410,3 +410,16 @@ textarea {
     color: #ebe7ea
 }
 
+
+
+.song-backdrop{
+    border-radius: 25px;
+    margin-top: 20px;
+    background-color: #563d7c;
+    color: white;
+}
+
+.containerMargin > p{
+    padding: 100px;
+}
+
