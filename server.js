@@ -331,13 +331,16 @@ app.post('/addComment', async (request, response) => {
         comment: comment,
         email: email
     };
-    if (typeof request.session.email !== "undefined") {
+    if (typeof request.session.email == "undefined") {
         console.log('threadtest');
-        response.render('threads.hbs', {
-            disabled: null,
-            loggedin: "True",
-            email: request.session.email
-        })
+        // response.redirect()
+        // response.refresh('back', {
+        //     disabled: null,
+        //     loggedin: "True",
+        //     email: request.session.email
+        // });
+        response.json({success: false});
+        return
     } else {
         thread.Comments.unshift(new_comment);
     }
