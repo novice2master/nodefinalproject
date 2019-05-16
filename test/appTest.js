@@ -165,69 +165,70 @@ describe('GET /', function () {
             .end(function(err, response) {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
-                done()
+                
             })
+        done()
     });
 });
 //
 //
 //
-// describe('GET /general_music', function () {
-//     this.timeout(5000);
-//     it("General Music test", function (done) {
-//         wait(1000);
-//         chai.request("http://localhost:8080")
-//             .get('/general_music')
-//             .end(function(err, response) {
-//                 expect(response).to.have.status(200);
-//                 if (err) return done(err);
-//             });
-//         done()
-//     });
-// });
-//
-// describe('GET /signup', function () {
-//     this.timeout(5000);
-//     it("Sign up test", function (done) {
-//         wait(1000);
-//         chai.request(app)
-//             .get('/signup')
-//             .end(function(err, response) {
-//                 expect(response).to.have.status(200);
-//                 if (err) return done(err);
-//             });
-//         done()
-//     });
-// });
-//
-//
-//
-//
-// describe('GET /confirmsignup', function () {
-//     this.timeout(5000);
-//     it("confirm page test", function (done) {
-//         wait(1000);
-//         chai.request(app)
-//             .get('/confirmsignup')
-//             .end(function(err, response) {
-//                 expect(response).to.have.status(200);
-//                 if (err) return done(err);
-//             });
-//         done()
-//     });
-// });
-//
-// describe('GET /login', function () {
-//     this.timeout(5000);
-//     it("Main page test", function (done) {
-//         wait(1000);
-//         chai.request(app)
-//             .get('/login')
-//             .end(function(err, response) {
-//                 expect(response).to.have.status(200);
-//                 if (err) return done(err);
-//             });
-//         done()
-//     });
-// });
+describe('GET /general_music', function () {
+    this.timeout(5000);
+    it("General Music test", function (done) {
+        wait(1000);
+        chai.request("http://localhost:8080")
+            .get('/general_music')
+            .end(function(err, response) {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+            });
+        done()
+    });
+});
+
+describe('GET /signup', function () {
+    this.timeout(5000);
+    it("Sign up test", function (done) {
+        wait(1000);
+        chai.request(app)
+            .get('/signup')
+            .end(function(err, response) {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+            });
+        done()
+    });
+});
+
+
+
+
+describe('GET /confirmsignup', function () {
+    this.timeout(5000);
+    it("confirm page test", function (done) {
+        wait(1000);
+        chai.request(app)
+            .get('/confirmsignup')
+            .end(function(err, response) {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+            });
+        done()
+    });
+});
+
+describe('GET /login', function () {
+    this.timeout(5000);
+    it("Main page test", function (done) {
+        wait(1000);
+        chai.request(app)
+            .get('/login')
+            .end(function(err, response) {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+            });
+        done()
+    });
+});
 
