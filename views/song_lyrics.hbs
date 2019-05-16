@@ -13,10 +13,34 @@
 
 {{> navbar}}
 
-<div id="container">
-    <div id="song_lyrics">
-        Song Lyrics go here
+<div id="container containerMargin">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 id="thread-titles">Song Lyrics</h1>
+        </div>
+        <div class="col-md-6">
+                <form method="POST" action="/song_search">
+                <input type="text" placeholder="Search for song lyrics" id="song_lyrics">
+                <button type="submit">Submit</button>
+                </form>
+        </div>
     </div>
+    <div class="d-flex justify-content-center">
+    <h2 id="song_title">Song Title</h2>
+    </div>
+    <div class="d-flex justify-content-center">
+    <h2 id="song_artist">Song Artist</h2>
+    </div>
+    <div class="d-flex justify-content-center" id="lyrics_holder">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tincidunt, enim et consequat eleifend, ipsum metus fermentum ante,
+        eget faucibus ante nibh nec massa. In ultrices massa et dui imperdiet accumsan. Vestibulum id eros sed orci pellentesque pharetra
+        eu et urna. Mauris vitae arcu euismod, dictum lorem a, tempor nibh. Morbi malesuada id massa sed facilisis. Vivamus sapien sapien,
+        consequat id ex nec, vehicula sagittis enim. Nulla diam turpis, aliquam quis risus nec, varius convallis massa. Etiam sodales ultricies ligula,
+        a eleifend risus ultrices vel. Nunc ut enim sed mauris tincidunt sagittis ac id nisi. Curabitur in libero aliquet, sollicitudin orci sit amet,
+        euismod lectus. Donec vel porttitor arcu, non bibendum nunc. Nam sodales vitae ligula rhoncus volutpat. Proin cursus sapien metus, sed cursus
+        lectus tincidunt suscipit. In eget arcu ut eros ultrices congue.
+    </div>
+
 </div>
 {{> footer}}
 
