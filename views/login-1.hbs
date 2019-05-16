@@ -1,0 +1,53 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MUZIKI Login</title>
+    <link rel="stylesheet" href="../public/css/general.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Monoton');
+    </style>
+</head>
+
+<body>
+
+{{> navbar}}
+
+<div id="IncorrectLogin">{{login_error}}</div>
+
+<div class="container containerMargin">
+    <div class="card">
+        <div class="card-header" id="cardHeader">
+            <h1>Log In</h1>
+        </div>
+        <div class="card-body">
+            <form action="/login_form" method="POST">
+                <p>Please fill in your email and password to log in.</p>
+                <hr>
+
+                <label for="email"><b>Username</b></label>
+                <input type="text" placeholder="Enter Email" name="email" id="email" required>
+
+                <label for="password"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" id="password" required>
+                <div class = "g-recaptcha" data-sitekey="6LfWI6EUAAAAAK7fZapTU8vw4-oxxi08_RTwHgUL"></div>
+                <div class="buttonArea">
+                    <button type="submit" class="btn">Login</button>
+                    <button type="button" onclick="window.location.href = './';" class="btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{>footer}}
+
+</body>
+</html>
+ -->

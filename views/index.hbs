@@ -18,9 +18,9 @@
     <br>
     <p class="lead">The place to be for all things music and more</p>
     <div>
-        <img alt="topImage3" src="../public/images/MusicNote.png" class="jumboImage">
-        <img alt="topImage1" src="../public/images/Headphone.png" class="jumboImage">
-        <img alt="topImage2" src="../public/images/Vinyl.png" class="jumboImage">
+        <img alt="topImage3" id="icon1" src="../public/images/MusicNote.png" class="jumboImage">
+        <img alt="topImage1" id="icon2" src="../public/images/Headphone.png" class="jumboImage">
+        <img alt="topImage2" id="icon3" src="../public/images/Vinyl.png" class="jumboImage">
     </div>
 
     <br>
@@ -37,7 +37,7 @@
     <div class="row">
         <div class="col-md-6" onclick="window.location.href = './latest_music';">
             <div class="card border-0 discussionCard">
-                <img class="card-img-top" alt="cardImage1" src="../public/images/cardImg1.png" height="200" width="540">
+                <img class="card-img-top" id="cImg1" alt="cardImage1" src="../public/images/cardImg1.png" height="200" width="540">
                 <div class="card-body border-0 musicCard">
                     <h3>Latest Music</h3>
                 </div>
@@ -87,6 +87,15 @@
                 $(this).css({"background-color": "#e1dbe5"});
             }
     );
+    $("#icon2").click(
+        function () {
+            $("#jumbotron, .footer, .topNav").css({"background-color": "#D2AAD2"});
+            $("#cImg1").prop("src", "https://i.imgur.com/k2KWGkv.jpg");
+            $("#icon1").prop("src", "https://i.imgur.com/xQo7j2C.png");
+            $("#icon2").prop("src", "https://i.imgur.com/JejGF8p.png");
+            $("#icon3").prop("src", "https://i.imgur.com/gOrQCOA.png");
+        }
+    )
 </script>
 </body>
 </html>
