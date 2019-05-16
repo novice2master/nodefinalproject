@@ -4,11 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --exit",
+    "test": "mocha || true",
     "start": "node server.js",
     "dev": "nodemon"
   },
-  "author": "Joakins",
+  "author": "Group 6",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
