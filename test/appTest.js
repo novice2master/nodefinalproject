@@ -1,6 +1,7 @@
 const request = require('supertest');
 const assert = require('chai').assert;
 const expect = require('chai').expect;
+// const apptest = require('app')
 
 
 var chai = require('chai'), chaiHttp = require('chai-http');
@@ -9,6 +10,12 @@ chai.use(chaiHttp);
 
 const app = require('../server');
 
+before(function (done) {
+    app.on("appRunning", function(){
+        done();
+    });
+});
+
 function wait(ms){
     var start = new Date().getTime();
     var end = start;
@@ -16,6 +23,21 @@ function wait(ms){
         end = new Date().getTime();
     }
 }
+
+function sleep() {
+    return new Promise(resolve => setTimeout(resolve, 1000));
+ }
+
+describe('logMessage()', () => {
+        it("logMessage should return an array", async () => {
+            utils.init();
+            await sleep();
+            db = utils.getDb();
+            testMsg = msgs.createMessage('test', 'test', 'test', 'F77777');
+            result = await msgs.logMessage('test', testMsg);
+            // db.collection('log').deleteOne({username: 'test'});
+            assert.typeOf(result, 'array');
+        });
 
 describe("POST /thread_form", function (done) {
     let data = {

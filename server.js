@@ -530,9 +530,10 @@ app.get('/sign-out', (req, res) => {
 });
 
 
-app.listen(port, () => {
-    utils.init();
+app.listen(port, async () => {
+    await utils.init();
     console.log(`Server is up on port ${port}`);
+    app.emit("appRunning")
 
 });
 
