@@ -13,6 +13,9 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto mt-lg-0" id="topNav-right">
                     <a href="/account" id="account-btn" class="btn nav-btn">{{email}}</a>
+                    <form action="get-lyrics" method="post">
+                        <a href="/song_lyrics" class="btn nav-btn">Song Lyrics</a>
+                    </form>
                     <button type="button" id="post-thread" class="btn nav-btn" data-toggle="modal" data-target="#postModal" {{disabled}}>Post a Thread</button>
                     <button type="button" id="sign-up-btn" class="btn nav-btn" data-toggle="modal" data-target="#signupModal">Sign Up</button>
                     <button type="button" id="nav-btn" class="btn nav-btn" onclick="updateButton();" data-toggle="modal" data-target="#loginModal" value={{loggedin}}>Log in</button>

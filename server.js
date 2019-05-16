@@ -195,6 +195,8 @@ app.get('/off_topic', async (request, response) => {
     })
 });
 //personal account page
+
+
 app.get('/account', async (request, response) => {
     // if users ins't loggedin, they aren't allowed to the page
     try {
