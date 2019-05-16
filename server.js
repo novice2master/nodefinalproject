@@ -196,6 +196,8 @@ app.get('/off_topic', async (request, response) => {
     })
 });
 //personal account page
+
+
 app.get('/account', async (request, response) => {
     // if users ins't loggedin, they aren't allowed to the page
     try {
@@ -247,6 +249,7 @@ app.get('/account', async (request, response) => {
 app.get('/chatroom', (request, response) => {
     response.render('chatroom.hbs')
 });
+
 //Music Reviews thread page
 // app.get('/music_reviews.hbs', (request, response) => {
 //   response.render('music_reviews.hbs');
@@ -376,6 +379,19 @@ app.get('/login', (request, response) => {
             disabled: 'disabled'
         })
     }
+});
+//Song Lyrics Page
+app.get('/song_lyrics', (request, response) =>{
+    try {
+        if (typeof request.session.email !== 'string'){
+            response.redirect("/");
+            return
+        }
+    }catch (e) {
+        response.send("User Forbidden");
+        return
+    }
+    response.render('song_lyrics.hbs')
 });
 
 //login user based if able to location user info from DB
