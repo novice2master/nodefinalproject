@@ -376,6 +376,19 @@ app.get('/login', (request, response) => {
         })
     }
 });
+//Song Lyrics Page
+app.get('/song_lyrics', (request, response) =>{
+    try {
+        if (typeof request.session.email !== 'string'){
+            response.redirect("/");
+            return
+        }
+    }catch (e) {
+        response.send("User Forbidden");
+        return
+    }
+    response.render('song_lyrics.hbs')
+});
 
 //login user based if able to location user info from DB
 app.get('/login_form', (request, response)=> {
