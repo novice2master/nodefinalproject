@@ -1,7 +1,7 @@
 const request = require('supertest');
 const assert = require('chai').assert;
 const expect = require('chai').expect;
-// const apptest = require('app')
+const lyrics = require('../song_search.js');
 
 
 var chai = require('chai'), chaiHttp = require('chai-http');
@@ -24,6 +24,31 @@ function wait(ms){
     }
 }
 
+// describe("POST /thread_form", function (done) {
+//     let data = {
+//         "_method": "post",
+//         "First_Name": "John",
+//         "Last_Name": "Mengi",
+//         "Email": "jmengi@lol.ke",
+//         "Password": "RegMengi123"
+//     };
+//     chai.request(app)
+//         .post('/thread_form')
+//         .type('form')
+//         .timeout(1000)
+//         .send(data)
+//
+//         .end(function (err, res) {
+//             console.log(res);
+//             expect(err).to.be.null;
+//             expect(res).to.have.status(200);
+//             done()
+//         })
+//     });
+
+// describe("POST","/addComment", function(done){
+//
+// });
 
 describe("POST /addComment", function() {
     let comment = {

@@ -8,6 +8,7 @@ const utils = require('./utils');
 const port = process.env.PORT || 8080;
 const session = require('express-session');
 const captchapng = require('captchapng');
+const lyrics = require('./song_search.js');
 var app = express();
 app.use(cookieParser());
 app.use(bodyparser.json());
@@ -195,6 +196,8 @@ app.get('/off_topic', async (request, response) => {
     })
 });
 //personal account page
+
+
 app.get('/account', async (request, response) => {
     // if users ins't loggedin, they aren't allowed to the page
     try {
@@ -246,6 +249,7 @@ app.get('/account', async (request, response) => {
 app.get('/chatroom', (request, response) => {
     response.render('chatroom.hbs')
 });
+
 //Music Reviews thread page
 // app.get('/music_reviews.hbs', (request, response) => {
 //   response.render('music_reviews.hbs');
@@ -376,6 +380,32 @@ app.get('/login', (request, response) => {
         })
     }
 });
+//Song Lyrics Page
+app.get('/song_lyrics', (request, response) =>{
+    try {
+        if (typeof request.session.email !== 'string'){
+            response.redirect("/");
+            return
+        }
+    }catch (e) {
+        response.send("User Forbidden");
+        return
+    }
+    response.render('song_lyrics.hbs')
+});
+
+//Song search
+app.post('/song_search', (request, response)=> {
+    // console.log(request.body);
+    lyrics(request.body.song_lyrics ).then(res=> {
+        response.render("song_lyrics.hbs", {
+            song: res.title,
+            artist: res.artist,
+            lyrics: res.lyric
+        })
+    })
+});
+
 
 //login user based if able to location user info from DB
 app.get('/login_form', (request, response)=> {
