@@ -45,7 +45,11 @@
 -->
 <div class="container">
     <form method="POST" action="/song_search">
-        <input type="text" class="song-search" placeholder="Search for song lyrics" id="song_lyrics">
+        <div>
+            <input type="text" class="song-search" placeholder="Search for song lyrics" id="song_lyrics" name="song_lyrics">
+        </div>
+
+        <button type="submit" class="btn" id="find-btn">Find</button>
     </form>
 </div>
 <div class="container song-backdrop">

@@ -394,6 +394,19 @@ app.get('/song_lyrics', (request, response) =>{
     response.render('song_lyrics.hbs')
 });
 
+//Song search
+app.post('/song_search', (request, response)=> {
+    // console.log(request.body);
+    lyrics(request.body.song_lyrics ).then(res=> {
+        response.render("song_lyrics.hbs", {
+            song: res.title,
+            artist: res.artist,
+            lyrics: res.lyric
+        })
+    })
+});
+
+
 //login user based if able to location user info from DB
 app.get('/login_form', (request, response)=> {
     try {
