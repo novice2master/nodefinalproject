@@ -38,8 +38,9 @@ describe("POST /song_search", function() {
             .end((err, response) => {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
+                done()
             });
-        done()
+
     });
 
     let song2 = {
@@ -54,8 +55,9 @@ describe("POST /song_search", function() {
             .end((err, response) => {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
+                done()
             });
-        done()
+
     });
     let song3 = {
         "title": "Watch what I do",
@@ -69,8 +71,8 @@ describe("POST /song_search", function() {
             .end((err, response) => {
                 expect(response).to.have.status(400);
                 if (err) return done(err);
+                done()
             });
-        done()
     });
 });
 
@@ -89,8 +91,9 @@ describe("POST /addComment", function() {
             .end((err, response) => {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
+                done()
             });
-        done()
+
     });
 });
 
@@ -103,8 +106,9 @@ describe("GET /account", function() {
             .end((err, response) => {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
+                done()
             });
-        done()
+
     });
 });
 
@@ -124,9 +128,10 @@ describe('POST /signup', function () {
                 expect(response).to.have.status(200);
                 expect('Location', '/confirmsignup');
                 if (err) return done(err);
+                done()
                 
             });
-        done()
+
         
     });
 });
@@ -166,8 +171,9 @@ describe('GET /create_post', function () {
             .end(function(err, response) {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
+                done()
             });
-        done()
+
     });
 });
 
@@ -180,9 +186,10 @@ describe('GET /', function () {
             .end(function(err, response) {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
+                done()
                 
             });
-        done()
+
     });
 });
 
@@ -197,8 +204,9 @@ describe('GET /general_music', function () {
             .end(function(err, response) {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
+                done()
             });
-        done()
+
     });
 });
 
@@ -211,8 +219,9 @@ describe('GET /signup', function () {
             .end(function(err, response) {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
+                done()
             });
-        done()
+
     });
 });
 
@@ -228,8 +237,9 @@ describe('GET /confirmsignup', function () {
             .end(function(err, response) {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
+                done()
             });
-        done()
+
     });
 });
 
@@ -242,8 +252,9 @@ describe('GET /login', function () {
             .end(function(err, response) {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
+                done()
             });
-        done()
+
     });
 });
 
@@ -257,8 +268,9 @@ describe('GET /latest_music', function () {
             .end(function(err, response) {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
+                done()
             });
-        done()
+
     });
 });
 
@@ -278,8 +290,9 @@ describe('POST /thread_form', function () {
             .end((err, response) => {
                 if (err) return done(err);
                 expect(response).to.have.status(200)
+                done()
             });
-        done()
+
     });
 });
 
