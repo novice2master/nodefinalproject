@@ -382,16 +382,28 @@ app.get('/login', (request, response) => {
 });
 //Song Lyrics Page
 app.get('/song_lyrics', (request, response) =>{
-    try {
-        if (typeof request.session.email !== 'string'){
-            response.redirect("/");
-            return
-        }
-    }catch (e) {
-        response.send("User Forbidden");
-        return
+    if (typeof request.session.email !== "undefined") {
+        // console.log('logintest');
+        response.render('song_lyrics.hbs', {
+            disabled: null,
+            loggedin: "True",
+            email: request.session.email
+        })
+    } else {
+        response.render('index.hbs', {
+            disabled: 'disabled'
+        })
     }
-    response.render('song_lyrics.hbs')
+    // try {
+    //     if (typeof request.session.email !== 'string'){
+    //         response.redirect("/");
+    //         return
+    //     }
+    // }catch (e) {
+    //     response.send("User Forbidden");
+    //     return
+    // }
+    // response.render('song_lyrics.hbs')
 });
 
 //Song search
@@ -401,8 +413,20 @@ app.post('/song_search', (request, response)=> {
         response.render("song_lyrics.hbs", {
             song: res.title,
             artist: res.artist,
-            lyrics: res.lyric
+            lyrics: res.lyric,
+            disabled: null,
+            loggedin: "True",
+            email: request.session.email
         })
+    }).catch(err=> {
+        response.render("song_lyrics.hbs", {
+            song: err,
+            disabled: null,
+            loggedin: "True",
+            email: request.session.email
+
+        })
+
     })
 });
 

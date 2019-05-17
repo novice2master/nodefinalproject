@@ -16,3 +16,5 @@ branches:
 #  - npm install -g gulp-cli
 #
 #script: test/appTest.js
+
+fail_test: true

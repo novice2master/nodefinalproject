@@ -22,17 +22,21 @@ var get_lyrics  = (song_name, artist_name) => {
             // console.log(response.hits);
             // console.log((response.hits).slice(-1)[0]);
             // console.log(response.hits[9]);
-            for (i in response.hits) {
-                // console.log("Current #", i, "Max hits", response.hits.length);
-                if (i == response.hits.length) {
-                    // console.log("I am here");
-                    reject("No lyrics found");
-                    return
-                }
+            for (const i in response.hits) {
+
+                // if (i == response.hits.length) {
+                //     // console.log("I am here");
+                //     reject("No lyrics found");
+                //     return
+                // }
                 const result = ( _.find((response.hits)[i], {"title": song_name}));
 
-
+                console.log("Current #", typeof Number(i), i, "Max hits", typeof response.hits.length, response.hits.length);
                 if ((typeof result == 'object') && (result.title == song_name) && ((result.primary_artist.name == artist_name))){
+                    console.log("Current #", typeof Number(i), i, "Max hits", typeof response.hits.length, response.hits.length);
+                    // console.log(payload["lyric"]);
+                    // console.log((response.hits)[i]);
+                    // console.log(((response.hits).slice(-1)[0]));
                         payload['title'] = result.title;
                         payload['artist'] = result.primary_artist.name;
                         fetch(result.url, {
@@ -46,10 +50,13 @@ var get_lyrics  = (song_name, artist_name) => {
                             resolve(payload)
                         }).catch(err => {
                         reject(err)
+
                     });
 
-                }else if (response.hits[i] == (response.hits).slice(-1)[0]){
-                    reject("No lyrics found");
+                }
+                if ((response.hits.length == (Number(i)) + 1) && (typeof payload["lyric"] != "string")){
+                console.log("Here");
+                reject("No lyrics found");
                 }
             }});
     }))
