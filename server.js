@@ -92,7 +92,7 @@ app.get('/', (request, response) => {
             } else
                 throw new Error("User is not signed-in")
         } catch (e) {
-            console.log(e.message);
+            // console.log(e.message);
             response.render('index.hbs', {
                 disabled: 'disabled',
                 loggedin: "False"
@@ -120,7 +120,7 @@ app.get('/general_music', async (request, response) => {
                 } else
                     throw new Error("User is not signed-in")
             } catch (e) {
-                console.log(e.message);
+                // console.log(e.message);
                 response.render('general_music.hbs', {
                     objects: threads,
                     disabled: 'disabled',
@@ -154,7 +154,7 @@ app.get('/all_posts', async (request, response) => {
                 } else
                     throw new Error("User is not signed-in")
             } catch (e) {
-                console.log(e.message);
+                // console.log(e.message);
                 response.render('all_posts.hbs', {
                     objects: threads,
                     disabled: 'disabled',
@@ -185,7 +185,7 @@ app.get('/off_topic', async (request, response) => {
                 } else
                     throw new Error("User is not signed-in")
             } catch (e) {
-                console.log(e.message);
+                // console.log(e.message);
                 response.render('off_topic.hbs', {
                     objects: threads,
                     disabled: 'disabled',
@@ -227,7 +227,7 @@ app.get('/account', async (request, response) => {
                 } else
                     throw new Error("User is not signed-in")
             } catch (e) {
-                console.log(e.message);
+                // console.log(e.message);
                 response.render('account.hbs', {
                     objects: threads,
                     disabled: 'disabled',
@@ -277,7 +277,7 @@ app.get('/latest_music', async (request, response) => {
                 } else
                     throw new Error("User is not signed-in")
             } catch (e) {
-                console.log(e.message);
+                // console.log(e.message);
                 response.render('latest_music.hbs', {
                     objects: threads,
                     disabled: 'disabled',
@@ -307,7 +307,7 @@ app.get('/signup', (request, response) => {
         } else
             throw new Error("User is not signed-in")
     } catch (e) {
-        console.log(e.message);
+        // console.log(e.message);
         response.render('signup.hbs', {
             disabled: 'disabled',
             loggedin: "False"
@@ -397,7 +397,7 @@ app.get('/song_lyrics', (request, response) =>{
 //Song search
 app.post('/song_search', (request, response)=> {
     // console.log(request.body);
-    lyrics(request.body.song_lyrics ).then(res=> {
+    lyrics(request.body.song_lyrics, request.body.song_artist).then(res=> {
         response.render("song_lyrics.hbs", {
             song: res.title,
             artist: res.artist,
@@ -423,7 +423,7 @@ app.get('/login_form', (request, response)=> {
             throw new Error("User is not signed-in")
         }
     } catch (e) {
-        console.log(e.message);
+        // console.log(e.message);
         response.render('login.hbs', {
             disabled: 'disabled',
             loggedin: "False"
