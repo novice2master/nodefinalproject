@@ -127,19 +127,19 @@ describe('GET /latest_music', function () {
 
 
 
-// describe('GET /create_post', function () {
-//     this.timeout(5000);
-//     it("Crete Post test", function (done) {
-//         wait(1000);
-//         chai.request("http://localhost:8080")
-//             .get('/create_post')
-//             .end(function(err, response) {
-//                 expect(response).to.have.status(200);
-//                 if (err) return done(err);
-//             });
-//         done()
-//     });
-// });
+describe('GET /create_post', function () {
+    this.timeout(5000);
+    it("Crete Post test", function (done) {
+        wait(1000);
+        chai.request("http://localhost:8080")
+            .get('/create_post')
+            .end(function(err, response) {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+            });
+        done()
+    });
+});
 
 // describe('GET /', function () {
 //     this.timeout(5000);
