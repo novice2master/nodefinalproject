@@ -24,57 +24,57 @@ function wait(ms){
     }
 }
 
-// describe("POST /thread_form", function (done) {
-//     let data = {
-//         "_method": "post",
-//         "First_Name": "John",
-//         "Last_Name": "Mengi",
-//         "Email": "jmengi@lol.ke",
-//         "Password": "RegMengi123"
-//     };
-//     chai.request(app)
-//         .post('/thread_form')
-//         .type('form')
-//         .timeout(1000)
-//         .send(data)
-//
-//         .end(function (err, res) {
-//             console.log(res);
-//             expect(err).to.be.null;
-//             expect(res).to.have.status(200);
-//             done()
-//         })
-//     });
 
-// describe("POST","/addComment", function(done){
-//
-// });
-describe("Song search function working", function () {
-    it("when searching for Song 2 by blur gets correct response", function (done) {
-        lyrics("Song 2", "Blur").then(res=> {
-            assert.equal(res.title,"Song 2");
-            assert.equal(res.artist,"Blur");
-            expect(res.lyric).to.be.a('string');
-            done()
-        }).catch(err=> {
-            done(err);
-            expect(err).not.to.be.a("No lyrics found")
-        })
-    });
-    it("when searching for Big Iron- Marty Robbins gets correct response", function (done) {
-        lyrics("Big Iron", "Marty Robbins").then(res=> {
-            assert.equal(res.title,"Big Iron");
-            assert.equal(res.artist,"Marty Robbins");
-            expect(res.lyric).to.be.a('string');
-            done()
-        }).catch(err=> {
-            done(err);
-            expect(err).not.to.be.a("No lyrics found")
-        })
+describe("POST /song_search", function() {
+    let song = {
+        "title": "Song 2",
+        "artist": "Blur"
+    };
+    it("when searching for Song 2 by blur gets correct response", function(done) {
+        wait(1000);
+        chai.request("http://localhost:8080")
+            .post("/song_search")
+            .send(song)
+            .end((err, response) => {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+            });
+        done()
     });
 
-
+    let song2 = {
+        "title": "Big Iron",
+        "artist": "Marty Robbins"
+    };
+    it("when searching for Big Iron- Marty Robbins gets correct response", function(done) {
+        wait(1000);
+        chai.request("http://localhost:8080")
+            .post("/song_search")
+            .send(song2)
+            .end((err, response) => {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+            });
+        done()
+    });
+    let song3 = {
+        "title": "Watch what I do",
+        "artist": "Hey Buko"
+    };
+    it("when searching for Watch what I do - Hey Buko gets correct response", function(done) {
+        wait(1000);
+        chai.request("http://localhost:8080")
+            .post("/song_search")
+            .send(song3)
+            .end((err, response) => {
+                expect(response).to.have.status(400);
+                if (err) return done(err);
+            });
+        done()
+    });
 });
+
+
 
 describe("POST /addComment", function() {
     let comment = {
@@ -147,7 +147,7 @@ before(function(done){
         });
 });
 describe('POST /login', function () {
-    it("Account exists", function (done) {
+    it("Login successful", function (done) {
         wait(1000);
         request.agent("http://localhost:8080").post('/login')
         .expect(200);
@@ -159,7 +159,7 @@ describe('POST /login', function () {
 
 describe('GET /create_post', function () {
     this.timeout(5000);
-    it("Create Post test", function (done) {
+    it("Create test page", function (done) {
         wait(1000);
         chai.request.agent("http://localhost:8080")
             .get('/create_post')
@@ -190,7 +190,7 @@ describe('GET /', function () {
 
 describe('GET /general_music', function () {
     this.timeout(5000);
-    it("General Music test", function (done) {
+    it("General Music test page", function (done) {
         wait(1000);
         chai.request("http://localhost:8080")
             .get('/general_music')
@@ -204,7 +204,7 @@ describe('GET /general_music', function () {
 
 describe('GET /signup', function () {
     this.timeout(5000);
-    it("Sign up test", function (done) {
+    it("Sign up test page", function (done) {
         wait(1000);
         chai.request(app)
             .get('/signup')
@@ -235,7 +235,7 @@ describe('GET /confirmsignup', function () {
 
 describe('GET /login', function () {
     this.timeout(5000);
-    it("Main page test", function (done) {
+    it("Login test page", function (done) {
         wait(1000);
         chai.request(app)
             .get('/login')
