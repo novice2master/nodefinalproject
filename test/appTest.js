@@ -49,6 +49,30 @@ function wait(ms){
 // describe("POST","/addComment", function(done){
 //
 // });
+describe("Song search function working", function () {
+    it("when searching for Song 2 by blur gets correct response", function (done) {
+        lyrics("Song 2", "Blur").then(res=> {
+            assert.equal(res.title,"Song 2");
+            assert.equal(res.artist,"Blur");
+            expect(res.lyric).to.be.a('string');
+            done()
+        }).catch(err=> {
+            expect(err).not.to.be.a("No lyrics found")
+        })
+    });
+    it("when searching for Big Iron- Marty Robbins gets correct response", function (done) {
+        lyrics("Big Iron", "Marty Robbins").then(res=> {
+            assert.equal(res.title,"Big Iron");
+            assert.equal(res.artist,"Marty Robbins");
+            expect(res.lyric).to.be.a('string');
+            done()
+        }).catch(err=> {
+            expect(err).not.to.be.a("No lyrics found")
+        })
+    });
+
+
+});
 
 describe("POST /addComment", function() {
     let comment = {
@@ -63,7 +87,7 @@ describe("POST /addComment", function() {
             .end((err, response) => {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
-            })
+            });
         done()
     });
 });
