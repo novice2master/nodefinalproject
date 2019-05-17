@@ -205,7 +205,7 @@ describe('GET /general_music', function () {
                 if (err) return done(err);
                 done()
             });
-
+        
     });
 });
 
@@ -220,7 +220,7 @@ describe('GET /signup', function () {
                 if (err) return done(err);
                 done()
             });
-
+        
     });
 });
 
@@ -238,7 +238,7 @@ describe('GET /confirmsignup', function () {
                 if (err) return done(err);
                 done()
             });
-
+        
     });
 });
 
@@ -253,7 +253,7 @@ describe('GET /login', function () {
                 if (err) return done(err);
                 done()
             });
-
+        
     });
 });
 
@@ -269,7 +269,7 @@ describe('GET /latest_music', function () {
                 if (err) return done(err);
                 done()
             });
-
+        
     });
 });
 
@@ -288,10 +288,11 @@ describe('POST /thread_form', function () {
             .send(data)
             .end((err, response) => {
                 if (err) return done(err);
-                expect(response).to.have.status(200);
-                done()
+                expect(response).to.have.status(200)
+                
             });
-
+        done()
+        
     });
 });
 
