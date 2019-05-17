@@ -24,31 +24,7 @@ function wait(ms){
     }
 }
 
-// describe("POST /thread_form", function (done) {
-//     let data = {
-//         "_method": "post",
-//         "First_Name": "John",
-//         "Last_Name": "Mengi",
-//         "Email": "jmengi@lol.ke",
-//         "Password": "RegMengi123"
-//     };
-//     chai.request(app)
-//         .post('/thread_form')
-//         .type('form')
-//         .timeout(1000)
-//         .send(data)
-//
-//         .end(function (err, res) {
-//             console.log(res);
-//             expect(err).to.be.null;
-//             expect(res).to.have.status(200);
-//             done()
-//         })
-//     });
 
-// describe("POST","/addComment", function(done){
-//
-// });
 describe("POST /song_search", function() {
     let song = {
         "title": "Song 2",
@@ -84,33 +60,6 @@ describe("POST /song_search", function() {
 });
 
 
-
-// describe("Song search function working", function () {
-//     it("when searching for Song 2 by blur gets correct response", function (done) {
-//         lyrics("Song 2", "Blur").then(res=> {
-//             assert.equal(res.title,"Song 2");
-//             assert.equal(res.artist,"Blur");
-//             expect(res.lyric).to.be.a('string');
-//             done()
-//         }).catch(err=> {
-//             done(err);
-//             expect(err).not.to.be.a("No lyrics found")
-//         })
-//     });
-//     it("when searching for Big Iron- Marty Robbins gets correct response", function (done) {
-//         lyrics("Big Iron", "Marty Robbins").then(res=> {
-//             assert.equal(res.title,"Big Iron");
-//             assert.equal(res.artist,"Marty Robbins");
-//             expect(res.lyric).to.be.a('string');
-//             done()
-//         }).catch(err=> {
-//             done(err);
-//             expect(err).not.to.be.a("No lyrics found")
-//         })
-//     });
-
-
-// });
 
 describe("POST /addComment", function() {
     let comment = {
