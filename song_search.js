@@ -8,7 +8,10 @@ const fetch = require('node-fetch');
 const GENIUS_CLIENT_ACCESS_TOKEN = "579Jay1weEOxkbcJIRtrzGhwhVXx1_828qmcuL-2kwX4Dlt-52t3p7HS2AMdYhNT";
 var genius = new api(GENIUS_CLIENT_ACCESS_TOKEN);
 var get_lyrics  = (song_name, artist_name) => {
+
+
     return new Promise(((resolve, reject) => {
+        // reject(Error("Not implemented"));
         const payload = {};
         genius.search(song_name).then(async function (response) {
             if (typeof response == "undefined") {
@@ -17,10 +20,12 @@ var get_lyrics  = (song_name, artist_name) => {
                 // console.log(response.hits);
             // const result = [];
             // console.log(response.hits);
+            // console.log((response.hits).slice(-1)[0]);
+            // console.log(response.hits[9]);
             for (i in response.hits) {
                 // console.log("Current #", i, "Max hits", response.hits.length);
                 if (i == response.hits.length) {
-                    console.log("I am here");
+                    // console.log("I am here");
                     reject("No lyrics found");
                     return
                 }
@@ -43,11 +48,14 @@ var get_lyrics  = (song_name, artist_name) => {
                         reject(err)
                     });
 
-                }}});
+                }else if (response.hits[i] == (response.hits).slice(-1)[0]){
+                    reject("No lyrics found");
+                }
+            }});
     }))
 
 };
-// get_lyrics("Song 2", "Blur").then(result=> {
+// get_lyrics("Watch what I do", "Hey Buko").then(result=> {
 //     console.log("Here: ",result)
 // }).catch(err=> {
 //     console.log("Error: ", err)

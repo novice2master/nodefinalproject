@@ -57,6 +57,7 @@ describe("Song search function working", function () {
             expect(res.lyric).to.be.a('string');
             done()
         }).catch(err=> {
+            done(err);
             expect(err).not.to.be.a("No lyrics found")
         })
     });
@@ -67,6 +68,7 @@ describe("Song search function working", function () {
             expect(res.lyric).to.be.a('string');
             done()
         }).catch(err=> {
+            done(err);
             expect(err).not.to.be.a("No lyrics found")
         })
     });
@@ -101,7 +103,7 @@ describe("GET /account", function() {
             .end((err, response) => {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
-            })
+            });
         done()
     });
 });
@@ -179,7 +181,7 @@ describe('GET /', function () {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
                 
-            })
+            });
         done()
     });
 });
@@ -267,7 +269,7 @@ describe('POST /thread_form', function () {
         "Title": "Music",
         "Message": "Music today is lit",
         "Category": "General Music"
-    }
+    };
     it("Thread posted", function (done) {
         wait(1000);
         chai.request(app)
