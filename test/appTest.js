@@ -57,6 +57,21 @@ describe("POST /song_search", function() {
             });
         done()
     });
+    let song3 = {
+        "title": "Watch what I do",
+        "artist": "Hey Buko"
+    };
+    it("when searching for Watch what I do - Hey Buko gets correct response", function(done) {
+        wait(1000);
+        chai.request("http://localhost:8080")
+            .post("/song_search")
+            .send(song3)
+            .end((err, response) => {
+                expect(response).to.have.status(400);
+                if (err) return done(err);
+            });
+        done()
+    });
 });
 
 

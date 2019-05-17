@@ -409,7 +409,9 @@ app.get('/song_lyrics', (request, response) =>{
 //Song search
 app.post('/song_search', (request, response)=> {
     // console.log(request.body);
+
     lyrics(request.body.song_lyrics, request.body.song_artist).then(res=> {
+        // console.log("Success");
         response.render("song_lyrics.hbs", {
             song: res.title,
             artist: res.artist,
@@ -419,6 +421,8 @@ app.post('/song_search', (request, response)=> {
             email: request.session.email
         })
     }).catch(err=> {
+        // console.log("Error");
+        response.status(400);
         response.render("song_lyrics.hbs", {
             song: err,
             disabled: null,
