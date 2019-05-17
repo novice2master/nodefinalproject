@@ -187,7 +187,6 @@ describe('GET /', function () {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
                 done()
-                
             });
 
     });
@@ -289,7 +288,7 @@ describe('POST /thread_form', function () {
             .send(data)
             .end((err, response) => {
                 if (err) return done(err);
-                expect(response).to.have.status(200)
+                expect(response).to.have.status(200);
                 done()
             });
 
