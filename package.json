@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "mocha || true",
+    "test": "mocha || true --recursive --exit ",
     "start": "node server.js",
     "dev": "nodemon"
   },
@@ -12,16 +12,22 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "bluebird": "^3.5.4",
     "captchapng": "0.0.1",
+    "cheerio": "^1.0.0-rc.3",
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
     "express-session": "^1.16.1",
+    "genius-api": "^0.4.1",
     "hbs": "^4.0.4",
     "html": "^1.0.0",
+    "jssoup": "0.0.10",
+    "lodash": "^4.17.11",
     "md5": "^2.2.1",
     "mockgoose": "^8.0.1",
     "mongodb": "^3.2.3",
     "mongoose": "^5.5.6",
+    "node-fetch": "^2.6.0",
     "nodemon": "^1.19.0",
     "request": "^2.88.0",
     "yarn": "^1.15.2"

@@ -13,11 +13,12 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto mt-lg-0" id="topNav-right">
                     <a href="/account" id="account-btn" class="btn nav-btn">{{email}}</a>
+                    <form action="get-lyrics" method="post">
+                        <a href="/song_lyrics" id="lyrics-button" class="btn nav-btn">Song Lyrics</a>
+                    </form>
                     <button type="button" id="post-thread" class="btn nav-btn" data-toggle="modal" data-target="#postModal" {{disabled}}>Post a Thread</button>
                     <button type="button" id="sign-up-btn" class="btn nav-btn" data-toggle="modal" data-target="#signupModal">Sign Up</button>
-
                     <button type="button" id="nav-btn" class="btn nav-btn" onclick="updateButton();" data-toggle="modal" data-target="#loginModal" value={{loggedin}}>Log in</button>
-
                 </div>
             </div>
         </nav>
@@ -46,7 +47,6 @@
                         <select name="categories" id="categories">
                             <option value="latest_music"> Latest Music</option>
                             <option value="general_music_discussion"> General Music Discussion</option>
-                            <option value="music_reviews"> Music Reviews</option>
                             <option value="off_topic_discussion"> Off Topic Discussion</option>
                         </select>
                         <button type="button" onclick="" data-dismiss="modal" class="cancelbtn">Cancel</button>
@@ -140,7 +140,8 @@
         'latest_music' : 'latest_music',
         'general_music' : 'general_music_discussion',
         'music_reviews' : 'music_reviews',
-        'off_topic' : 'off_topic_discussion'
+        'off_topic' : 'off_topic_discussion',
+        '' : 'general_music_discussion'
     };
 
     var url = window.location.href;
@@ -173,6 +174,8 @@
             $('#account-btn').addClass('btn nav-btn');
             $('#post-thread').removeClass('account-btn-off');
             $('#account-btn').removeClass('account-btn-off');
+            $('#lyrics-button').removeClass('account-btn-off');
+            $('#lyrics-button').show();
         } else {
             //deals with button
             loggedin.innerHTML = 'Log In';
@@ -183,6 +186,8 @@
             $('#account-btn').removeClass('btn nav-btn');
             $('#post-thread').addClass('account-btn-off');
             $('#account-btn').addClass('account-btn-off');
+            $('#lyrics-button').addClass('account-btn-off');
+            $('#lyrics-button').hide()
         }
     }
 
