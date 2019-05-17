@@ -132,7 +132,7 @@ before(function(done){
         });
 });
 describe('POST /login', function () {
-    it("Account exists", function (done) {
+    it("Login successful", function (done) {
         wait(1000);
         request.agent("http://localhost:8080").post('/login')
         .expect(200);
@@ -144,7 +144,7 @@ describe('POST /login', function () {
 
 describe('GET /create_post', function () {
     this.timeout(5000);
-    it("Create Post test", function (done) {
+    it("Create test page", function (done) {
         wait(1000);
         chai.request.agent("http://localhost:8080")
             .get('/create_post')
@@ -175,7 +175,7 @@ describe('GET /', function () {
 
 describe('GET /general_music', function () {
     this.timeout(5000);
-    it("General Music test", function (done) {
+    it("General Music test page", function (done) {
         wait(1000);
         chai.request("http://localhost:8080")
             .get('/general_music')
@@ -189,7 +189,7 @@ describe('GET /general_music', function () {
 
 describe('GET /signup', function () {
     this.timeout(5000);
-    it("Sign up test", function (done) {
+    it("Sign up test page", function (done) {
         wait(1000);
         chai.request(app)
             .get('/signup')
@@ -220,7 +220,7 @@ describe('GET /confirmsignup', function () {
 
 describe('GET /login', function () {
     this.timeout(5000);
-    it("Main page test", function (done) {
+    it("Login test page", function (done) {
         wait(1000);
         chai.request(app)
             .get('/login')
