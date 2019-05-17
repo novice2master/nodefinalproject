@@ -103,7 +103,7 @@ describe("GET /account", function() {
             .end((err, response) => {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
-            })
+            });
         done()
     });
 });
@@ -181,7 +181,7 @@ describe('GET /', function () {
                 expect(response).to.have.status(200);
                 if (err) return done(err);
                 
-            })
+            });
         done()
     });
 });
@@ -269,7 +269,7 @@ describe('POST /thread_form', function () {
         "Title": "Music",
         "Message": "Music today is lit",
         "Category": "General Music"
-    }
+    };
     it("Thread posted", function (done) {
         wait(1000);
         chai.request(app)
