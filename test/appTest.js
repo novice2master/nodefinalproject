@@ -43,12 +43,26 @@ describe("POST /addComment", function() {
     });
 });
 
+describe("GET /account", function() {
+    this.timeout(5000);
+    it("account page found", function(done) {
+        wait(1000);
+        chai.request.agent("http://localhost:8080")
+            .get("/account")
+            .end((err, response) => {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+            })
+        done()
+    });
+});
+
 describe('POST /signup', function () {
     let data = {
+        "First_Name": "Reginald",
+        "Last_Name": "Mengi",
         "Email": "jmengi@lol.ke",
-        "Title": "Mengi",
-        "Message": "such a joker",
-        "Category": "Latest Music"
+        "Password": "RegMengi12"
     };
     it("Account created", function (done) {
         wait(1000);
