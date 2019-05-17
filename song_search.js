@@ -8,6 +8,7 @@ const fetch = require('node-fetch');
 const GENIUS_CLIENT_ACCESS_TOKEN = "579Jay1weEOxkbcJIRtrzGhwhVXx1_828qmcuL-2kwX4Dlt-52t3p7HS2AMdYhNT";
 var genius = new api(GENIUS_CLIENT_ACCESS_TOKEN);
 var get_lyrics  = (song_name, artist_name) => {
+    throw new Error("Not implemented");
     return new Promise(((resolve, reject) => {
         const payload = {};
         genius.search(song_name).then(async function (response) {
