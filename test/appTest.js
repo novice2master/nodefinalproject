@@ -1,7 +1,7 @@
 const request = require('supertest');
 const assert = require('chai').assert;
 const expect = require('chai').expect;
-// const lyrics = require('../song_search.js');
+const lyrics = require('../song_search.js');
 
 
 var chai = require('chai'), chaiHttp = require('chai-http');
