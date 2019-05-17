@@ -1,7 +1,7 @@
 const request = require('supertest');
 const assert = require('chai').assert;
 const expect = require('chai').expect;
-const lyrics = require('../song_search.js');
+// const lyrics = require('../song_search.js');
 
 
 var chai = require('chai'), chaiHttp = require('chai-http');
@@ -92,12 +92,26 @@ describe("POST /addComment", function() {
     });
 });
 
+describe("GET /account", function() {
+    this.timeout(5000);
+    it("account page found", function(done) {
+        wait(1000);
+        chai.request.agent("http://localhost:8080")
+            .get("/account")
+            .end((err, response) => {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+            })
+        done()
+    });
+});
+
 describe('POST /signup', function () {
     let data = {
+        "First_Name": "Reginald",
+        "Last_Name": "Mengi",
         "Email": "jmengi@lol.ke",
-        "Title": "Mengi",
-        "Message": "such a joker",
-        "Category": "Latest Music"
+        "Password": "RegMengi12"
     };
     it("Account created", function (done) {
         wait(1000);
@@ -108,8 +122,9 @@ describe('POST /signup', function () {
                 expect(response).to.have.status(200);
                 expect('Location', '/confirmsignup');
                 if (err) return done(err);
-                done()
+                
             });
+        done()
         
     });
 });
@@ -138,6 +153,113 @@ describe('POST /login', function () {
   });
 });
 
+
+
+describe('GET /create_post', function () {
+    this.timeout(5000);
+    it("Create Post test", function (done) {
+        wait(1000);
+        chai.request.agent("http://localhost:8080")
+            .get('/create_post')
+            .end(function(err, response) {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+            });
+        done()
+    });
+});
+
+describe('GET /', function () {
+    this.timeout(5000);
+    it("Main page test", function (done) {
+        wait(1000);
+        chai.request(app)
+            .get('/')
+            .end(function(err, response) {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+                
+            })
+        done()
+    });
+});
+
+
+
+describe('GET /general_music', function () {
+    this.timeout(5000);
+    it("General Music test", function (done) {
+        wait(1000);
+        chai.request("http://localhost:8080")
+            .get('/general_music')
+            .end(function(err, response) {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+            });
+        done()
+    });
+});
+
+describe('GET /signup', function () {
+    this.timeout(5000);
+    it("Sign up test", function (done) {
+        wait(1000);
+        chai.request(app)
+            .get('/signup')
+            .end(function(err, response) {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+            });
+        done()
+    });
+});
+
+
+
+
+describe('GET /confirmsignup', function () {
+    this.timeout(5000);
+    it("confirm page test", function (done) {
+        wait(1000);
+        chai.request(app)
+            .get('/confirmsignup')
+            .end(function(err, response) {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+            });
+        done()
+    });
+});
+
+describe('GET /login', function () {
+    this.timeout(5000);
+    it("Main page test", function (done) {
+        wait(1000);
+        chai.request(app)
+            .get('/login')
+            .end(function(err, response) {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+            });
+        done()
+    });
+});
+
+
+describe('GET /latest_music', function () {
+    this.timeout(5000);
+    it("Latest Music page test", function (done) {
+        wait(1000);
+        chai.request.agent("http://localhost:8080")
+            .get('/latest_music')
+            .end(function(err, response) {
+                expect(response).to.have.status(200);
+                if (err) return done(err);
+            });
+        done()
+    });
+});
+
 describe('POST /thread_form', function () {
     this.timeout(5000);
     let data = {
@@ -158,112 +280,4 @@ describe('POST /thread_form', function () {
         done()
     });
 });
-
-
-describe('GET /latest_music', function () {
-    this.timeout(5000);
-    it("Latest Music page test", function (done) {
-        wait(1000);
-        request.agent("http://localhost:8080")
-            .get('/latest_music')
-            .end(function(err, response) {
-                expect(response).to.have.status(404);
-                if (err) return done(err);
-            });
-        done()
-    });
-});
-
-
-
-describe('GET /create_post', function () {
-    this.timeout(5000);
-    it("Crete Post test", function (done) {
-        wait(1000);
-        request.agent("http://localhost:8080")
-            .get('/create_post')
-            .end(function(err, response) {
-                expect(response).to.have.status(200);
-                if (err) return done(err);
-            });
-        done()
-    });
-});
-
-describe('GET /', function () {
-    this.timeout(5000);
-    it("Main page test", function (done) {
-        wait(1000);
-        chai.request(app)
-            .get('/')
-            .end(function(err, response) {
-                expect(response).to.have.status(404);
-                if (err) return done(err);
-                
-            })
-        done()
-    });
-});
-
-
-
-describe('GET /general_music', function () {
-    this.timeout(5000);
-    it("General Music test", function (done) {
-        wait(1000);
-        chai.request("http://localhost:8080")
-            .get('/general_music')
-            .end(function(err, response) {
-                expect(response).to.have.status(404);
-                if (err) return done(err);
-            });
-        done()
-    });
-});
-
-describe('GET /signup', function () {
-    this.timeout(5000);
-    it("Sign up test", function (done) {
-        wait(1000);
-        chai.request(app)
-            .get('/signup')
-            .end(function(err, response) {
-                expect(response).to.have.status(404);
-                if (err) return done(err);
-            });
-        done()
-    });
-});
-
-
-
-
-describe('GET /confirmsignup', function () {
-    this.timeout(5000);
-    it("confirm page test", function (done) {
-        wait(1000);
-        chai.request(app)
-            .get('/confirmsignup')
-            .end(function(err, response) {
-                expect(response).to.have.status(404);
-                if (err) return done(err);
-            });
-        done()
-    });
-});
-
-describe('GET /login', function () {
-    this.timeout(5000);
-    it("Main page test", function (done) {
-        wait(1000);
-        chai.request(app)
-            .get('/login')
-            .end(function(err, response) {
-                expect(response).to.have.status(404);
-                if (err) return done(err);
-            });
-        done()
-    });
-});
-
 
