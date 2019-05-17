@@ -57,6 +57,7 @@ describe("Song search function working", function () {
             expect(res.lyric).to.be.a('string');
             done()
         }).catch(err=> {
+            done(err);
             expect(err).not.to.be.a("No lyrics found")
         })
     });
@@ -67,6 +68,7 @@ describe("Song search function working", function () {
             expect(res.lyric).to.be.a('string');
             done()
         }).catch(err=> {
+            done(err);
             expect(err).not.to.be.a("No lyrics found")
         })
     });
