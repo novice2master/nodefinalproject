@@ -4,7 +4,7 @@
   "description": "",
   "main": "appTest.js",
   "scripts": {
-    "test": "mocha || true --recursive --exit "
+    "test": "mocha --exit"
   },
   "author": "",
   "license": "ISC",
