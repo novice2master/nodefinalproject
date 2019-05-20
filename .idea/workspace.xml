@@ -70,11 +70,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="1592" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="2728" />
     <option name="y" value="-8" />
-    <option name="width" value="1616" />
-    <option name="height" value="916" />
+    <option name="width" value="1936" />
+    <option name="height" value="1176" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -120,7 +120,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.song_search.js">
+  <component name="RunManager" selected="Node.js.server.js">
+    <configuration name="server.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/server.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
     <configuration name="song_search.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="song_search.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
@@ -157,6 +160,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.server.js" />
         <item itemvalue="Mocha.Song search function working" />
         <item itemvalue="Node.js.song_search.js" />
         <item itemvalue="Mocha.Song search function working.when searching for Song 2 by blur gets correct response" />
