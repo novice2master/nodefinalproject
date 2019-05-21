@@ -32,12 +32,18 @@ var get_lyrics  = (song_name, artist_name) => {
                 const result = (_.find(response.hits[i], function (el) {
                         // return (el.match(song_name))
                     // console.log(el);
-                    return el.title === song_name
+                    // return el.title === song_name
+                    // console.log(el.title);
+                    // console.log(typeof el.title);
+                    if (typeof el.title === 'string'){
+                        return (el.title).search(/song_name/i);
+                    }
+
                 }));
                 // console.log(result);
 
                 // console.log("Current #", typeof Number(i), i, "Max hits", typeof response.hits.length, response.hits.length);
-                if ((typeof result == 'object') && (result.title === song_name) && ((result.primary_artist.name === artist_name))) {
+                if ((typeof result == 'object') && ((result.title).search(/song_name/i)) && ((result.primary_artist.name === artist_name))) {
                     // console.log("Song name and artist");
                     // console.log(payload["lyric"]);
                     // console.log((response.hits)[i]);

@@ -412,6 +412,7 @@ app.post('/song_search', (request, response)=> {
 
     lyrics(request.body.song_lyrics, request.body.song_artist).then(res=> {
         // console.log("Success");
+        // console.log(res.lyric);
         response.status(200);
         response.render("song_lyrics.hbs", {
             song: res.title,
