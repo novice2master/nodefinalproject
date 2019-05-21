@@ -29,7 +29,11 @@ var get_lyrics  = (song_name, artist_name) => {
                 //     reject("No lyrics found");
                 //     return
                 // }
-                const result = (_.find((response.hits)[i], {"title": song_name}));
+                const result = (_.find(response.hits[i], function (el) {
+                        // return (el.match(song_name))
+                    // console.log(el);
+                    return el.title === song_name
+                }));
                 // console.log(result);
 
                 // console.log("Current #", typeof Number(i), i, "Max hits", typeof response.hits.length, response.hits.length);
@@ -67,10 +71,11 @@ var get_lyrics  = (song_name, artist_name) => {
 
     }));
 };
+get_lyrics("Song 2", "Blur").then(result=> {
 // get_lyrics("Watch what I do", "Hey Buko").then(result=> {
-//     console.log("Here: ",result)
-// }).catch(err=> {
-//     console.log("Error: ", err)
-// });
+    console.log("Here: ",result)
+}).catch(err=> {
+    console.log("Error: ", err)
+});
 
 module.exports = get_lyrics;

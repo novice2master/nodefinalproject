@@ -532,6 +532,10 @@ app.post('/login_form', async (request, response) => {
 
 //Enters a thread in a database
 app.post('/thread_form', async (request, response) => {
+    if (typeof request.session.email === "undefined"){
+        response.send("User not Logged in");
+        return
+    }
     var email = request.session.email;
     var title = request.body.title;
     var message = request.body.message;
