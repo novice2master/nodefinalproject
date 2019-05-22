@@ -29,21 +29,25 @@ var get_lyrics  = (song_name, artist_name) => {
                 //     reject("No lyrics found");
                 //     return
                 // }
-                const result = (_.find(response.hits[i],{title: song_name
+                const result = (_.find(response.hits[i],function (el) {
+
+
                         // return (el.match(song_name))
                     // console.log(el);
                     // return el.title === song_name
                     // console.log(el.title);
                     // console.log(typeof el.title);
-                    // if (typeof el.title === 'string'){
-                    //     return (el.title).search(RegExp(song_name)/i);
-                    // }
+                    if (typeof el.title === 'string'){
+                        // console.log(song_name);
+                        // console.log((el.title).search(song_name/i));
+                        return (el.title).search(song_name/i);
+                    }
 
                 }));
                 // console.log(result);
 
                 // console.log("Current #", typeof Number(i), i, "Max hits", typeof response.hits.length, response.hits.length);
-                if ((typeof result == 'object') && ((result.title).search(RegExp(song_name)/i)) && (((result.primary_artist.name).search(RegExp(artist_name)/i))) ){
+                if ((typeof result == 'object') && ((result.title) === song_name) && (((result.primary_artist.name) === artist_name)) ){
                     // console.log("Song name and artist");
                     // console.log(payload["lyric"]);
                     // console.log((response.hits)[i]);
@@ -77,12 +81,12 @@ var get_lyrics  = (song_name, artist_name) => {
 
     }));
 };
-get_lyrics("song 2", "blur").then(result=> {
+/*get_lyrics("Song 2", "Blur").then(result=> {
 // get_lyrics("big Iron", "marty Robbins").then(result=> {
 // get_lyrics("Watch what I do", "Hey Buko").then(result=> {
     console.log("Here: ",result)
 }).catch(err=> {
     console.log("Error: ", err)
-});
+});*/
 
 module.exports = get_lyrics;
