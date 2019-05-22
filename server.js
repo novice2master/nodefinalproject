@@ -486,7 +486,7 @@ app.post('/signup_form', async (request, response) => {
                 Email: email,
                 Password: psw
             });
-
+            request.session.email = email;
             response.redirect('/');
         }
 
