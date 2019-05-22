@@ -487,7 +487,7 @@ app.post('/signup_form', async (request, response) => {
                 Password: psw
             });
 
-            response.render('confirm.hbs');
+            response.redirect('/');
         }
 
     });
