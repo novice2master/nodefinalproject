@@ -1,0 +1,20 @@
+language: node_js
+
+node_js:
+  - "stable"
+
+branches:
+  only:
+    - master
+    - back-end
+    - front-end
+#env:
+#  - NODE_ENV="development"
+#  - NODE_ENV="production"; SESSION_SECRET='la li'
+
+#before_script:
+#  - npm install -g gulp-cli
+#
+#script: test/appTest.js
+
+fail_test: true
