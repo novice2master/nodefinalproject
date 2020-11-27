@@ -1,14 +1,92 @@
-#body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+
+@import url("https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900|Monoton");
+
+/* General
+============================================================================================ */
+
+html {
+    height: 100%;
 }
 
-#topnav {
+body {
+    font-family: "Raleway", sans-serif;
+    position: relative;
+    min-height: 100%;
+    margin:0;
+    padding:0;
+}
+
+#jumbotron {
+    background-color: #563d7c;
+    text-align: center;
+    border-bottom-right-radius: 12.5%;
+    border-bottom-left-radius: 12.5%;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    color: white;
+    margin-top: -10px;
+    margin-bottom: 60px;
+}
+
+.jumboImage {
+    max-height: 80px;
+    max-width: 80px;
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+.footerSpacing {
+    height: 120px;
+}
+
+.footer {
+    height: 50px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: #f2f2f2;
+    background: #563d7c;
+    text-align: right;
+    position: absolute;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 14%;
+    border-top-left-radius: 14%;
+}
+
+.footer div {
+    padding-top: 12px;
+    margin-bottom: -2px;
+}
+
+.footer div p a {
+    color: #f2f2f2;
+}
+
+.containerMargin {
+    margin-top: 50px;
+}
+
+#IncorrectLogin{
+    text-align: center;
+    color: #ff0000;
+    font-size: 24pt;
+    margin-top: 10px;
+}
+
+/* Header
+============================================================================================ */
+
+.topNav {
     overflow: hidden;
     background-color: #563d7c;
+    border-bottom-right-radius: 12.5%;
+    border-bottom-left-radius: 12.5%;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
 }
 
-#topnav a {
+#topNav a{
     float: left;
     color: #f2f2f2;
     text-align: center;
@@ -16,51 +94,337 @@
     text-decoration: none;
 }
 
-#topnav a:hover {
-    background-color: #ddd;
-    color: black;
+#topNav a:hover {
+    background-color: rgb(139, 121, 162);
+    color: #2f254b;
 }
 
-#topnav-active {
-    background-color: #563d7c;
+.account-btn-off{
+    pointer-events: none;
+}
+
+#topNav-active {
     color: white;
     font-family: 'Monoton', cursive;
     font-size: 30px;
 }
 
-#topnav-right {
+#topNav-right {
     float: right;
     font-size: 18px;
 }
 
-#jumbotron{
-    background-color: #563d7c;
-    text-align: center;
-    border-bottom-right-radius: 12.5%;
-    border-bottom-left-radius: 12.5%;
-    border-top-right-radius: 0%;
-    border-top-left-radius: 0%;
-    color: white;
+#post {
+    display: block;
+    min-height: 240px;
+    padding-left: 22px;
+    padding-right: 12px;
+    padding-top: 6px;
 }
 
-#topimagesize{
-    height: 80px;
-    width: 80px;
+.log-out{
+    display: none;
 }
 
-#topimagesize2{
-    height: 105px;
-    width: 105px;
-<<<<<<< HEAD
-=======
+.my-email button{
+    float:right;
 }
 
-#footer{
-    text-align: center;
-    color: white;
-    background-color: #563d7c;
-    height: auto;
+/* discussionTopicLink
+============================================================================================ */
+
+#thread-titles {
+    color: black;
+}
+
+.discussionCard {
+    margin-bottom: 60px;
+}
+
+.musicCard {
+    background-color: #e1dbe5;
+    color: #2e2142;
+    height: 54px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    cursor: pointer;
+}
+
+.musicCard h3 {
+    margin-top: -10px;
+    font-weight: 300;
+}
+
+
+/* Login + Signup + createPost
+============================================================================================ */
+
+label {
     margin-top: 10px;
-    margin-bottom: 10px;
->>>>>>> david
+    font-weight: 300;
+    font-size: 18px;
+}
+
+input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.buttonArea {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.modal-btn {
+    display: inline-block;
+}
+
+.buttonArea button {
+    border-radius: 6px;
+    background-color: #563d7c;
+    padding: 10px 18px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    color: #f2f2f2;
+}
+
+.buttonArea button:hover {
+    background-color: rgb(139, 121, 162);
+    color: #2f254b;
+}
+
+#categories {
+    border-radius: 6px;
+    padding: 10px 18px;
+    border: 1px solid lightgrey;
+    cursor: pointer;
+    margin-right: 10px;
+    width: 50%;
+}
+
+textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#comment{
+    border-radius: 4px;
+}
+
+.message-box {
+    height: 225px;
+}
+
+.comment-box {
+    margin-top: 10px;
+    height: 125px;
+}
+
+.btn,.cancelbtn{
+    border-radius: 6px;
+    background-color: #563d7c;
+    color: #f2f2f2;
+    margin: 10px;
+    text-align: center;
+    vertical-align: bottom;
+    padding: 10px;
+}
+
+.nav-btn {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    border: none;
+    background: none;
+}
+
+.nav-btn:hover {
+
+    background-color: rgb(139, 121, 162);
+    color: #2f254b;
+}
+
+textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    width: 100%;
+}
+
+.message-box {
+    height: 225px;
+}
+
+#sign-in-btn {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    border: none;
+    background: none;
+}
+
+#sign-in-btn:hover {
+    background-color: rgb(139, 121, 162);
+    color: #2f254b;
+}
+
+/* Chatroom
+============================================= */
+.chatroom {
+    position: relative;
+    top: 100px;
+    height: 600px;
+
+    background-color: #563d7c;
+    color: #f2f2f2;
+    border-radius: 25px;
+}
+
+.chatbox {
+    position: relative;
+    top: 50px;
+    height: 500px;
+    background-color: gainsboro;
+    color: black;
+    margin-left: 37px;
+    margin-right: 37px;
+    border-radius: 25px;
+}
+
+
+/* Thread pages
+============================================================================================ */
+
+#generalThreads {
+    margin-top: 60px;
+}
+
+#generalThreads .card .card-header {
+    padding-top: 0;
+    height: 50px;
+}
+
+#generalThreads .card .card-header h5 button {
+    margin-top: 4px;
+    color: #f2f2f2;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+
+#generalThreads .card:nth-child(odd) .card-header {
+    background-color: #563d7c;
+    color: #f2f2f2;
+}
+
+#generalThreads .card:nth-child(even) .card-header {
+    background-color: rgb(139, 121, 162);
+    color: #f2f2f2;
+}
+
+#generalThreads .card:first-child .card-header:first-child {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+
+#generalThreads .card:last-child .card-header:first-child {
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+#generalThreads .card .card-header:hover {
+    background-color: lightgrey;
+    cursor: pointer;
+}
+
+#generalThreads .card .card-header:hover h5 button {
+    color: #563d7c;
+}
+
+#generalThreads .card .card-body .row {
+    margin-top: 20px;
+}
+
+#generalThreads .card .card-body .accordion .card .card-header {
+    border-radius: 8px;
+    background-color: lightgrey;
+    color: #2f254b;
+}
+
+#generalThreads .card .card-body .accordion .card .card-header h5 button {
+    color: #2f254b;
+}
+
+#generalThreads .card .card-body .accordion .card .card-body form textarea {
+    border-radius: 1px;
+    box-shadow: none;
+}
+
+.button-name {
+    padding-top:  10px;
+}
+
+/* to override */
+.index-nav{
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#passwordcheck{
+    display: block;
+    background: #f2f2f2;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+/* Add a green text color when the requirements are right */
+.valid {
+    color: green;
+}
+
+/* Add a red text color when the requirements are wrong */
+.invalid {
+    color: red;
+}
+.row{
+    color: #ebe7ea
+}
+
+
+
+.song-backdrop{
+    border-radius: 25px;
+    margin-top: 20px;
+    background-color: #563d7c;
+    color: white;
+    padding: 10px;
+    white-space: pre-line;
+}
+
+.containerMargin > p{
+    padding: 100px;
+}
+
+#song_lyrics{
+    margin-top: 20px;
 }

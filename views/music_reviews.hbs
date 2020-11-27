@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 
 <html>
 
@@ -16,6 +16,10 @@
     {{> navbar}}
 
     {{content}}
+    <div class="accordion" id="generalThreads">
+        <!--Cards to contain each of the threads-->
+        {{>threads}}
+    </div>
 
     {{>footer}}
 </body>
